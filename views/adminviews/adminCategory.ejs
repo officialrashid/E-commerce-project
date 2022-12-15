@@ -1,0 +1,41 @@
+<section id="footer" class="category">
+<div class="page-align">
+    <form action="/admin/addcategory" method="post">
+        <div class="row mb-3">
+            <label for="inputEmail" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-5">
+                <input type="text" name="name" class="form-control">
+
+            </div>
+            <div class="col-sm-5">
+                <button class="btn btn-secondary" type="submit">Add</button><br>
+                
+                <a class="return-add-category" href=""></a>
+            
+
+            </div>
+        </div>
+        <p class="error"></p>
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Categories</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% getcategory.forEach(function(category, i){ %>
+            <tr>
+                <td><%= category.name %></td> 
+                <td>
+                    <a href="/admin/EditCategory/<%= category._id%>"><button class="btn btn-secondary" id="my-button" onclick="myFunction(this.id)">Edit</button></a>
+                    <a href="/admin/DeleteCategory/<%= category._id%>"><button class="btn btn-secondary" onclick="return confirm('Are you sure you want to delete this file? This action cannot be undone.')",myFunction(this.id) >Remove</button></a>
+                </td>
+            </tr>
+            <% }); %>
+
+        </tbody>
+    </table>
+</div>
+</section>

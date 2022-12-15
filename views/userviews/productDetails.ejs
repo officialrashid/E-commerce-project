@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gota eCommerce HTML5 Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- single_breadcrumb_area start -->
+    <div class="single_breadcrumb pt-25">
+        <div class="container">
+          <!-- <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Shop</a></li>
+              <li class="breadcrumb-item"><a href="#">Outerwears</a></li>
+              <li class="breadcrumb-item"><a href="#">jackets</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Arsenal Home Jersey</li>
+              </ol>
+          </nav> -->
+          <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="row">
+                      <div class="col-xl-12 col-lg-12 col-md-12">
+                          <div class="single_preview_product">
+                              <div class="tab-content" id="ddee">
+                                  <div class="tab-pane fade show active" id="hoeme" role="tabpanel" >
+                                     <div class="full-view" id="img-container">
+                                          <img src="/product-images/<%= DetailProduct._id %>.jpg" alt="">
+                                     </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- <div class="col-xl-12 col-lg-12 col-md-12">
+                          <div class="single_preview_product">
+                              <div class="tab-content" id="myTdfabCdfontent">
+                                  <div class="tab-pane fade show active" id="heome" role="tabpanel" >
+                                     <div class="full-view">
+                                          <img src="/product-images/<%= DetailProduct._id %>.jpg" alt="">
+                                     </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="col-xl-12 col-lg-12 col-md-12">
+                          <div class="single_preview_product">
+                              <div class="tab-content" id="myTabCdfntent">
+                                  <div class="tab-pane fade show active" id="hodme" role="tabpanel" >
+                                     <div class="full-view">
+                                          <img src="/product-images/<%= DetailProduct._id %>.jpg" alt="">
+                                     </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> -->
+                      <!-- <div class="col-xl-12 col-lg-12 col-md-12">
+                          <div class="single_preview_product">
+                              <div class="tab-content" id="myTabCdfontent">
+                                  <div class="tab-pane fade show active" id="homde" role="tabpanel" >
+                                     <div class="full-view">
+                                          <img src="/product-images/<%= DetailProduct._id %>.jpg" alt="">
+                                     </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div> -->
+                  </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12">
+                  <div class="single_preview_content pl-30">
+                      <h2 class="title-5 edit-title border-bottom-0"><%= DetailProduct.shoename %></h2>
+                      <div class="s-product-review">
+                          <span><i class="far fa-star start-color"></i></span>
+                          <span><i class="far fa-star start-color"></i></span>
+                          <span><i class="far fa-star start-color"></i></span>
+                          <span><i class="far fa-star start-color"></i></span>
+                          <span><i class="far fa-star"></i></span>
+                          <span class="pl-left">(1 customer review)</span>
+                      </div>
+                   
+                      <div class="s-des">
+                        <p>Companyname:<%= DetailProduct.companyname %></p>
+                        <p>Color:<%= DetailProduct.color %></p>
+                          
+                          <p>size:<%= DetailProduct.size %></p>
+                          <p>Description:<%= DetailProduct.description %></p>
+                          <li>category:<%= DetailProduct.category %></li>
+                      </div>
+                      <div class="s-price pt-30 mb-30">
+                        <span>Price:<%= DetailProduct.price %></span>
+                    </div>
+                      <div class="viewcontent__action single_action pt-30">
+                          <span><input type="number" placeholder="1"></span>
+                          <span><a href="cart.html">+ add to cart</a></span>
+                          <span><i class="fal fa-heart"></i></span>
+                          <span><i class="fas fa-compress"></i></span>
+                      </div>
+                      <div class="viewcontent__footer border-top-0 border-bottom pb-30">
+                          <ul>
+                              
+                              
+                          </ul>
+                          <ul>
+                              <!-- <li>jackets, Youth</li> -->
+                              <!-- <li>woo-hoodie-with-logo</li>  -->
+                          </ul>
+                      </div>
+                      <div class="social__media f-social-media mb-30 pt-15">
+                          <h3 class="f-title edit-f-title">FOLLOW US ON</h3>
+                          <a href="#"><i class="fab fa-facebook-f"></i></a>
+                          <a href="#"><i class="fab fa-twitter"></i></a>
+                          <a href="#"><i class="fab fa-instagram"></i></a>
+                          <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                          <a href="#"><i class="fab fa-dribbble"></i></a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+    </div>
+    </body>
+    </html>
+<script src="https://unpkg.com/js-image-zoom/js-image-zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-image-zoom/js-image-zoom.min.js"></script>
+<script>
+    var options = {
+    width: 400,
+    scale: 1,
+    zoomPosition: 'right' // required
+    // more options here
+};
+new ImageZoom(document.getElementById("img-container"), options);
+
+</script>

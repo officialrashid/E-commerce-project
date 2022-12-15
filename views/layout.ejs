@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+
+  <!-- <link rel="manifest" href="site.html"> -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+      <!-- Place favicon.ico in the root directory -->
+
+  <!-- CSS here -->
+      <link rel="stylesheet" href="/css/bootstrap.min.css">
+      <link rel="stylesheet" href="/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="/css/animate.min.css">
+      <link rel="stylesheet" href="/css/magnific-popup.css">
+      <link rel="stylesheet" href="/css/fontawesome-all.min.css">
+      <link rel="stylesheet" href="/css/themify-icons.css">
+      <link rel="stylesheet" href="/css/futura-std-font.css">
+      <link rel="stylesheet" href="/css/meanmenu.css">
+      <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+      <link rel="stylesheet" href="/css/slick.css">
+      
+      <link rel="stylesheet" href="/css/style.css">
+      <link rel="stylesheet" href="/css/responsive.css">
+
+      <!-- admin link start -->
+
+       <!-- Favicons -->
+   <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+   <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="styleshet"> 
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet"> 
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="/assets/vendor/quill/quill.bubble.css" rel="stylesheet"> 
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet"> 
+   <link href="/assets/vendor/simple-datatables/style.css" rel="stylesheet"> 
+
+  <!-- Template Main CSS File -->
+   
+
+    
+    
+   
+  
+
+  <!-- bootstrap link -->
+
+ 
+
+</head>
+<body>
+  <header>
+    <% if(locals.user==true){ %>
+      <%- include('partials/user_header.ejs') %>
+
+   <% }else if(locals.user==false){ %>
+       
+    <%- include('partials/admin_header.ejs') %>
+    <link href="/assets/css/style.css" rel="stylesheet"> 
+   <% } %>
+  </header>
+
+  <%- body %>
+
+  <footer>
+    <% if(locals.user==true){ %>
+      <%- include('partials/user_footer.ejs') %>
+
+   <% }else if(locals.user==false){ %>
+       
+    <%- include('partials/admin_footer.ejs') %>
+   <% } %>
+  </footer>
+
+<!-- JS here -->
+<!-- <script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/js/vendor/modernizr-3.5.0.min.js"></script> -->
+<script src="/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/isotope.pkgd.min.js"></script>
+<script src="/js/one-page-nav-min.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/jquery.meanmenu.min.js"></script>
+<script src="/js/ajax-form.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.scrollUp.min.js"></script>
+<script src="/js/imagesloaded.pkgd.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/plugins.js"></script>
+<script src="/js/swiper-bundle.min.js"></script>
+<script src="/js/countdown.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/validation.js"></script>
+
+<!-- admin script start -->
+
+ <!-- Vendor JS Files -->
+ <script src="/assets/vendor/apexcharts/apexcharts.min.js"></script>
+ <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <script src="/assets/vendor/chart.js/chart.min.js"></script>
+ <script src="/assets/vendor/echarts/echarts.min.js"></script>
+ <script src="/assets/vendor/quill/quill.min.js"></script>
+ <script src="/assets/vendor/simple-datatables/simple-datatables.js"></script>
+ <script src="/assets/vendor/tinymce/tinymce.min.js"></script>
+ <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+ <!-- Template Main JS File -->
+ <script src="/assets/js/main.js"></script>
+
+ <!-- bootstrap -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+</body>
+</html>
+

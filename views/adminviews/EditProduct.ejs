@@ -1,0 +1,82 @@
+<section class="page-align mt-5" id="footer">
+    <div class="container">
+        <h1>Add Stocks</h1>
+
+        <form action="/admin/edit-product-submit/<%= product._id %>" method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Name of the Shoe</label>
+                <div class="col-sm-10">
+                    <input type="text" name="shoename" class="form-control" value="<%= product.shoename %>">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-2 col-form-label">Company Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="companyname" class="form-control" value="<%= product.companyname %>">
+                </div>
+            </div>
+             <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Size</label>
+                <div class="col-sm-10">
+                    <input type="text" name="size" class="form-control" value="<%= product.size %>">
+                </div>
+            </div> 
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Color</label>
+                <div class="col-sm-10">
+                    <input type="text" name="color" class="form-control" value="<%= product.color %>">
+                </div>
+            </div> 
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="description" type="text" style="height: 100px" value="<%= product.
+                    description %>"></textarea>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-10">
+                    <select class="form-select" name="category" type="text" aria-label="Default select example" value="<%= product.category %>">
+                        <option selected>Select category</option>
+                        
+                        <option>formal</option>
+                        
+                    </select>
+                </div>
+            </div>
+            <td class="product-images"><img src="/product-images/<%= product._id %>.jpg" alt="no"></td>
+            <div class="row mb-3">
+                
+                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="file" name="Image" id="formFile" value="<%= product.
+                    Image %>">
+                    
+                </div>
+                
+            </div>
+           
+            <div class="row mb-3">
+                <label for="inputDate" class="col-sm-2 col-form-label">Date of Manufacture</label>
+                <div class="col-sm-10">
+                    <input type="date" name="dateofmanufacture" class="form-control" value="<%= product.dateofmanufacture %>">
+                </div>
+            </div>
+                        <div class="row mb-3">
+                <label for="inputDate" class="col-sm-2 col-form-label">Price</label>
+                <div class="col-sm-10">
+                    <input type="number" name="price" class="form-control" value="<%= product.price %>">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                   <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
