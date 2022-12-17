@@ -1,4 +1,4 @@
-const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory,userblock,getAllcategorydropdown,getcategory}=require('../Model/admin-helpers')
+const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory,userblock,getAllcategorydropdown,getcategory,adminCategoryAdd}=require('../Model/admin-helpers')
 const {respons}=require('express');
 const { Result } = require('express-validator');
 module.exports={
@@ -120,10 +120,18 @@ module.exports={
    },
    addcategory(req,res,next){
 
-     AddCategorys(req.body).then((addcategory)=>{
+     
 
       res.redirect('/admin/Category')
-     })
+     
+   },
+   AddedCategory(req,res,){
+     
+    AddCategorys(req.body).then((addcategory)=>{
+
+      res.redirect('/admin/Category')
+    })
+
    },
    EditCategory(req,res,next){
      

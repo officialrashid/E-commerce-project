@@ -140,7 +140,7 @@ module.exports={
      
  db.get().collection(collection.CATEGORY_COLLECTION).insertOne(addcategory).then((addcategory)=>{
 
-        resolve()
+        resolve(addcategory)
     })
 
     })
