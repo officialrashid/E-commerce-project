@@ -17111,3 +17111,8 @@ button.accordion-button::after {
   width: 100px;
   height: 100px;
 }
+.btn-acc{
+  background-color: transparent;
+  color: white;
+  border: none;
+}

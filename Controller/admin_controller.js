@@ -1,4 +1,4 @@
-const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory}=require('../Model/admin-helpers')
+const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory,userblock,getAllcategorydropdown,getcategory}=require('../Model/admin-helpers')
 const {respons}=require('express');
 const { Result } = require('express-validator');
 module.exports={
@@ -40,8 +40,11 @@ module.exports={
    },
    AddProduct(req,res,next){
     
-   
-    res.render('adminviews/AddProduct',{user:false})
+    getAllcategorydropdown().then((getcategorydropdown)=>{
+
+    res.render('adminviews/AddProduct',{user:false,getcategorydropdown})
+    })
+    
     
    },
 
@@ -68,9 +71,16 @@ module.exports={
    editproduct(req,res){
 
     let productid=req.params.id
+    getcategory().then((geteditcategory)=>{
+
+   
     adminedit(productid).then((product)=>{
       
-      res.render('adminviews/EditProduct',{user:false,product})
+      res.render('adminviews/EditProduct',{user:false,product,geteditcategory})
+
+
+    })
+   
     })
    },
 
@@ -78,8 +88,15 @@ module.exports={
 
   
     adminEditsubmit(req.params.id,req.body).then(()=>{
-
+       
+      let id=req.params.id
       res.redirect('/admin/Stocks')
+
+      if(req.files.Image){
+        let image=req.files.Image
+        image.mv('./public/Product-images/'+id+'.jpg')
+      }
+
     })
    },
 
@@ -135,5 +152,13 @@ module.exports={
       res.redirect('/admin/Category')
     })
     
+   },
+   blockmanagement(req,res){
+
+    userblock(req.params.id,req.body.status).then(()=>{
+      
+      res.redirect('/admin/AllUsers')
+
+    })
    }
 }

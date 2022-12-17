@@ -40,24 +40,29 @@ module.exports={
 
          let user=await db.get().collection(collection.USER_COLLECTION).findOne({email:userdata.email})
          if(user){
-    
-         bcrypt.compare(userdata.password,user.password).then((status)=>{
             
-             console.log(status);
-            if(status){
-  
-                
-                response.user=user
-                response.status=true
-                resolve(response)
-                
-            }
-            else{
+            if(user.isBlocked){
 
-                reject({error:"Incorrect password"})
+                reject({error:"user is blocked"})
+            }else{
+                
+                bcrypt.compare(userdata.password,user.password).then((status)=>{
+            
+                    console.log(status);
+                   if(status){
+         
+                       
+                       response.user=user
+                       response.status=true
+                       resolve(response)
+                       
+                   }
+                   else{
+       
+                       reject({error:"Incorrect password"})
+                   }
+                })
             }
-         })
-
          }else{
             reject({error:"Incorrect Email"})
          }

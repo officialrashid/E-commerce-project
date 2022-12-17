@@ -197,6 +197,49 @@ module.exports={
             })
         })
 
+    },
+    userblock:(userId,status)=>{
+         
+        if(status=='true'){
+
+            status=false
+        }else{
+            status=true
+        }
+        return new Promise((resolve,reject)=>{
+
+            db.get().collection(collection.USER_COLLECTION).updateOne({_id:ObjectId(userId)},{
+
+                $set:{
+        
+                    isBlocked:status
+
+                }
+            }).then((response)=>{
+                  
+                console.log(response);
+                resolve(response)
+            })
+        })
+    },
+    getAllcategorydropdown:()=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+            let getcategorydropdown=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+            console.log(getcategorydropdown);
+            resolve(getcategorydropdown)
+
+        })
+    },
+    getcategory:()=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+            let geteditcategory=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+            console.log(geteditcategory);
+            resolve(geteditcategory)
+        })
     }
 
 }

@@ -12,7 +12,7 @@
 <body>
 
     <!-- header area start -->
-    <header class="header-area">
+    <!-- <header class="header-area">
         <div class="gota_top bg-soft d-none d-sm-block">
             <div class="container-fluid">
                 <div class="row">
@@ -39,8 +39,19 @@
                                  <li><a href="cart.html">Wishlist</a></li>
                                 <li><a href="login.html">Account</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="/LoginandSignupButton">Login & register</a></li>
-                            </ul>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                      Accounts
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="/LoginandSignupButton">Login & register</a>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                  </div>
+                                <!-- <li><a href="/LoginandSignupButton">Login & register</a></li> -->
+                            <!-- </ul>
+                        
                         </div>
                     </div>
                 </div>
@@ -193,7 +204,7 @@
                 </div>
             </div>
         </div>
-    </header>
+    </header>  -->
     <!-- header area end -->
 
     <div class="search_area">
@@ -433,11 +444,14 @@
                                                             </div>
                                                         </div>
                                                            <div class="product__name">
-                                                            <h4><a href="shop.html"><%= product.shoename %></a></h4>
+                                                            <h4><a href="shop.html">name:<%= product.shoename %></a></h4>
                                                             <div class="pro-price">
-                                                                <p class="p-absoulute pr-1"><span></span><%= product.price %><span></span></p>
-                                                                <a class="p-absoulute pr-2" href="#">add to cart</a>
+                                                                <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
+                                                                
+                                                                <a href="/AddtoCart" class="p-absoulute pr-2" >add to cart</a>
+                                                               
                                                             </div>
+                                                            <h4><a href="shop.html">category:<%= product.category %></a></h4>
                                                         </div>
                                                 <div class="product__action">
                                                     <div class="inner__action">

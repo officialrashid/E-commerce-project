@@ -37,8 +37,28 @@
                                  <li><a href="cart.html">Wishlist</a></li>
                                 <li><a href="login.html">Account</a></li>
                                 <li><a href="checkout.html">Checkout</a></li>
-                                <li><a href="/LoginandSignupButton">Login & register</a></li>
+
+                                
+                                    <button class="btn-acc dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                          <!--if-else-->
+                               <% if (users) { %>
+                                  <%= users %>
+                                       <% } else { %>
+                                      Account 
+                                   <% } %>
+                                    
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <% if (users) { %>
+                                      <a class="dropdown-item" href="/Logout">Logout</a>
+                                      <a class="dropdown-item" href="/AddtoCart">cart</a>
+                                      <% } else { %>
+                                        <a class="dropdown-item" href="/LoginandSignupButton">Login & register</a>
+                                        <% } %>
+                                  </div>
+                                <!-- <li><a href="/LoginandSignupButton">Login & register</a></li> -->
                             </ul>
+                           
                         </div>
                     </div>
                 </div>

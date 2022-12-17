@@ -224,6 +224,9 @@
                 <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 offset-xl-1">
                     <h3 class="title-7">Login</h3>
                     <div class="login_wrapper">
+                        <% if(locals.error) { %>
+                            <div class="alert alert-danger" role="alert"><%= error %></div>
+                            <% } %>
                         <form action="/Userlogin" method="post">
                             <div class="input_wrap">
                                 <label>email address<span>*</span></label>
@@ -231,8 +234,8 @@
                             </div>
                             <div class="input_wrap">
                                 <label>Password<span>*</span></label>
-                                <input type="text" name="password" class="form-control">
-                                <span class="show-pass"><i class="far fa-eye-slash"></i></span>
+                                <input type="password" name="password" class="form-control">
+                                <span class="show-pass"><i class=""></i></span>
                             </div>
                             <div class="input_wrapp-2">
                                 <input type="checkbox" name="check">
@@ -268,14 +271,14 @@
                 </div>
                 <div class="input_wrap">
                     <label>Password<span>*</span></label>
-                    <input type="text" name="password" class="form-control" id="check-password" required>
+                    <input type="password" name="password" class="form-control" id="check-password" required>
                     <span id="password-error"></span>
                     
                 </div>
 
                 <div class="input_wrap">
                     <label>Confirm Password<span>*</span></label>
-                    <input type="text"class="form-control" id="check-confirmpassword" oninput="return validateConfirmPassword()" required>
+                    <input type="password"class="form-control" id="check-confirmpassword" oninput="return validateConfirmPassword()" required>
                     <span id="confirmpassword-error"></span>
                 </div>
                 <div class="input_wrap">
