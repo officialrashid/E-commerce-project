@@ -1,4 +1,4 @@
-const {doSignup,doLogin,ShowProduct,productAlldetails}=require('../Model/user-helpers');
+const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory}=require('../Model/user-helpers');
 const {respons}=require('express')
 
 module.exports={
@@ -49,7 +49,14 @@ module.exports={
     let users=req.session.users
      ShowProduct().then((ShowProducts)=>{
 
-        res.render('userviews/landingpage',{user:true,ShowProducts,users});
+      getCategory().then((getCategoryData)=>{
+
+
+        res.render('userviews/landingpage',{user:true,ShowProducts,users,getCategoryData});
+      })
+    
+            
+        
      })
     
 },
@@ -92,7 +99,7 @@ LoginandSignupButton(req,res,next){
 productDetails(req,res,next){
     let users=req.session.users
     productAlldetails(req.params.id).then((DetailProduct)=>{
-     
+      
       res.render('userviews/productDetails',{user:true,DetailProduct,users})
     })
 },
@@ -104,16 +111,62 @@ Logout(req,res){
     res.redirect('/')
 },
 
-AddtoCart(req,res){
+// AddtoCart(req,res){
   
+//   users=req.session.users
+  
+//   productAlldetails(req.params.id).then((DetailProduct)=>{
+      
+//     res.render('userviews/productDetails',{user:true,DetailProduct,users})
+//   })
+ 
+ 
+// },
+
+
+ShopButton(req,res){
+   
   users=req.session.users
+  console.log(users);
+
+  ShowProduct().then((ShowProducts)=>{
   
-    res.render('userviews/CartPage',{user:true})
- 
- 
+  getCategory().then((getCategoryData)=>{
+
+
+    res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
+  })
+
+
+    
+  })
+
+  },
+
+  categoryfilter(req,res){
+
+    let users=req.session.user
+    let name=req.body;
+
+    console.log(users);
+    console.log(name);
+
+    filterByCategory(name).then((ShowProducts)=>{
+     
+      getCategory().then((getCategoryData)=>{
+      
+        res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
+
+
+      }).catch(()=>{
+
+        res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
+      })
+     
+    })
+  }
+  
 }
 
 
 
-
-}

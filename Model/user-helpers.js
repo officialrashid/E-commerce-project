@@ -86,5 +86,35 @@ module.exports={
          })
 
         })
+    },
+
+    getCategory:()=>{
+         
+        return new Promise(async(resolve,reject)=>{
+
+        
+        let getCategoryData=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+        resolve(getCategoryData)
+        
+
+        }).catch((error)=>{
+
+         reject()
+        })
+       
+    },
+    filterByCategory:(proCategory)=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+            let ShowProducts=await db.get().collection(collection.PRODUCT_COLLECTION).find({category:proCategory.name}).toArray()
+             console.log(ShowProducts);
+            resolve(ShowProducts)
+        }).catch((error)=>{
+
+            reject()
+        })
     }
+    
+  
 }

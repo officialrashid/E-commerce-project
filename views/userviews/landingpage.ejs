@@ -413,20 +413,33 @@
                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kidss" type="button" role="tab"  aria-selected="false">Kids</button>
                             </li>
                         </ul>
-                        <div class="row">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home">
-                                <div class="container">
-                                    <div class="product-active h-2-product-active swiper-container">
-                                        <div class="swiper-wrapper">
-                                    <% ShowProducts.forEach(function(product, i){ %>
 
+                        
+                       
+<!--                 
+                        <div class="row">
+
+                        <div class="tab-content" id="myTabContent"> 
+                            
+                         <div class="tab-pane fade show active" id="home">
+                               
+                                <div class="container">
+                                   
+                                    <div class="product-active h-2-product-active swiper-container">
+                                      
+                                            
+                                        <div class="swiper-wrapper">
+                                            <% ShowProducts.forEach(function(product, i){ %>
+                                           
+                                            
                                             <div class="product-item swiper-slide wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                                               
                                                 <div class="product">
+                                                
                                                     <div class="product__thumb">
                                                         <a href="single.html">
                                                             <a href="/productDetails/<%= product._id %>"><img class="product-primary" src="product-images/<%= product._id %>.jpg" alt="product_image"></a>
-                                                            <!-- <img class="product-secondary" src="product-images/<%= product._id %>.jpg" alt="product_image"> -->
+                                                            <img class="product-secondary" src="product-images/<%= product._id %>.jpg" alt="product_image">
                                                         </a>
                                                         <div class="product__update">
                                                             <a class="#">new</a>
@@ -448,7 +461,7 @@
                                                             <div class="pro-price">
                                                                 <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
                                                                 
-                                                                <a href="/AddtoCart" class="p-absoulute pr-2" >add to cart</a>
+                                                                <a href="" class="p-absoulute pr-2" >add to cart</a>
                                                                
                                                             </div>
                                                             <h4><a href="shop.html">category:<%= product.category %></a></h4>
@@ -469,15 +482,95 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                      <% }); %>
-                                           
+                                    
+                                            <% }); %>
 
+                                        </div>
+                                       
+                              
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                     
+                        </div> -->
+
+
+                       
+                                                <div class="row">
+
+                                                    <div class="tab-content" id="myTabContent"> 
+                                                        
+                                                     <div class="tab-pane fade show active" id="home">
+                                                           
+                                                            <div class="container">
+                                                               
+                                                                <div class="product-active h-2-product-active swiper-container">
+                                                                  
+                                                                        
+                                                 <div class="swiper-wrapper">
+                                                <div class="row">
+                                                    <% ShowProducts.forEach(function(product, i){ %>
+                                                    <div class="col-xl-4">
+                                                        <div class="product product-4">
+                                                            <div class="product__thumb">
+                                                                <a href="single.html">
+                                                                    <a href="/productDetails/<%= product._id %>"><img class="product-primary" src="product-images/<%= product._id %>.jpg" alt="product_image"></a>
+                                                                    <!-- <img class="product-secondary" src="assets/img/product/17-2.jpg"
+                                                                        alt="product_image"> -->
+                                                                </a>
+                                                                <!-- <div class="product__update">
+                                                                    <a class="#">new</a>
+                                                                </div> -->
+                                                                <div class="product-info mb-10">
+                                                                    <div class="product_category">
+                                                                        <span>Shoes, Clothing</span>
+                                                                    </div>
+                                                                    <div class="product_rating">
+                                                                        <a href="#"><i class="fal fa-star start-color"></i></a>
+                                                                        <a href="#"><i class="fal fa-star start-color"></i></a>
+                                                                        <a href="#"><i class="fal fa-star start-color"></i></a>
+                                                                        <a href="#"><i class="fal fa-star"></i></a>
+                                                                        <a href="#"><i class="fal fa-star"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="product__name">
+                                                                    <h4><a href="single.html"><%= product.shoename %></a></h4>
+                                                                    <div class="pro-price">
+                                                                        <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
+                                                                        <a class="p-absoulute pr-2" href="#">add to cart</a>
+                                                                    </div>
+                                                                    <h4><a href="shop.html">category:<%= product.category %></a></h4>
+                                                                </div>
+                                                                <div class="product__action">
+                                                                    <div class="inner__action">
+                                                                        <div class="wishlist">
+                                                                            <a href="#"><i class="fal fa-heart"></i></a>
+                                                                        </div>
+                                                                        <div class="view">
+                                                                            <a href="javascript:void(0)"><i
+                                                                                    class="fal fa-eye"></i></a>
+                                                                        </div>
+                                                                        <div class="layer">
+                                                                            <a href="#"><i class="fal fa-layer-group"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+            
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% }); %>  
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
+                    </div>
+                        
                     </div>
                 </div>
                 

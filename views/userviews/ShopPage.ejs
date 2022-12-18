@@ -1,0 +1,125 @@
+<div class="page-layout" data-background="/img/slider/shop.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="breadcrumb-area text-center">
+                    <h2 class="page-title">shop</h2>
+                    <div class="breadcrumb-menu">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="shop.html">shop</a></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumb area end -->
+
+<!-- shop page start -->
+<div class="shop-page pt-85">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-12">
+                <div class="sidebar">
+                    <div class="product-widget">
+                        <h3 class="widget-title mb-30">Product categories</h3>
+                        <ul class="product-categories">
+                            <% getCategoryData.forEach(function(product, i){ %>
+                            
+                            <a href="">
+                             
+                                <form action="/categoryfilter" method="post">
+                                  
+                                    <input type="text" name="name" value="<%= product.name %>" hidden>
+                                    <button type="submit" class="btn btn-color"><%= product.name %></button>
+
+
+
+                                </form>
+
+
+                            </a>
+                           
+                            <% }); %>  
+                        </ul>
+                    </div>
+            
+                 
+                
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
+                
+                <div class="shop-page-product pt-50 pb-100">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                    aria-labelledby="nav-home-tab">
+                                    <div class="row">
+                                        <% ShowProducts.forEach(function(product, i){ %>
+                                        <div class="col-xl-6">
+                                            <div class="product product-4">
+                                                <div class="product__thumb">
+                                                    <a href="">
+                                                        <a href="/productDetails/<%= product._id %>"><img class="product-primary" src="product-images/<%= product._id %>.jpg" alt="product_image"></a>
+                                                        <!-- <img class="product-secondary" src="assets/img/product/17-2.jpg"
+                                                            alt="product_image"> -->
+                                                    </a>
+                                                    <!-- <div class="product__update">
+                                                        <a class="#">new</a>
+                                                    </div> -->
+                                                    <div class="product-info mb-10">
+                                                        <div class="product_category">
+                                                            <span>Shoes, Clothing</span>
+                                                        </div>
+                                                        <div class="product_rating">
+                                                            <a href="#"><i class="fal fa-star start-color"></i></a>
+                                                            <a href="#"><i class="fal fa-star start-color"></i></a>
+                                                            <a href="#"><i class="fal fa-star start-color"></i></a>
+                                                            <a href="#"><i class="fal fa-star"></i></a>
+                                                            <a href="#"><i class="fal fa-star"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product__name">
+                                                        <h4><a href=""><%= product.shoename %></a></h4>
+                                                        <div class="pro-price">
+                                                            <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
+                                                            <a class="p-absoulute pr-2" href="#">add to cart</a>
+                                                        </div>
+                                                        <h4><a href="">category:<%= product.category %></a></h4>
+                                                    </div>
+                                                    <div class="product__action">
+                                                        <div class="inner__action">
+                                                            <div class="wishlist">
+                                                                <a href="#"><i class="fal fa-heart"></i></a>
+                                                            </div>
+                                                            <div class="view">
+                                                                <a href="javascript:void(0)"><i
+                                                                        class="fal fa-eye"></i></a>
+                                                            </div>
+                                                            <div class="layer">
+                                                                <a href="#"><i class="fal fa-layer-group"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }); %>  
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- shop page end -->

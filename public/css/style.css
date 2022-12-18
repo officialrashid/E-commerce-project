@@ -17116,3 +17116,8 @@ button.accordion-button::after {
   color: white;
   border: none;
 }
+.btn-color{
+
+  color: #000;
+  font-size: x-large;
+}

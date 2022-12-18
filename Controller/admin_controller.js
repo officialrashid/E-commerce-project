@@ -90,14 +90,19 @@ module.exports={
     adminEditsubmit(req.params.id,req.body).then(()=>{
        
       let id=req.params.id
+      
       res.redirect('/admin/Stocks')
-
-      if(req.files.Image){
-        let image=req.files.Image
-        image.mv('./public/Product-images/'+id+'.jpg')
-      }
-
+       
+        
+      // if(req.files.Image){
+          
+      //   let image=req.files.Image
+      //   image.mv('./public/Product-images/'+id+'.jpg')
+        
+      //  }
+    
     })
+   
    },
 
    deleteproduct(req,res){
