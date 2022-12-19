@@ -74,7 +74,7 @@ module.exports={
     getcategory().then((geteditcategory)=>{
 
    
-    adminedit(productid).then((product)=>{
+     adminedit(productid).then((product)=>{
       
       res.render('adminviews/EditProduct',{user:false,product,geteditcategory})
 
@@ -86,23 +86,23 @@ module.exports={
 
    editsubmit(req,res){
 
-  
+    let id=req.params.id
     adminEditsubmit(req.params.id,req.body).then(()=>{
        
-      let id=req.params.id
       
-      res.redirect('/admin/Stocks')
-       
-        
-      // if(req.files.Image){
           
-      //   let image=req.files.Image
-      //   image.mv('./public/Product-images/'+id+'.jpg')
-        
-      //  }
-    
+      res.redirect('/admin/Stocks')
+        console.log(req.file);
+         if(req.files?.Image){
+
+        let image=req.files.Image
+        image.mv('./public/Product-images/'+id+'.jpg')
+
+         
+         }  
+      
     })
-   
+
    },
 
    deleteproduct(req,res){
