@@ -42,7 +42,7 @@
                                     <button class="btn-acc dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
                                           <!--if-else-->
                                <% if (users) { %>
-                                  <%= users %>
+                                  <%= users.name %>
                                        <% } else { %>
                                       Account 
                                    <% } %>
@@ -51,7 +51,7 @@
                                     <div class="dropdown-menu">
                                         <% if (users) { %>
                                       <a class="dropdown-item" href="/Logout">Logout</a>
-                                      <a class="dropdown-item" href="/AddtoCart">cart</a>
+                                      <a class="dropdown-item" href="/CartPage">cart</a>
                                       <% } else { %>
                                         <a class="dropdown-item" href="/LoginandSignupButton">Login & register</a>
                                         <% } %>

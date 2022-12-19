@@ -54,7 +54,7 @@ module.exports={
                        
                        response.user=user
                        response.status=true
-                       resolve(response)
+                       resolve(user)
                        
                    }
                    else{
@@ -113,6 +113,72 @@ module.exports={
         }).catch((error)=>{
 
             reject()
+        })
+    },
+    AddTOCART:(proID,userID)=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+            let userCart=await db.get().collection(collection.CART_COLLECTION).findOne({users:ObjectId(userID)})
+
+            if(userCart){
+              
+                db.get().collection(collection.CART_COLLECTION)
+                .updateOne({users:ObjectId(userID)},{
+
+                    $push:{products:ObjectId(proID)}
+
+                }).then((respons)=>{
+
+                    resolve()
+                })
+
+            }else{
+
+                let cartObj={
+
+                    users:ObjectId(userID),
+                    products:[ObjectId(proID)]
+                }
+                db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((respons)=>{
+
+                    resolve()
+                })
+            }
+        })
+    },
+    getAllCartProducts:(userID)=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+            let cartItems=await db.get().collection(collection.CART_COLLECTION).aggregate([
+
+                {
+                    $match:{users:ObjectId(userID)}
+                },
+                {
+                    $lookup:{
+
+                        from:collection.PRODUCT_COLLECTION,
+                        let:{prodList:'$products'},
+                        pipeline:[
+
+                            {
+                                $match:{
+
+                                    $expr:{
+
+                                        $in:['$_id',"$$prodList"]
+                                    }
+                                }
+                            }
+
+                        ],
+                        as:'cartItems'
+                    }
+                }
+            ]).toArray()
+            resolve(cartItems[0].cartItems)
         })
     }
     

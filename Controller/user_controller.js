@@ -1,5 +1,6 @@
-const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory}=require('../Model/user-helpers');
-const {respons}=require('express')
+const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts}=require('../Model/user-helpers');
+const {respons}=require('express');
+const session = require('express-session');
 
 module.exports={
     
@@ -61,11 +62,11 @@ module.exports={
     
 },
 userLoged(req,res){
-    doLogin(req.body).then((response)=>{
-       console.log(response);
+    doLogin(req.body).then((user)=>{
+       console.log(user);
         
        req.session.loggedIn=true;
-       req.session.users=req.body.email
+       req.session.users=user
        
   
           res.redirect('/');
@@ -81,7 +82,7 @@ userRegistered(req,res,next){
     doSignup(req.body).then((userdata)=>{
            console.log(userdata);
            req.session.loggedIn=true;
-           req.session.users=req.body.email
+           req.session.users=userdata
         res.redirect('/');
 
     }).catch((error)=>{
@@ -163,6 +164,23 @@ ShopButton(req,res){
         res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
       })
      
+    })
+  },
+  AddtoCart(req,res){
+     
+    users=req.session.users
+    AddTOCART(req.params.id,req.session.users._id).then(()=>{
+
+       res.redirect('/ShopButton')
+    })
+  },
+  CartPage(req,res){
+   let users=req.session.users
+    let products=getAllCartProducts(req.session.users._id).then((products)=>{
+              
+      console.log(products);
+          res.render('userviews/CartPage',{user:true,products,users})
+
     })
   }
   

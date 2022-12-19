@@ -178,19 +178,21 @@
                         <table>
                             <tr> 
                                 <td>Product</td>
-                                <td></td>
+                                <td>product Name</td>
                                 <td>price</td>
                                 <td>Quantity</td>
                                 <td>Total</td>
+                                <td>Option</td>
                                 
                                </tr>
                             <tbody>
+                                <% products.forEach(function(product, i){ %>
                                 <tr class="max-width-set">
                                     <td>
-                                        <img src="/img/quick_view/desc/3-500x500.jpg" alt="">
+                                        <img src="product-images/<%= product._id %>.jpg" alt="">
                                     </td>
-                                    <td>Detail V-Neck Sweater</td>
-                                    <td>$18.00   
+                                    <td><%= product.shoename %> </td>
+                                    <td><%= product.price %>  
                                     </td>
                                     <td><div class="viewcontent__action single_action pt-30">
                                         <span><input type="number" placeholder="1"></span>
@@ -203,6 +205,7 @@
                                             class="fal fa-times-circle"></i></a>
                                     </td>
                                 </tr>
+                                <% }); %> 
                             </tbody>
                             <tfoot>
                                 <tr class="design-footer">
