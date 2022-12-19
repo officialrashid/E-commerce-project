@@ -17113,11 +17113,23 @@ button.accordion-button::after {
 }
 .btn-acc{
   background-color: transparent;
-  color: white;
+  color: grey;
   border: none;
+  font-size: larger;
+  margin-bottom: 5%;
+  
 }
 .btn-color{
 
   color: #000;
   font-size: x-large;
+}
+.quantity{
+
+  border: none;
+  margin-left: 10px;
+}
+.quantitys{
+
+  margin-right: 10px;
 }

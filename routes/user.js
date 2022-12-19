@@ -14,5 +14,5 @@ router.get('/Logout',Logout)
 router.get('/ShopButton',ShopButton)
 router.post('/categoryfilter',categoryfilter)
 router.get('/Add-to-cart/:id',sessioncheck,AddtoCart)
-router.get('/CartPage',CartPage)
+router.get('/CartPage',sessioncheck,CartPage)
 module.exports = router;

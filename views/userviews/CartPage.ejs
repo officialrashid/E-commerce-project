@@ -188,14 +188,17 @@
                             <tbody>
                                 <% products.forEach(function(product, i){ %>
                                 <tr class="max-width-set">
+                                    <% product.products.forEach(function(product, i){ %>
                                     <td>
                                         <img src="product-images/<%= product._id %>.jpg" alt="">
                                     </td>
                                     <td><%= product.shoename %> </td>
                                     <td><%= product.price %>  
                                     </td>
+                                    <% }); %> 
                                     <td><div class="viewcontent__action single_action pt-30">
-                                        <span><input type="number" placeholder="1"></span>
+                                        <!-- <span><input type="number" placeholder="<%= product.quantity %>"></span> -->
+                                        <button type="button" class="quantitys btn btn-dark">-</button><%= product.quantity %><button type="button" class="quantity btn btn-dark">+</button>
                                     </div></td>
                                      <td>
                                         $451.00
@@ -204,6 +207,7 @@
                                         <a href="javascript:void(0)"><i
                                             class="fal fa-times-circle"></i></a>
                                     </td>
+                                    
                                 </tr>
                                 <% }); %> 
                             </tbody>
