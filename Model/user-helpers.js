@@ -134,7 +134,7 @@ module.exports={
                  if(proExist!=-1){
 
                     db.get().collection(collection.CART_COLLECTION)
-                    .updateOne({'products.item':ObjectId(proID)},{
+                    .updateOne({users:ObjectId(userID),'products.item':ObjectId(proID)},{
 
                         $inc:{'products.$.quantity':1}
                     }).then(()=>{
@@ -197,13 +197,71 @@ module.exports={
                         localField:'item',
                         foreignField:'_id',
                         as:'products'
+                    },
+                    
+                },
+                 {
+
+                    $project:{
+
+                        item:1,quantity:1,products:{$arrayElemAt:['$products',0]}
                     }
-                }
+                 }
 
             ]).toArray()
-            console.log(cartItems[0].products);
+            
             resolve(cartItems)
         })
+    },
+    changeProductQuantity:(cartDetails)=>{
+       
+        cartDetails.count=parseInt(cartDetails.count)
+         cartDetails.quantity=parseInt(cartDetails.quantity)
+       
+        return new Promise((resolve,reject)=>{
+            
+            if(cartDetails.count==-1 && cartDetails.quantity==1){
+                console.log("+++++++++++++++++++++++++++--------------------");
+                db.get().collection(collection.CART_COLLECTION)
+                .updateOne({_id:ObjectId(cartDetails.cart)},
+                {
+                    $pull:{products:{item:ObjectId(cartDetails.products)}}
+                }
+                ).then((response)=>{
+
+                    resolve({removeProduct:true})
+                })
+            }else{
+                console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
+            db.get().collection(collection.CART_COLLECTION)
+            .updateOne({_id:ObjectId(cartDetails.cart),'products.item':ObjectId(cartDetails.products)},{
+
+                $inc:{'products.$.quantity':cartDetails.count}
+            }).then((response)=>{
+
+                resolve(true)
+            })
+        }
+
+        })
+
+    },
+    removeCartItems:(cartdata)=>{
+       
+       return new Promise((resolve,reject)=>{
+
+        db.get().collection(collection.CART_COLLECTION)
+        .updateOne({_id:ObjectId(cartdata.cart)},
+        {
+            $pull:{products:{item:ObjectId(cartdata.products)}}
+        }
+        ).then((response)=>{
+
+            resolve(response)
+        })
+       })
+       
+
     }
     
   

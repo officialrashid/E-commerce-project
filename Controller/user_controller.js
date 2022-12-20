@@ -1,4 +1,4 @@
-const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts}=require('../Model/user-helpers');
+const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems}=require('../Model/user-helpers');
 const {respons}=require('express');
 const session = require('express-session');
 
@@ -180,6 +180,27 @@ ShopButton(req,res){
               
       console.log(products);
           res.render('userviews/CartPage',{user:true,products,users})
+
+    })
+  },
+  changequantity(req,res,next){
+
+          console.log(req.body);
+          console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
+     changeProductQuantity(req.body).then((response)=>{
+       
+       res.json(response)
+      //  res.redirect('/CartPage')
+
+     })
+  },
+  removeCartItem(req,res,next){
+    console.log(req.body);
+    
+
+    removeCartItems(req.body).then((response)=>{
+     
+      res.json(response)
 
     })
   }

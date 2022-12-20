@@ -188,24 +188,26 @@
                             <tbody>
                                 <% products.forEach(function(product, i){ %>
                                 <tr class="max-width-set">
-                                    <% product.products.forEach(function(product, i){ %>
+                                    
                                     <td>
-                                        <img src="product-images/<%= product._id %>.jpg" alt="">
+                                        <img src="product-images/<%= product.products._id %>.jpg" alt="">
                                     </td>
-                                    <td><%= product.shoename %> </td>
-                                    <td><%= product.price %>  
+                                    <td><%= product.products.shoename %> </td>
+                                    <td><%= product.products.price %>  
                                     </td>
-                                    <% }); %> 
+                                  
                                     <td><div class="viewcontent__action single_action pt-30">
                                         <!-- <span><input type="number" placeholder="<%= product.quantity %>"></span> -->
-                                        <button type="button" class="quantitys btn btn-dark">-</button><%= product.quantity %><button type="button" class="quantity btn btn-dark">+</button>
+                                        <button class="quantitys btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>',-1)">-</button>
+                                         <span id="<%= product.products._id %>"><%= product.quantity %></span>
+                                        <button class="quantity btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>',1)">+</button>
+                                        
                                     </div></td>
                                      <td>
                                         $451.00
                                     </td>
                                     <td class="width-set">
-                                        <a href="javascript:void(0)"><i
-                                            class="fal fa-times-circle"></i></a>
+                                        <button class="quantity btn btn-danger" onclick="removeCartItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
                                     </td>
                                     
                                 </tr>
@@ -316,4 +318,60 @@
 
 </body>
 
+
 </html>
+
+
+<script>
+    function changeQuantity(cartID,proID,count){
+          
+        let quantity=parseInt(document.getElementById(proID).innerHTML)
+        count=parseInt(count)
+           $.ajax({
+            
+            url:'/change-product-quantity',
+            data:{
+                cart:cartID,
+                products:proID,
+                count:count,
+                quantity:quantity
+            },
+            method:'post',
+            success:(response)=>{
+              
+                if(response.removeProduct){
+
+                    alert("product remove from cart")
+                    location.reload()
+                }else{
+
+                    document.getElementById(proID).innerHTML=quantity+count
+                }
+                // alert(response)
+            }
+            
+           })
+    }
+    function removeCartItem(cartID,proID){
+
+
+        
+        $.ajax({
+
+            url:'/remove_cartItem',
+             data:{
+
+                cart:cartID,
+                products:proID
+             },
+             method:'post',
+             success:(response)=>{
+
+                    alert("product remove from cart")
+                    location.reload()
+                
+             }
+        })
+    }
+
+</script>
