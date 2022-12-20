@@ -203,9 +203,7 @@
                                         <button class="quantity btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>',1)">+</button>
                                         
                                     </div></td>
-                                     <td>
-                                        $451.00
-                                    </td>
+                                     <td></td>
                                     <td class="width-set">
                                         <button class="quantity btn btn-danger" onclick="removeCartItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
                                     </td>
@@ -231,7 +229,7 @@
                       <table>
                           <tr class="first-child">
                               <td>Subtotal</td>
-                              <td>$18.00</td>
+                              <td><%= Total %></td>
                           </tr>
                           <tr class="first-child lastchild">
                               <td>Shipping</td>
@@ -240,11 +238,11 @@
                           </tr>
                           <tr class="first-child">
                               <td>Total</td>
-                              <td>$47.00</td>
+                              <td><%= Total %></td>
                           </tr>
                           <tr>   
                               <td colspan="2">
-                                  <a href="checkout.html"><input type="submit" value="procced to checkout"></a>
+                                  <a href="/proceedToCheckout"><input type="submit" value="procced to checkout"></a>
                               </td>
                           </tr>
                       </table>
@@ -323,9 +321,10 @@
 
 
 <script>
-    function changeQuantity(cartID,proID,count){
+    function changeQuantity(cartID,proID,count,price){
           
         let quantity=parseInt(document.getElementById(proID).innerHTML)
+        
         count=parseInt(count)
            $.ajax({
             
@@ -334,7 +333,8 @@
                 cart:cartID,
                 products:proID,
                 count:count,
-                quantity:quantity
+                quantity:quantity,
+                
             },
             method:'post',
             success:(response)=>{

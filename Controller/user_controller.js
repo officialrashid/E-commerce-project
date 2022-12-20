@@ -1,4 +1,4 @@
-const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems}=require('../Model/user-helpers');
+const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount}=require('../Model/user-helpers');
 const {respons}=require('express');
 const session = require('express-session');
 
@@ -177,16 +177,20 @@ ShopButton(req,res){
   CartPage(req,res){
    let users=req.session.users
     let products=getAllCartProducts(req.session.users._id).then((products)=>{
-              
+     
+      getCartTotalAmount(req.session.users._id).then((Total)=>{
       console.log(products);
-          res.render('userviews/CartPage',{user:true,products,users})
+      res.render('userviews/CartPage',{user:true,products,users,Total})
+
+      
+    })  
 
     })
   },
   changequantity(req,res,next){
 
           console.log(req.body);
-          console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
+          
      changeProductQuantity(req.body).then((response)=>{
        
        res.json(response)
@@ -203,6 +207,22 @@ ShopButton(req,res){
       res.json(response)
 
     })
+  },
+  proceedToCheckout:(req,res)=>{
+
+    let users=req.session.users;
+
+      getCartTotalAmount(req.session.users._id).then((Total)=>{
+           
+
+        let products=getAllCartProducts(req.session.users._id).then((products)=>{
+        res.render('userviews/proceedToCheckout',{user:true,users,Total,products})
+        
+      })
+        })
+   
+    
+
   }
   
 }

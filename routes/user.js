@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user_helpers=require('../Controller/user_controller');
-const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem} = require('../Controller/user_controller');
+const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem,proceedToCheckout} = require('../Controller/user_controller');
 /* GET home page. */
 
 router.get('/',userlandingpage);
@@ -17,4 +17,5 @@ router.get('/Add-to-cart/:id',sessioncheck,AddtoCart)
 router.get('/CartPage',sessioncheck,CartPage)
 router.post('/change-product-quantity',changequantity)
 router.post('/remove_cartItem',removeCartItem)
+router.get('/proceedToCheckout',sessioncheck,proceedToCheckout)
 module.exports = router;

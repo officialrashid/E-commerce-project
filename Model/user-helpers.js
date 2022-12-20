@@ -221,7 +221,7 @@ module.exports={
         return new Promise((resolve,reject)=>{
             
             if(cartDetails.count==-1 && cartDetails.quantity==1){
-                console.log("+++++++++++++++++++++++++++--------------------");
+                
                 db.get().collection(collection.CART_COLLECTION)
                 .updateOne({_id:ObjectId(cartDetails.cart)},
                 {
@@ -232,7 +232,7 @@ module.exports={
                     resolve({removeProduct:true})
                 })
             }else{
-                console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
+                console.log(cartDetails);
             db.get().collection(collection.CART_COLLECTION)
             .updateOne({_id:ObjectId(cartDetails.cart),'products.item':ObjectId(cartDetails.products)},{
 
@@ -261,6 +261,60 @@ module.exports={
         })
        })
        
+
+    },
+    getCartTotalAmount:(userID)=>{
+      
+       return new Promise(async(resolve,reject)=>{
+        
+        let Total=await db.get().collection(collection.CART_COLLECTION).aggregate([
+
+            {
+                $match:{users:ObjectId(userID)}
+            },
+            {
+                $unwind:'$products'
+            },
+            {
+                $project:{
+
+                    item:'$products.item',
+                    quantity:'$products.quantity'
+                }
+            },
+            {
+                $lookup:{
+
+                    from:collection.PRODUCT_COLLECTION,
+                    localField:'item',
+                    foreignField:'_id',
+                    as:'products'
+                },
+                
+            },
+             {
+
+                $project:{
+
+                    item:1,quantity:1,products:{$arrayElemAt:['$products',0]}
+                }
+             },
+             {
+                $group:{
+
+                    _id:null,
+                     Total:{$sum:{$multiply:[{$toDouble :"$quantity"},{$toDouble:"$products.price"}]}}
+
+                }
+             }
+
+        ]).toArray()
+        console.log(Total);
+        resolve(Total[0].Total)
+
+
+
+       })
 
     }
     

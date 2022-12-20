@@ -20,4 +20,5 @@ router.get('/EditCategory/:id',EditCategory)
 router.post('/EditCategory-Submit/:id',EditCategorySubmit)
 router.get('/DeleteCategory/:id',DeleteCategory)
 router.post('/Block/:id',blockmanagement)
+
 module.exports = router;
