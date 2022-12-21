@@ -103,7 +103,7 @@ productDetails(req,res,next){
       
       res.render('userviews/productDetails',{user:true,DetailProduct,users})
     }).catch(()=>{
-      
+
     })
 },
 
@@ -245,8 +245,9 @@ ShopButton(req,res){
 
   },
   PlaceOrder(req,res){
-
+   
     console.log(req.body);
+    res.send("file Submit")
   }
   
 }

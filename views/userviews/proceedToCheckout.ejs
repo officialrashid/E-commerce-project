@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xl-7 col-lg-7 col-md-12">
                     <div class="checkout_form mb-100">
-                        <form action="" id="checkout-form">
+                        <form action="/place-order" method="post">
                             <div class="row mb-30">
                                 <div class="col-xl-6 col-lg-6 col-md-6">
                                     <div class="checkout__wrap">
@@ -78,7 +78,7 @@
                                 <textarea  name="ordernote" placeholder="Note about your order, e.g special note for delivery"></textarea>
                             </div>
                            
-                        </form>
+                        
                     </div>
                 </div>
             
@@ -111,7 +111,7 @@
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="accordion-button" type="submit" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                     Check payments 
                                 </button>
                               </h2>
@@ -123,7 +123,7 @@
                             </div>
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="accordion-button collapsed" type="submit" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                     Cash on delivery 
                                 </button>
                               </h2>
@@ -135,7 +135,7 @@
                             </div>
                             <div class="accordion-item">
                               <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="accordion-button collapsed" type="submit" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                     PayPal
                                 </button>
                               </h2>
@@ -147,20 +147,22 @@
                             </div>
                           </div>
                       </div>
+                    
                     <div class="terms pt-50 pb-20">
                       
                         <div class="order-button">
-                            <button type="button">place order</button>
+                            <button type="submit">place order</button>
                         </div>
                       
                     </div>
+                </form>
                     </div>    
                 </div>
             </div>
         </div>
     </div>
 
-<script>
+<!-- <script>
 
 $("#checkout-form").submit((e)=>{
   
@@ -168,7 +170,7 @@ $("#checkout-form").submit((e)=>{
     e.preventDefault()
     $.ajax({
        
-        url:'place-order',
+        url:'/place-order',
         method:'post',
         data:$('#checkout-form').serialize(),
         success:((response)=>{
@@ -178,4 +180,4 @@ $("#checkout-form").submit((e)=>{
     })
 })
 
-</script>
+</script> -->
