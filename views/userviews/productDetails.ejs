@@ -95,7 +95,7 @@
                     </div>
                       <div class="viewcontent__action single_action pt-30">
                           <span><input type="number" placeholder="1"></span>
-                          <span><a href="/Add-to-cart/<%= DetailProduct._id %>">+ add to cart</a></span>
+                          <button class="p-absoulute pr-2  mr-5" style="border: none; width: 10%;" id="cartButton"  onclick="addTOCart('<%= DetailProduct._id %>')">add to car</button>
                           <span><i class="fal fa-heart"></i></span>
                           <span><i class="fas fa-compress"></i></span>
                       </div>
@@ -135,4 +135,20 @@
 };
 new ImageZoom(document.getElementById("img-container"), options);
 
+</script>
+
+<script>
+
+    function addTOCart(proID){
+     console.log("}}}}}}}}}}}}}}}}}}}");
+      $.ajax({
+
+        url:'/Add-to-cart/'+proID,
+        method:'get',
+        success:(response)=>{
+
+          location.reload()
+        }
+      })
+    }
 </script>

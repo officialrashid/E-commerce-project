@@ -89,7 +89,8 @@
                                                         <h4><a href=""><%= product.shoename %></a></h4>
                                                         <div class="pro-price">
                                                             <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
-                                                            <a class="p-absoulute pr-2" href="/Add-to-cart/<%= product._id %>">add to cart</a>
+                                                        <!-- <h4><a href=""><%= product.shoename %></a></h4> -->
+                                                            <button class="p-absoulute pr-2 " style="border: none;"  onclick="addTOCart('<%= product._id %>')">add to car</button> 
                                                         </div>
                                                         <h4><a href="">category:<%= product.category %></a></h4>
                                                     </div>
@@ -123,3 +124,18 @@
     </div>
 </div>
 <!-- shop page end -->
+<script>
+
+    function addTOCart(proID){
+     
+      $.ajax({
+
+        url:'/Add-to-cart/'+proID,
+        method:'get',
+        success:(response)=>{
+
+          location.reload()
+        }
+      })
+    }
+</script>

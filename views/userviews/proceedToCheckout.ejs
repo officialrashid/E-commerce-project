@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-xl-7 col-lg-7 col-md-12">
                     <div class="checkout_form mb-100">
-                        <form action="#">
+                        <form action="" id="checkout-form">
                             <div class="row mb-30">
                                 <div class="col-xl-6 col-lg-6 col-md-6">
                                     <div class="checkout__wrap">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="checkout__wrap">
                                 <label>Country / Region <span>*</span></label>
-                                <select name="country">
+                                <select name="country" required>
                                     <option value="Bangladesh">Bangladesh</option>
                                     <option value="Bangladesh">Pakistan</option>
                                     <option value="Bangladesh">Arab</option>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="checkout__wrap">
                                 <label>Email address <span>*</span></label>
-                                <input type="email" name="email">
+                                <input type="email" name="email" >
                             </div>
                             <div class="checkout__wrap-2 pt-20">
                                 <input type="checkbox" name="check1">
@@ -77,9 +77,11 @@
                                 <label>Order notes (optional) <span></span></label>
                                 <textarea  name="ordernote" placeholder="Note about your order, e.g special note for delivery"></textarea>
                             </div>
+                           
                         </form>
                     </div>
                 </div>
+            
                 <div class="col-xl-5 col-lg-5 col-md-12">
                     <div class="cart__acount ml-50">
                         <h5>Your order</h5>
@@ -146,17 +148,34 @@
                           </div>
                       </div>
                     <div class="terms pt-50 pb-20">
-                        <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy</p>
-                        <div class="check_term">
-                            <input type="checkbox">
-                            <p>I have read and agree to the website terms and conditions <span>*</span></p>
-                        </div>
+                      
                         <div class="order-button">
-                            <button type="submit">place order</button>
+                            <button type="button">place order</button>
                         </div>
+                      
                     </div>
                     </div>    
                 </div>
             </div>
         </div>
     </div>
+
+<script>
+
+$("#checkout-form").submit((e)=>{
+  
+    console.log("++++++++++++++++++++++++");
+    e.preventDefault()
+    $.ajax({
+       
+        url:'place-order',
+        method:'post',
+        data:$('#checkout-form').serialize(),
+        success:((response)=>{
+          
+            alert(response)
+        })
+    })
+})
+
+</script>

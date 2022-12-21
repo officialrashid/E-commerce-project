@@ -83,6 +83,9 @@ module.exports={
          db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:ObjectId(productID)}).then((DetailProduct)=>{
 
             resolve(DetailProduct)
+         }).catch(()=>{
+
+            reject()
          })
 
         })
@@ -140,6 +143,9 @@ module.exports={
                     }).then(()=>{
 
                         resolve()
+                    }).catch(()=>{
+
+                        reject()
                     })
 
                  }else{
@@ -153,6 +159,9 @@ module.exports={
                 }).then((respons)=>{
 
                     resolve()
+                }).then(()=>{
+
+                    reject()
                 })
 
             }
@@ -167,6 +176,9 @@ module.exports={
                 db.get().collection(collection.CART_COLLECTION).insertOne(cartObj).then((respons)=>{
 
                     resolve()
+                }).catch(()=>{
+
+                    reject()
                 })
             }
         })
@@ -211,6 +223,9 @@ module.exports={
             ]).toArray()
             
             resolve(cartItems)
+        }).catch(()=>{
+
+            reject()
         })
     },
     changeProductQuantity:(cartDetails)=>{
@@ -230,6 +245,9 @@ module.exports={
                 ).then((response)=>{
 
                     resolve({removeProduct:true})
+                }).catch(()=>{
+
+                    reject()
                 })
             }else{
                 console.log(cartDetails);
@@ -240,6 +258,9 @@ module.exports={
             }).then((response)=>{
 
                 resolve(true)
+            }).catch(()=>{
+
+                reject()
             })
         }
 
@@ -258,7 +279,11 @@ module.exports={
         ).then((response)=>{
 
             resolve(response)
+        }).catch(()=>{
+
+            reject()
         })
+
        })
        
 
@@ -309,11 +334,15 @@ module.exports={
              }
 
         ]).toArray()
-        console.log(Total);
-        resolve(Total[0].Total)
-
-
-
+         
+        
+        if (Total.length > 0) {
+            resolve(Total[0].Total);
+          } else {
+            resolve(0); // or some other appropriate value
+          }
+          
+        
        })
 
     }

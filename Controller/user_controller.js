@@ -102,6 +102,8 @@ productDetails(req,res,next){
     productAlldetails(req.params.id).then((DetailProduct)=>{
       
       res.render('userviews/productDetails',{user:true,DetailProduct,users})
+    }).catch(()=>{
+      
     })
 },
 
@@ -136,10 +138,14 @@ ShopButton(req,res){
 
 
     res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
+  }).catch(()=>{
+
   })
 
 
     
+  }).catch(()=>{
+
   })
 
   },
@@ -171,7 +177,9 @@ ShopButton(req,res){
     users=req.session.users
     AddTOCART(req.params.id,req.session.users._id).then(()=>{
 
-       res.redirect('/ShopButton')
+       res.json({status:true})
+    }).catch(()=>{
+
     })
   },
   CartPage(req,res){
@@ -183,7 +191,11 @@ ShopButton(req,res){
       res.render('userviews/CartPage',{user:true,products,users,Total})
 
       
+    }).catch(()=>{
+
     })  
+
+    }).catch(()=>{
 
     })
   },
@@ -196,6 +208,8 @@ ShopButton(req,res){
        res.json(response)
       //  res.redirect('/CartPage')
 
+     }).catch(()=>{
+
      })
   },
   removeCartItem(req,res,next){
@@ -206,6 +220,9 @@ ShopButton(req,res){
      
       res.json(response)
 
+    }).catch(()=>{
+
+      
     })
   },
   proceedToCheckout:(req,res)=>{
@@ -219,10 +236,17 @@ ShopButton(req,res){
         res.render('userviews/proceedToCheckout',{user:true,users,Total,products})
         
       })
+        }).catch((error)=>{
+         
+
         })
    
     
 
+  },
+  PlaceOrder(req,res){
+
+    console.log(req.body);
   }
   
 }
