@@ -28,11 +28,11 @@
             <td><%= order.deliveryDetails.postcode %></td>
 
             <td>
-                <form action="/OrderCancel/<%= order._id %>" method="post">
+                <!-- <form action="/OrderCancel/<%= order._id %>" method="post">
 
-                <input name="status" value="<%= order.status %>" hidden>
+                <input name="status" value="<%= order.status %>" hidden> -->
                
-                <button type="submit" class="btn btn-secondary">View Product</button>
+                <a href="/admin/adminProductView/<%= order._id %>"><button type="submit" class="btn btn-secondary">View Product</button></a>
             
                
             

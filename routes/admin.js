@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {adminlogin,adminRegisterd,AllUsers,Stocks,AddProduct,AddedProduct,editproduct,editsubmit,deleteproduct,Categorypage,addcategory,AddedCategory,EditCategory,EditCategorySubmit,DeleteCategory,blockmanagement,Orders}=require('../Controller/admin_controller')
+const {adminlogin,adminRegisterd,AllUsers,Stocks,AddProduct,AddedProduct,editproduct,editsubmit,deleteproduct,Categorypage,addcategory,AddedCategory,EditCategory,EditCategorySubmit,DeleteCategory,blockmanagement,Orders,adminProductView}=require('../Controller/admin_controller')
 
 
 /* GET users listing. */
@@ -21,4 +21,5 @@ router.post('/EditCategory-Submit/:id',EditCategorySubmit)
 router.get('/DeleteCategory/:id',DeleteCategory)
 router.post('/Block/:id',blockmanagement)
 router.get('/Orders',Orders)
+router.get('/adminProductView/:id',adminProductView)
 module.exports = router;

@@ -250,6 +250,49 @@ module.exports={
 
             resolve(UserOrder)
         })
+    },
+    productView:(orderID)=>{
+        
+        
+        return new Promise(async(resolve,reject)=>{
+           
+          let singleOrder= await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+
+            {
+                $match: {_id:ObjectId(orderID)},
+            },
+            {
+                $project:{
+
+                    products:1,
+                    deliveryDetails:1,
+                },
+            },
+            {
+                $unwind:'$products',
+            },
+            {
+                $lookup:{
+
+                    from:'product',
+                    localField:'products.item',
+                    foreignField:'_id',
+                    as:'orders',
+                },
+            },
+            {
+               $unwind:'$orders',
+            },
+            {
+                $project:{'orders':1,_id:0}
+            }
+
+          ]).toArray();
+          
+          console.log(singleOrder);
+          resolve(singleOrder)
+        })
+
     }
 
 }
