@@ -1,4 +1,4 @@
-const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory,userblock,getAllcategorydropdown,getcategory,adminCategoryAdd}=require('../Model/admin-helpers')
+const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory,userblock,getAllcategorydropdown,getcategory,adminCategoryAdd,UserOrderDetails}=require('../Model/admin-helpers')
 const {respons}=require('express');
 const { Result } = require('express-validator');
 module.exports={
@@ -173,5 +173,13 @@ module.exports={
       res.redirect('/admin/AllUsers')
 
     })
+   },
+   Orders(req,res){
+    
+    UserOrderDetails().then((UserOrder)=>{
+
+        res.render('adminviews/UserOrders',{user:false,UserOrder})
+    })
+
    }
 }

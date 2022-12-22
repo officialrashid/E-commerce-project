@@ -1,4 +1,4 @@
-const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount}=require('../Model/user-helpers');
+const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount,PlaceOrdered,getproductList,OrderDetails,OrderCancelled}=require('../Model/user-helpers');
 const {respons}=require('express');
 const session = require('express-session');
 
@@ -247,7 +247,41 @@ ShopButton(req,res){
   PlaceOrder(req,res){
    
     console.log(req.body);
-    res.send("file Submit")
+    getproductList(req.session.users._id).then((products)=>{
+
+      getCartTotalAmount(req.session.users._id).then((Total)=>{
+    
+    PlaceOrdered(req.body,products,Total).then((status)=>{
+         
+      res.render('userviews/OrderDetails',{status,user:true})
+
+    })
+
+      })
+
+
+
+    })
+  
+  },
+  UserOrderView(req,res){
+    
+
+    let users=req.session.users
+    OrderDetails().then((OrderDetails)=>{
+
+      res.render('userviews/UserOrderView',{user:true,OrderDetails,users})
+    })
+   
+    
+
+  },
+  OrderCancel(req,res){
+
+    OrderCancelled(req.params.id,req.body.status).then(()=>{
+
+           res.redirect('/UserOrderView')
+    })
   }
   
 }

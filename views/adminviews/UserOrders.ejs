@@ -1,0 +1,45 @@
+<section id="footer" class="mt-5">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">OrdrId</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Status</th>
+            <th scope="col">payment</th>
+            <th scope="col">TotalPrice</th>
+            <th scope="col">Pincode</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% UserOrder.forEach(function(order, i){ %>
+          <tr >
+        
+          
+            <td><%= order._id %></td>
+            <td><%= order.deliveryDetails.add1 %></td>
+            <td><%= order.date %></td>
+            <td><%= order.deliveryDetails.phone %></td>
+            <td><%= order.status %></td>
+            <td><%= order.PaymentMethod %></td>
+            <td><%= order.TotalAmount %></td>
+            <td><%= order.deliveryDetails.postcode %></td>
+
+            <td>
+                <form action="/OrderCancel/<%= order._id %>" method="post">
+
+                <input name="status" value="<%= order.status %>" hidden>
+               
+                <button type="submit" class="btn btn-secondary">View Product</button>
+            
+               
+            
+              </td>
+            </form>
+          </tr>
+          <% }); %> 
+        </tbody>
+      </table>
+    </section>

@@ -241,6 +241,15 @@ module.exports={
             console.log(geteditcategory);
             resolve(geteditcategory)
         })
+    },
+    UserOrderDetails:()=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+            let UserOrder= await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+
+            resolve(UserOrder)
+        })
     }
 
 }

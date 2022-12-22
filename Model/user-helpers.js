@@ -3,6 +3,7 @@ var collection=require('./collections');
 var bcrypt=require('bcrypt');
 const { ObjectId } = require('mongodb');
 const { productDetails } = require('../Controller/user_controller');
+const { promiseImpl } = require('ejs');
 module.exports={
 
 
@@ -345,7 +346,86 @@ module.exports={
         
        })
 
+    },
+    PlaceOrdered:(order,products,Total)=>{
+
+       return new Promise((resolve,reject)=>{
+
+         console.log(order,products,Total);
+         let status=order.payment_method==='COD'?'placed':'pending'
+         let orderObj={
+
+            deliveryDetails:{
+
+                fname:order.fname,
+                cname:order.cname,
+                country:order.country,
+                add1:order.add1,
+                add2:order.add2,
+                town:order.town,
+                // country:order.country,
+                postcode:order.postcode,
+                phone:order.phone,
+                email:order.email
+
+            },
+            userID:ObjectId(order.userID),
+            PaymentMethod:order.payment_method,
+            products:products,
+            TotalAmount:Total,
+            status:status,
+            date:new Date()
+         }
+         db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
+            
+            db.get().collection(collection.CART_COLLECTION).deleteOne({users:ObjectId(order.userID)})
+              resolve()
+         })
+       })
+    },
+    getproductList:(userID)=>{
+
+     return new Promise(async(resolve,reject)=>{
+      
+
+        cart= await db.get().collection(collection.CART_COLLECTION).findOne({users:ObjectId(userID)})
+         
+        resolve(cart.products)
+     })
+
+    },
+    OrderDetails:()=>{
+
+        return new Promise(async(resolve,reject)=>{
+
+           let OrderDetails= await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+
+           resolve(OrderDetails)
+        })
+    },
+    OrderCancelled:(orderID,status)=>{
+
+         if(status=='placed'|| status=='pending'){
+
+            status='order cancelled'
+         }
+         return new Promise((resolve,reject)=>{
+          
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderID)},{
+
+                $set:{
+    
+                    status:status
+                }
+             }).then((response)=>{
+    
+                  resolve(response)
+             })
+
+         })
+       
     }
+
     
   
 }
