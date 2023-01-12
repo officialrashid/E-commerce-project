@@ -1,0 +1,31 @@
+<section id="footer" class="mt-5">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name of the Shoe</th>
+            <th scope="col">company Name</th>
+            <th scope="col">Size</th>
+            <th scope="col">Color</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            <% singleOrder.forEach(function(order, i){ %>
+          <tr >
+            <!-- <th scope="row"> <%= i+1 %></th> -->
+            <td class="product-images"><img src="/product-images/<%= order.orders._id %>.jpg" alt="no"></td>
+            <td><%= order.orders.shoename %></td>
+            <td><%= order.orders.companyname %></td>
+            <td><%= order.orders.size %></td>
+            <td><%= order.orders.color %></td>
+            <td><%= order.orders.category %></td>
+            <td><%= order.orders.price %></td>
+           
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </section>

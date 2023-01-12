@@ -7,10 +7,13 @@
             <th scope="col">Date</th>
             <th scope="col">Mobile</th>
             <th scope="col">Status</th>
+            <th scope="col">ShippingStatus</th>
             <th scope="col">payment</th>
             <th scope="col">TotalPrice</th>
             <th scope="col">Pincode</th>
             <th scope="col">Options</th>
+            <th scope="col">ViewProduct</th>
+
           </tr>
         </thead>
         <tbody>
@@ -19,10 +22,11 @@
         
           
             <td><%= order._id %></td>
-            <td><%= order.deliveryDetails.add1 %></td>
+            <td><%= order.deliveryDetails.add1%></td>
             <td><%= order.date %></td>
             <td><%= order.deliveryDetails.phone %></td>
             <td><%= order.status %></td>
+            <td><%= order.shippingStatus %></td>
             <td><%= order.PaymentMethod %></td>
             <td><%= order.TotalAmount %></td>
             <td><%= order.deliveryDetails.postcode %></td>
@@ -31,13 +35,15 @@
                 <form action="/OrderCancel/<%= order._id %>" method="post">
 
                 <input name="status" value="<%= order.status %>" hidden>
+                
                
-                <button type="submit" class="btn btn-danger">Cancel</button>
-            
-               
-            
+                <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
+
               </td>
             </form>
+            <td>
+              <a href="/userProductView/<%= order._id %>"><button type="submit" class="badge bg-success" style="font-size: 67%; border: none;">View Product</button></a>
+            </td>
           </tr>
           <% }); %> 
         </tbody>

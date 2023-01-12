@@ -13,6 +13,7 @@ const {check,validationResult}=require('express-validator');
 const { fileURLToPath } = require('url');
 const fileUpload = require('express-fileupload');
 
+var sharp=require('sharp')
 var app = express();
 var session=require('express-session');
 app.use(expressLayouts);

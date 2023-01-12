@@ -1,4 +1,53 @@
-<div class="page-layout" data-background="/img/slider/shop.jpg">
+<div class="search_area">
+  
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="search-wrapper text-center">
+                    <h2>search</h2>
+                    <div class="search-filtering pt-30">
+                        <div class="search_tab">
+                           
+                            <div class="tab-content" id="myconte">
+                                <div class="tab-pane fade show active" id="home2" role="tabpanel"
+                                    >
+
+                                </div>
+                                <div class="tab-pane fade" id="profile2" role="tabpanel"
+                                    >
+
+                                </div>
+                                <div class="tab-pane fade" id="contact2" role="tabpanel">
+
+                                </div>
+                                <div class="tab-pane fade" id="sportswear" role="tabpanel"
+                                    >
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_search">
+                        <form action="#">
+                            <input type="text" placeholder="Search here..." id="search-input"
+                            onkeyup="searchProducts()">
+                            <!-- <button class="m-search"><i class="fal fa-search d-sm-none d-md-block"></i></button> -->
+                            
+                            <div class="search_close">
+                                <!-- <span><i class="fal fa-times"></i></span> -->
+                                <button class="m-search"><i class="fal fa-search d-sm-none d-md-block"></i></button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="page-layout" data-background="/Banner-images/63b29e0c4c8c0005cca19eba.jpg">
     <div class="container">
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -47,11 +96,22 @@
                             <% }); %>  
                         </ul>
                     </div>
-            
+                    <h3 class="widget-title mb-30">Product Price Filter</h3>
+                    <form action="/priceFilter" method="post">
+                        <label for="min-price">Min price:</label><br>
+                        <input type="number" id="min-price" min="0" value="0" name="minprice"><br>
+                        <label for="max-price">Max price:</label><br>
+                        <input type="number" id="max-price" min="0" value="100" name="maxprice"><br>
+                        <button type="submit" class="btn btn-dark mt-3">Filter</button>
+                      </form>
                  
                 
                 </div>
             </div>
+            
+            
+          
+
             <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
                 
                 <div class="shop-page-product pt-50 pb-100">
@@ -90,7 +150,9 @@
                                                         <div class="pro-price">
                                                             <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
                                                         <!-- <h4><a href=""><%= product.shoename %></a></h4> -->
+                                                        <% if (product.productstock) { %>
                                                             <button class="p-absoulute pr-2 " style="border: none;"  onclick="addTOCart('<%= product._id %>')">add to car</button> 
+                                                            <% } %>
                                                         </div>
                                                         <h4><a href="">category:<%= product.category %></a></h4>
                                                     </div>
@@ -124,6 +186,80 @@
     </div>
 </div>
 <!-- shop page end -->
+
+           
+<!-- shop page end -->
+
+<div id="overlay-container"
+    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 6, 6, 0.7);">
+
+    
+    <button id="close-button" onclick="closeOverlay()">Close</button>
+</div>
+
+<script>
+
+function searchProducts() {
+    console.log("+++++++++++++");
+    var searchValue = document.getElementById("search-input").value;
+        console.log(searchValue);
+    $.ajax({
+        url: '/search',
+        data: {
+            searchValue,
+        },
+        method: 'post',
+        success: (data) => {
+            console.log(data);
+            if (data) {
+                // Show the overlay container
+                document.getElementById("overlay-container").style.display = "block";
+                generateOverlayPageHTML(data);
+            } else {
+                // Hide the overlay container
+                document.getElementById("overlay-container").style.display = "none";
+            }
+        }
+    });
+}
+function closeOverlay() {
+    console.log("jhdhgdghsadvaghdfhgsfshgvsghdfghfdgffgdfsghfdhgfdvghvdhgfdghaghfadfghasfdgha");
+        document.getElementById("overlay-container").style.display = "none";
+    }
+
+    function generateOverlayPageHTML(data) {
+
+  const html = `
+    <div class="col-xl-3 col-lg-4 col-md-6 ">
+      <div class="product-wrap bg-light  " style="width: 400px; margin-left:400px; margin-top:20px;">
+        <div class="product-img mb-15">
+          <a href="/productdetails/${data._id}">
+            <img src="/product-images/${data._id}.jpg" alt="product">
+          </a>
+          <div class="product-action">
+          </div>
+        </div>
+        <div class="product-content">
+          <span>${data.category}</span>
+          <h4>
+            <a href="/productdetails/${data._id}">${data.shoename}</a>
+          </h4>
+          <div class="price-addtocart">
+            <div class="product-price">
+              <span>₹${data.price}</span>
+            </div>
+            <div class=""viewcontent__action single_action pt-30"">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  // Inject the HTML into the overlay container
+  document.getElementById("overlay-container").innerHTML = html;
+}
+</script>
+
 <script>
 
     function addTOCart(proID){
@@ -138,4 +274,12 @@
         }
       })
     }
+    const form = document.getElementById('price-filter');
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const minPrice = form.elements['min-price'].value;
+  const maxPrice = form.elements['max-price'].value;
+  // Filter the products by price using minPrice and maxPrice
+});
 </script>
+

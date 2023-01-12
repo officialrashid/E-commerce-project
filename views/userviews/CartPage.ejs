@@ -181,29 +181,30 @@
                                 <td>product Name</td>
                                 <td>price</td>
                                 <td>Quantity</td>
-                                <td>Total</td>
+                                <!-- <td>Total</td> -->
                                 <td>Option</td>
                                 
                                </tr>
+                               
                             <tbody>
+
                                 <% products.forEach(function(product, i){ %>
                                 <tr class="max-width-set">
                                     
                                     <td>
                                         <img src="product-images/<%= product.products._id %>.jpg" alt="">
                                     </td>
-                                    <td><%= product.products.shoename %> </td>
-                                    <td><%= product.products.price %>  
-                                    </td>
+                                    <td><%= product.products.shoename %></td>
+                                    <td><%= product.products.price %></td>
                                   
                                     <td><div class="viewcontent__action single_action pt-30">
-                                        <!-- <span><input type="number" placeholder="<%= product.quantity %>"></span> -->
-                                        <button class="quantitys btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>',-1)">-</button>
+                                        
+                                        <button class="quantitys btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',-1)">-</button>
                                          <span id="<%= product.products._id %>"><%= product.quantity %></span>
-                                        <button class="quantity btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>',1)">+</button>
+                                        <button class="quantity btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',1)">+</button>
                                         
                                     </div></td>
-                                     <td></td>
+                                     <!-- <td id="RowTotal"><%= Total %></td> -->
                                     <td class="width-set">
                                         <button class="quantity btn btn-danger" onclick="removeCartItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
                                     </td>
@@ -212,13 +213,7 @@
                                 <% }); %> 
                             </tbody>
                             <tfoot>
-                                <tr class="design-footer">
-                                    <td>
-                                        <input type="text" placeholder="Coupon Code">
-                                    </td>
-                                    <td><button type="submit">Apply Coupon</button></td>
-                                    <td colspan="3"><a href="#">update cart</a></td>
-                                </tr>
+                               
                             </tfoot>
                         </table>
                     </div>
@@ -229,7 +224,7 @@
                       <table>
                           <tr class="first-child">
                               <td>Subtotal</td>
-                              <td><%= Total %></td>
+                              <td id="SubTotal"><%= Total %></td>
                           </tr>
                           <tr class="first-child lastchild">
                               <td>Shipping</td>
@@ -238,7 +233,7 @@
                           </tr>
                           <tr class="first-child">
                               <td>Total</td>
-                              <td><%= Total %></td>
+                              <td><span id="Total"><%= Total %></span></td>
                           </tr>
                           <tr>   
                               <td colspan="2">
@@ -321,15 +316,19 @@
 
 
 <script>
-    function changeQuantity(cartID,proID,count,price){
-          
-        let quantity=parseInt(document.getElementById(proID).innerHTML)
+    function changeQuantity(cartID,proID,Total,price,count){
+          console.log(Total,price);
         
+        let quantity=parseInt(document.getElementById(proID).innerHTML)
+        let CartTotal = document.getElementById('Total').innerHTML
+        let Subtotal = document.getElementById('SubTotal').innerHTML
+        // let RowTotal = document.getElementById('RowTotal').innerHTML
         count=parseInt(count)
            $.ajax({
             
             url:'/change-product-quantity',
             data:{
+                
                 cart:cartID,
                 products:proID,
                 count:count,
@@ -346,6 +345,9 @@
                 }else{
 
                     document.getElementById(proID).innerHTML=quantity+count
+                    document.getElementById('Total').innerHTML=parseInt(CartTotal)+(count*price)
+                    document.getElementById('SubTotal').innerHTML = parseInt(Subtotal)+(count*price)
+                    document.getElementById('RowTotal').innerHTML = parseInt(RowTotal)+(count*price)
                 }
                 // alert(response)
             }

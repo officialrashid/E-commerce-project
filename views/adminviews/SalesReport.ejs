@@ -1,0 +1,52 @@
+ <!-- Recent Sales -->
+ <div class="col-12" id="footer" style="margin-top: 5%;">
+    <div class="card recent-sales overflow-auto">
+
+      <div class="card-body">
+       
+
+        <table class="table table-borderless datatable" id="invoice">
+          <thead>
+            <tr>
+              <th scope="col">OrderID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Name</th>
+              <th scope="col">quantity</th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% salesReport.forEach(function(order, i){ %>
+            <tr>
+              <th scope="row"><a href="#"><%= order._id %></a></th>
+
+              <td><%= order.date %></td>
+              <td><%= order. deliveryDetails.fname %></td>
+              <td><%= order.products.quantity %></td>
+              <td><%= order.product.shoename %></td>
+              <td><%= order.TotalAmount %></td>
+              <td><span class="badge bg-success"><%= order.shippingStatus %></span></td>
+            </tr>
+            <% }); %> 
+          </tbody>
+        </table>
+        <button type="button" id="download-button" class="badge bg-dark bg-lg"><i class=""></i> Download </button>
+      </div>
+
+    </div>
+  </div><!-- End Recent Sales -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <script>
+    const button = document.getElementById('download-button');
+
+    function generatePDF() {
+      // Choose the element that your content will be rendered to.
+      const element = document.getElementById('invoice');
+      // Choose the element and save the PDF for your user.
+      html2pdf().from(element).save();
+    }
+
+    button.addEventListener('click', generatePDF);
+  </script>

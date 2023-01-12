@@ -49,7 +49,7 @@
                                       <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
                                   </div>
-                                <!-- <li><a href="/LoginandSignupButton">Login & register</a></li> -->
+                                 <li><a href="/LoginandSignupButton">Login & register</a></li> -->
                             <!-- </ul>
                         
                         </div>
@@ -349,7 +349,7 @@
                 <div class="row">
                     <div class="col-xl-12">
                         <div class="slider_images">
-                            <img class="back" src="/img/slider/slider-img-1.png" alt="">
+                            <img class="back" src="/Banner-images/63aef98072d273a9da4eb196.jpg" alt="">
                             <img class="top" src="/img/slider/text.png" alt="">
                         </div>
                     </div>
@@ -386,6 +386,45 @@
 </div>
 <!-- slider end -->
 
+<div class="features-area d-none d-md-block fix">
+    <div class="row g-0">
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div class="fetures">
+                <div class="fetures__thumb fix">
+                    <a href="shop.html"><img src="/Banner-images/63bb25d3cc4edc9854e7f514.jpg" alt="features1"></a>
+                </div>
+                <div class="fetures__content">
+                    <h4 class="feature-title mb-40">Sport<br> Baseball</h4>
+                    <p class="d-md-none d-lg-block">all products <span class="discount"><a href="#">up to 70%
+                                off</a></span> limited time discount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div class="fetures">
+                <div class="fetures__thumb fix">
+                    <a href="shop.html"><img src="/Banner-images/63bb229ccc4edc9854e7f510.jpg" alt="features1"></a>
+                </div>
+                <div class="fetures__content pt-200">
+                    <p class="d-md-none d-lg-block">Gota store with a tool that makes design simple for everyone</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+            <div class="fetures">
+                <div class="fetures__thumb fix">
+                    <a href="shop.html"><img src="/Banner-images/63bb27d0cc4edc9854e7f515.jpg" alt="features1"></a>
+                </div>
+                <div class="fetures__content">
+                    <h4 class="feature-title mb-40">Shoe<br>For women’s</h4>
+                    <p class="d-md-none d-lg-block">all products <span class="discount"><a href="#">up to 70%
+                                off</a></span> limited time discount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- features area end  -->
 <div class="categories_area pt-85 mb-150">
     <div class="container-fluid">
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -538,12 +577,24 @@
                                                                 <div class="product__name">
                                                                     <h4><a href="single.html"><%= product.shoename %></a></h4>
                                                                     <div class="pro-price">
-                                                                        
+                                                                      
+                                                                       
                                                                     <button class="p-absoulute pr-2 " style="border: none;"  onclick="addTOCart('<%= product._id %>')">add to car</button>
-                                                                        <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span>
-                                                                            
+
+                                                                          
+                                                                   
+                                                                        
+                                                                       
+                                                                           
+                                                                             <p class="p-absoulute pr-1"><span>price:<%= product.price %></span>
+                                                                                
+                                                                             
+                                                                         
+                                                                          
                                                                     </div>
+                                                                   
                                                                     <h4><a href="shop.html">category:<%= product.category %></a></h4>
+                                                                    
                                                                 </div>
                                                                 <div class="product__action">
                                                                     <div class="inner__action">

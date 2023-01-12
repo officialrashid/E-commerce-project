@@ -1,0 +1,60 @@
+
+<div class="page-layout" data-background="/img/slider/shop.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="breadcrumb-area text-center">
+                    <h2 class="page-title">Address</h2>
+                        <div class="breadcrumb-menu">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="cart.html">cart</a></li>
+                            </ol>
+                        </nav>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <h2>ABOUT</h2>
+    
+    <div class="card">
+        <div class="card-body">
+           <a href="/edit-account"> <i class="fa fa-pen fa-xs edit"></i></a>
+           
+            <table>
+                <tbody>
+                  
+                    <tr>
+                        <td>Name</td>
+                        <td>:</td>
+                        <td><%= usersAddress.name %></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>:</td>
+                        <td><%= usersAddress.email%></td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>:</td>
+                        <td><%= usersAddress.phone%></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>:</td>
+                        <td><%= usersAddress.town%>,<%= usersAddress.postcode %>,<%= usersAddress.phone %>,<br><%= usersAddress.country %>,<%= usersAddress.cname %>,<%= usersAddress.add1 %></td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/add-account"><p class="badge bg-dark">Add Address</p></a>
+        </div>
+    </div>
+
+    
+</div>
