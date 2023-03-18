@@ -382,13 +382,13 @@
                console.log("++++++++++++++++++++++++++++++)))))))))))))))))))");
               razorpayPayment(response)
 
-                }else if(response.payPal){
-                     
-                    console.log(response,"uuuuuuuuuuuuuuuuuuuuuuuuuuu")
-                location.replace(response.linkto)
                 }else if(response.Wallet){
 
                     location.href='/order/OrderDetails'
+
+                }else{
+                    console.log(response,"uuuuuuuuuuuuuuuuuuuuuuuuuuu")
+                   window.location = response.forwardLink
                 }
             },
             error: function(xhr, status, error) {
