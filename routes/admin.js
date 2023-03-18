@@ -1,31 +1,16 @@
 var express = require('express');
 var router = express.Router();
 const {uploadMultiple}=require('../middlewares/multer')
-const {adminlogin,adminRegisterd,AllUsers,Stocks,AddProduct,AddedProduct,editproduct,editsubmit,deleteproduct,Categorypage,addcategory,AddedCategory,EditCategory,EditCategorySubmit,DeleteCategory,blockmanagement,Orders,adminProductView,adminCancelOrder,productManage,shippingStatus,dashboard,AddBanner,AddedBanner,editbanner,EditedBanner,TodayOrderList,Weeksales,Monthsales,Yearsales,TotalRevenue,SalesReport,AddCoupon,AddedCoupon,AllCoupons,AllOffers,ProductOffer,AddProductOffer,CategoryOffer}=require('../Controller/admin_controller')
+const {adminlogin,adminRegisterd,AllUsers,blockmanagement,dashboard,AddBanner,AddedBanner,editbanner,EditedBanner,TodayOrderList,Weeksales,Monthsales,Yearsales,TotalRevenue,SalesReport,AddCoupon,AddedCoupon,AllCoupons,AllOffers,CategoryOffer,ShowProductOffer,ShowCategoryOffer,editCoupon,EditedCoupon,deleteCoupon}=require('../Controller/admin_controller')
+
 
 
 /* GET users listing. */
 router.get('/',adminlogin);
  router.post('/adminLoged',adminRegisterd)
 router.get('/AllUsers',AllUsers)
-router.get('/Stocks',Stocks)
-router.get('/AddProduct',AddProduct)
-router.post('/AddedProduct',AddedProduct)
-router.get('/edit-pro/:id',editproduct)
-router.post('/edit-product-submit/:id',editsubmit)
 // router.post('/delete-pro/:id',deleteproduct)
-router.get('/Category',Categorypage)
-router.get('/AddCategory',addcategory)
-router.post('/AddedCategory',AddedCategory)
-router.get('/EditCategory/:id',EditCategory)
-router.post('/EditCategory-Submit/:id',EditCategorySubmit)
-router.get('/DeleteCategory/:id',DeleteCategory)
 router.post('/Block/:id',blockmanagement)
-router.get('/Orders',Orders)
-router.get('/adminProductView/:id',adminProductView)
-router.post('/adminCancelOrder/:id',adminCancelOrder)
-router.post('/delete-pro/:id',productManage)
-router.post('/shippingStatus/:id',shippingStatus)
 router.get('/dashboard',dashboard)
 router.get('/Banner',AddBanner)
 router.post('/AddedBanner',AddedBanner)
@@ -41,7 +26,11 @@ router.get('/AddCoupon',AddCoupon)
 router.post('/AddedCoupon',AddedCoupon)
 router.get('/AllCoupons',AllCoupons)
 router.get('/AllOffers',AllOffers)
-router.get('/ProductOffer',ProductOffer)
-router.post('/AddProductOffer',AddProductOffer)
+router.get('/ShowProductOffer',ShowProductOffer)
+router.get('/ShowCategoryOffer',ShowCategoryOffer)
+
 router.get('/CategoryOffer',CategoryOffer)
+router.get('/editCoupon/:id',editCoupon)
+router.post('/EditedCoupon/:id',EditedCoupon)
+router.get('/deleteCoupon/:id',deleteCoupon)
 module.exports = router;

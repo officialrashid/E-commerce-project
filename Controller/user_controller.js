@@ -1,13 +1,21 @@
-const client = require("twilio")('AC93740ac41b5fb2ca6ab35e9e3fa6011e','5cb6c4c7e4043572859d57548594cdac');
-const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount,PlaceOrdered,getproductList,OrderDetails,OrderCancelled,findByNumber,orderProductView,UserWishlist,getAllWishlist,removeWishlistItems,generateRazorpay,verifypayments,changePaymentStatus,AddAddress,getAddress,getSearchProduct,getPriceFilter,AddCheckCoupon,userEditAccount,userEditedProfile,getAllAddress,createPaypal}=require('../Model/user-helpers');
+
+const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount,PlaceOrdered,getproductList,OrderDetails,OrderCancelled,findByNumber,orderProductView,UserWishlist,getAllWishlist,removeWishlistItems,generateRazorpay,verifypayments,changePaymentStatus,AddAddress,getAddress,getSearchProduct,getPriceFilter,AddCheckCoupon,userEditAccount,userEditedProfile,getAllAddress,createPaypal,getCartOfferAmount,AllCouponDetails,removeCartAfterOrder,WalletAmount,changeWalletAmount}=require('../Model/user-helpers');
 const {respons}=require('express');
 const session = require('express-session');
 const expressEjsLayouts = require("express-ejs-layouts");
 var paypal = require('paypal-rest-sdk');
+const { getWalletAmount } = require("../Model/order-helpers");
+require('dotenv').config()
+const accountSID = process.env.TWILIO_ACCOUNT_SID
+const authTOKEN = process.env.TWILIO_TOKEN
+const serviceID = process.env.SERVICE_ID
+const client = require("twilio")(accountSID,authTOKEN,serviceID);
+const PaypalclientID = process.env.PAYPAL_CLIENTID
+const PaypalclientSecret=process.env.PAYPAL_CLIENTSECRET
 paypal.configure({
     'mode': 'sandbox', //sandbox or live
-    'client_id': 'AdWT8KrxryyacVPyNjgDJYb-nR_JfTEpLuFyC6NtC0DJTOkWeD9XP8AfLOKFap2TRQynPH9aUstAQh_i',
-    'client_secret': 'EHXNfgg6vFtraHdVOFTPdk0AvDcxJi2ObHyLB5W3wgc8eBpuzaCPDgMQySkTJ9XLNm8Fn3bkYE9qHu3g'
+    'client_id': PaypalclientID,
+    'client_secret': PaypalclientSecret
   });
 let otpusers
 module.exports={
@@ -59,14 +67,13 @@ module.exports={
      ShowProduct().then((ShowProducts)=>{
 
       getCategory().then((getCategoryData)=>{
+        
 
 
         res.render('userviews/landingpage',{user:true,ShowProducts,users,getCategoryData});
       })
-    
-            
-        
-     })
+    })
+ 
     
 },
 userLoged(req,res){
@@ -192,6 +199,9 @@ ShopButton(req,res){
 
        res.json({status:true})
     }).catch(()=>{
+      
+      const error = "Stock limit Exceeded";
+      res.status(400).json({ error: error }); 
 
     })
   },
@@ -200,12 +210,15 @@ ShopButton(req,res){
    let users=req.session.users
     let products=getAllCartProducts(req.session.users._id).then((products)=>{
           
-      console.log("}}}}}}}}}}}}}}}}}}}}}}}}}");
+    
       
       getCartTotalAmount(req.session.users._id).then((Total)=>{
-      console.log(products);
+      
+     
+
+      console.log(products,"++&&&&&&&&&&&&");
       if(products.length!=0){
-        console.log(products,"{{{{{{{{{{{{{}}}}}}}}}}}}}}}}}}}}}}}}}}");
+     
 
         res.render('userviews/CartPage',{user:true,products,users,Total})
       }else{
@@ -214,7 +227,7 @@ ShopButton(req,res){
         
       }
       
-
+   
       
     }).catch(()=>{
 
@@ -229,14 +242,21 @@ ShopButton(req,res){
           console.log(req.body);
           
      changeProductQuantity(req.body).then((response)=>{
+
+      
       
       // response.Total=getCartTotalAmount(req.body.users).then(()=>{
+
+      
        res.json(response)
       //  res.redirect('/CartPage')
-    // })
-     }).catch(()=>{
 
+     }).catch(()=>{
+        
+      const error = "Stock limit Exceeded";
+      res.status(400).json({ error: error }); // send 400 Bad Request with custom error message
      })
+   
   },
   removeCartItem(req,res,next){
     console.log(req.body);
@@ -251,24 +271,42 @@ ShopButton(req,res){
       
     })
   },
-  proceedToCheckout:(req,res)=>{
-
-    let users=req.session.users;
-
-      getCartTotalAmount(req.session.users._id).then((Total)=>{
-           
-
-        let products=getAllCartProducts(req.session.users._id).then((products)=>{
-        res.render('userviews/proceedToCheckout',{user:true,users,Total,products})
-        
+  proceedToCheckout: (req, res) => {
+    let users = req.session.users;
+  
+    getCartTotalAmount(req.session.users._id)
+      .then((Total) => {
+        let products = getAllCartProducts(req.session.users._id);
+        let usersAddress = getAllAddress(users._id);
+        let walletAmount = WalletAmount(req.session.users._id);
+  
+        Promise.all([products, usersAddress, walletAmount])
+          .then(([products, usersAddress, walletAmount]) => {
+            if (!walletAmount) {
+              walletAmount = { total: 0 };
+            }
+  
+            console.log(walletAmount.total, "tttttttttttttttttttttttttttt");
+            console.log(Total, "tttttttttttttttttttttttttttt");
+  
+            res.render("userviews/proceedToCheckout", {
+              user: true,
+              users,
+              Total,
+              products,
+              usersAddress,
+              walletAmount,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+            res.redirect("/");
+          });
       })
-        }).catch((error)=>{
-         
-
-        })
-   
-    
-
+      .catch((error) => {
+        console.log(error);
+        res.redirect("/");
+      });
   },
   PlaceOrder(req,res){
    
@@ -283,24 +321,58 @@ ShopButton(req,res){
 
       finalPrice =TOtal
     }
-    console.log("**************************************************************");
+   
     let users=req.session.users
-    console.log(req.body);
+   
     getproductList(req.body.userID).then((products)=>{
 
       getCartTotalAmount(req.body.userID).then((Total)=>{
     
     PlaceOrdered(req.body,products,finalPrice).then((orderID)=>{
          
+      function destruct(products) { 
+        let data =[]
+        for(let i=0;i<products.length;i++){
+          let obj ={}  
+          obj.prod= products[i].item
+          obj.quantity= products[i].quantity
+          data.push(obj)
+        }
+        return data
+      }
+     
       if(req.body.payment_method=='COD'){
 
-        res.json({codSuccess:true})
-      }else if(req.body.payment_method=='ONLINE'){
+        let ids = destruct(products)
+        console.log(ids,"ids");
+  
+        console.log(`this is the idss :: ${ids}`);
+        removeCartAfterOrder(ids,req.body.userID)
+        .then(()=>{
+         
+          res.json({codSuccess:true})
+
+        }).catch(()=>{
+          console.log("error occured while removing from cart after order");
+        })
+       
+      
+      }
+    
+      else if(req.body.payment_method=='ONLINE'){
 
         generateRazorpay(orderID,Total).then((response)=>{
-        
-          response.razorPay=true
-          res.json(response)
+            
+          let ids  = destruct(products)
+
+          removeCartAfterOrder(ids,req.body.userID).then(()=>{
+            
+            response.razorPay=true
+            res.json(response)
+
+          })
+
+         
 
         })
       }else if(req.body.payment_method=='Paypal'){
@@ -331,14 +403,43 @@ ShopButton(req,res){
             transaction.payPal = true
             transaction.linkto = links[counter].href
             transaction.orderId = orderID
-            // userHelper.changePaymentStatus(orderId).then(()=>{
+            userHelper.changePaymentStatus(orderId).then(()=>{
+
+              let ids = destruct(products)
+
+              removeCartAfterOrder(ids,req.body.userID).then(()=>{
+
                 res.json(transaction)
-            // })
+            })
+
+          })
         }
     }
+ 
+    
 })
-       
-           
+            
+  }else if(req.body.payment_method=='Wallet'){
+
+    let ids = destruct(products)
+ 
+   changeWalletAmount(req.body.userID,finalPrice)
+   .then(()=>{
+          
+    removeCartAfterOrder(ids,req.body.userID)
+    .then(()=>{
+
+      res.json({Wallet:true})
+
+  })
+  .catch(()=>{
+console.log("))))))))))))))))))))");
+    const error = "Sufficient balance for WalletAmount";
+    res.status(400).json({ error: error }); // send 400 Bad Request with custom error message
+  })
+        })
+
+
       }
 
      
@@ -352,30 +453,9 @@ ShopButton(req,res){
     })
   
   },
-  OrderDetails(req,res){
-         
-    let users=req.session.users
-      res.render('userviews/OrderDetails',{user:true,users})
-  },
-  UserOrderView(req,res){
-    
-
-    let users=req.session.users
-    OrderDetails(req.session.users._id).then((OrderDetails)=>{
-
-      res.render('userviews/UserOrderView',{user:true,OrderDetails,users})
-    })
-   
-    
-
-  },
-  OrderCancel(req,res){
-
-    OrderCancelled(req.params.id,req.body.status).then(()=>{
-
-           res.redirect('/UserOrderView')
-    })
-  },
+ 
+  
+ 
   OTPlogin(req,res){
    
    let users=req.session.users
@@ -398,14 +478,14 @@ ShopButton(req,res){
     otpusers=user
     
     client.verify
-      .services('VA2fa9b58129340937b9c615bf3243f871')
+      .services(serviceID)
       .verifications.create({
         to: `+91${number}`,
         channel: 'sms',
         
       }).then(() => {
        
-        res.render('userviews/OTPverification');
+        res.render('userviews/OTPverification',{user:true,users});
       })
       .catch((err) => {
         console.log(err);
@@ -419,7 +499,7 @@ ShopButton(req,res){
   SuccessOtpverify(req,res){
 
     client.verify
-    .services('VA2fa9b58129340937b9c615bf3243f871')
+    .services(serviceID)
     .verificationChecks.create({
       to: `+91${number}`,
       code: req.body.otplogin,
@@ -434,18 +514,11 @@ ShopButton(req,res){
       }
     })
   },
-  userProductView(req,res){
-       
-    let users=req.session.users
-      orderProductView(req.params.id).then((singleOrder)=>{
-
-          res.render('userviews/orderviewProducts',{user:true,singleOrder,users})
-      })
-  },
+  
   AddToWishlist(req,res){
    console.log(req.params.id,req.session.users._id);
      users=req.session.users
-    console.log("{{{{{");
+    
     UserWishlist(req.params.id,req.session.users._id).then((response)=>{
 
       res.json({status:true})
@@ -508,7 +581,7 @@ ShopButton(req,res){
     console.log(req.params.id);
     console.log(users);
      
-    getAllAddress(users._id).then((usersAddress)=>{
+    getAllAddress(req.session.users._id).then((usersAddress)=>{
 
       res.render('userviews/UserProfile',{user:true,users,usersAddress})
 
@@ -533,13 +606,16 @@ ShopButton(req,res){
     AddAddress(req.body).then((addressID)=>{
       
       res.redirect('/Address')
+   
 
     })
    },
    getAddAddress(req,res){
+ 
     let users = req.session.users
-    console.log(req.params.id);
-    getAllAddress(req.params.id).then((userAddress)=>{
+  
+ 
+    getAllAddress(req.body.userID,req.body.username).then((userAddress)=>{
      
       res.json(userAddress)
 
@@ -569,15 +645,24 @@ ShopButton(req,res){
 
     })
 
+    }).catch((error)=>{
+
+      error = 'product not found';
+      res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
+
     })
 
    },
    checkcoupon(req,res){
 
     AddCheckCoupon(req.body.data,req.body.Total).then((response)=>{
-       console.log(response,"88888888888888888888888888");
+     
       res.json(response)
 
+    }).catch(()=>{
+
+      const error = "Invalid Coupon";
+      res.status(400).json({ error: error })
     })
    },
    editaccount(req,res){
@@ -592,8 +677,7 @@ ShopButton(req,res){
    },
    EditedAddress(req,res){
       
-    console.log(req.params.id,"gdhfdhfvdghfvghvgh");
-    console.log(req.body,"gggg");
+ 
     userEditedProfile(req.params.id,req.body).then((updateAddress)=>{
      
     
@@ -604,6 +688,27 @@ ShopButton(req,res){
 
     })
 
+   },
+   AllCoupons(req,res){
+
+    let users=req.session.users
+    AllCouponDetails().then((Coupons)=>{
+
+     res.render('userviews/Coupons',{user:true,Coupons,users})
+
+    })
+
+   },
+   Wallet(req,res){
+
+    let users = req.session.users
+    
+    WalletAmount(req.session.users._id).then((walletAmount)=>{
+
+      res.render('userviews/WalletPage',{user:true,users,walletAmount})
+
+    })
+   
    }
   
   

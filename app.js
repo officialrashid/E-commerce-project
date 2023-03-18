@@ -8,11 +8,12 @@ var db=require('./Model/connectionmongo')
 var expressLayouts=require('express-ejs-layouts')
 var usersRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+var productRouter=require('./routes/product');
+var CategoryRouter=require('./routes/Category');
+var orderRouter=require('./routes/order');
 const bodyParser=require('body-parser');
 const {check,validationResult}=require('express-validator');
 const { fileURLToPath } = require('url');
-const fileUpload = require('express-fileupload');
-
 var sharp=require('sharp')
 var app = express();
 var session=require('express-session');
@@ -28,7 +29,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({secret:"Key",cookie:{maxAge:600000000}}))
 
-app.use(fileUpload())
+// app.use(fileUpload())
 
 db.connect((err)=>{
 
@@ -39,7 +40,9 @@ db.connect((err)=>{
 
 app.use('/', usersRouter);
 app.use('/admin', adminRouter);
-
+app.use('/product',productRouter)
+app.use('/Category',CategoryRouter)
+app.use('/order',orderRouter)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

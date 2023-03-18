@@ -9,5 +9,7 @@ module.exports={
     WISHLIST_COLLECTION:'wishlist',
     BANNER_COLLECTION:'Banner',
     COUPON_COLLECTION:'coupon',
-    PRODUCTOFFER_COLLECTION:'productoffer'
+    PRODUCTOFFER_COLLECTION:'productoffer',
+    CATEGORYOFFER_COLLECTION:'categoryoffer',
+    WALLET_COLLECTION:'wallet'
 }

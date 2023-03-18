@@ -1,4 +1,4 @@
-const {doadminSignup,getAllusers,adminadd,getAllproduct,adminedit,adminEditsubmit,removeProduct,AddCategorys,getAllcategory,CategoryEdit,adminCategoryEdit,removeCategory,userblock,getAllcategorydropdown,getcategory,adminCategoryAdd,UserOrderDetails,productView,adminOrderCancellled,productListandUnlist,shippingDetail,salesReport,adminAddBanner, getAllBanners,editbanners,adminBannerEdit,TotalSales,TodayOrders,ThisWeekOrders,ThisMonthOrders,ThisYearOrders,TotalRevenues,TodayRevenue,WeekRevenue,YearRevenue,MonthRevenue,admindashboardChart,AllSalesReport,AddCoupons,AllCouponDetails,InsertProductOffer,getProductOffer,getAllusersdashboard}=require('../Model/admin-helpers')
+const {doadminSignup,getAllusers,removeProduct,userblock,adminAddBanner, getAllBanners,editbanners,adminBannerEdit,TotalSales,TodayOrders,ThisWeekOrders,ThisMonthOrders,ThisYearOrders,TotalRevenues,TodayRevenue,WeekRevenue,YearRevenue,MonthRevenue,admindashboardChart,AllSalesReport,AddCoupons,AllCouponDetails,getAllusersdashboard,getAllProductOffer,getAllCategoryOffer,adminEditCoupon,adminEditedCoupon,adminDeleteCoupon}=require('../Model/admin-helpers')
 const {respons, response}=require('express');
 const { Result } = require('express-validator');
 const multer  = require('multer');
@@ -97,113 +97,13 @@ module.exports={
      })
         
     },
-   Stocks(req,res,next){
-    
-    getAllproduct().then((products)=>{
-     
-        res.render('adminviews/adminStocks',{user:false,products})
-    })
    
-
-
-   },
-   AddProduct(req,res,next){
-    
-    getAllcategorydropdown().then((getcategorydropdown)=>{
-
-    res.render('adminviews/AddProduct',{user:false,getcategorydropdown})
-    })
-    
-    
-   },
-
-   AddedProduct(req,res,next){
-
-        var image=req.files.Image
-        var image1=req.files.Image1
-        var image2=req.files.Image2
-        var image3=req.files.Image3
-        adminadd(req.body).then((data)=>{
-
-          image.mv('./public/Product-images/'+data.id+'.jpg',(err,done)=>{
-
-            image1.mv('./public/Product-images1/'+data.id+'.jpg',(err,done)=>{
-            
-              image2.mv('./public/Product-images2/'+data.id+'.jpg',(err,done)=>{
-            
-                image3.mv('./public/Product-images3/'+data.id+'.jpg',(err,done)=>{
-                   
-                  if(err){
-                    console.log(err);
-          
-                  }else{
-                    res.redirect('/admin/Stocks')
-                  }
-                
-                })
-              })
-             
-            })
-
-          
-          })
-        }).catch((err)=>{
-          console.log(err);
-        })
-
-    
-   },
-   editproduct(req,res){
-
-    let productid=req.params.id
-    getcategory().then((geteditcategory)=>{
+  
 
    
-     adminedit(productid).then((product)=>{
-      
-      res.render('adminviews/EditProduct',{user:false,product,geteditcategory})
-
-
-    })
    
-    })
-   },
 
-   editsubmit(req,res){
-
-    let id=req.params.id
-    adminEditsubmit(req.params.id,req.body).then(()=>{
-       
-      
-          
-      res.redirect('/admin/Stocks')
-      
-        console.log(req.file);
-         if(req.files?.Image){
-
-        var image=req.files.Image
-        image.mv('./public/Product-images/'+id+'.jpg')
-
-         }else if(req.files?.Image1){
-           
-          var image1=req.files.Image1
-          image1.mv('./public/Product-images1/'+id+'.jpg')
-
-         }else if(req.files?.Image2){
-
-          var image2=req.files.Image2
-          image2.mv('./public/Product-images2/'+id+'.jpg')
-
-         }else if(req.files?.Image3){
-          
-          var image3=req.files.Image3
-          image3.mv('./public/Product-images3/'+id+'.jpg')
-
-         }
-      
-    })
-
-   },
+   
 
    deleteproduct(req,res){
 
@@ -214,58 +114,13 @@ module.exports={
     })
    },
 
-   Categorypage(req,res,next){
-     
-    getAllcategory().then((getcategory)=>{
-        
+   
+   
+   
+  
+  
 
-      res.render('adminviews/adminCategory',{user:false,getcategory})
-    })
-    
-   },
-   addcategory(req,res,next){
-
-     
-
-      res.redirect('/admin/Category')
-     
-   },
-   AddedCategory(req,res,){
-     
-    AddCategorys(req.body).then((addcategory)=>{
-
-      res.redirect('/admin/Category')
-    })
-
-   },
-   EditCategory(req,res,next){
-     
-    let categoryid=req.params.id
-    adminCategoryEdit(categoryid).then((categoryEdit)=>{
-
-      res.render('adminviews/EditCategory',{user:false,categoryEdit})
-    })
-    
-
-   },
-   EditCategorySubmit(req,res,next){
-      
-     CategoryEdit(req.params.id,req.body).then(()=>{
-
-      res.redirect('/admin/Category')
-     })
-   },
-
-   DeleteCategory(req,res){
-    
-    let deleteCategoryid=req.params.id
-      
-    removeCategory(deleteCategoryid).then((response)=>{
-      
-      res.redirect('/admin/Category')
-    })
-    
-   },
+  
    blockmanagement(req,res){
 
     userblock(req.params.id,req.body.status).then(()=>{
@@ -274,56 +129,11 @@ module.exports={
 
     })
    },
-   Orders(req,res){
-    
-    UserOrderDetails().then((UserOrder)=>{
-
-        res.render('adminviews/UserOrders',{user:false,UserOrder})
-    })
-
-   },
-   adminProductView(req,res){
-     
-    productView(req.params.id).then((singleOrder)=>{
-
-        res.render('adminviews/OrderProductDetails',{singleOrder,user:false})
-    })
-
-   },
-   adminCancelOrder(req,res){
-    
-    console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
-    adminOrderCancellled(req.params.id,req.body.status).then((response)=>{
-
-     
-  res.redirect('/admin/Orders')
-        
-    
-})
-   },
-   productManage(req,res){
-    console.log(req.params.id,req.body.stock);
-
-    productListandUnlist(req.params.id,req.body.stock).then((response)=>{
-        
-      res.redirect('/admin/Stocks')
-
-    })
-   },
-   shippingStatus(req,res,next){
-    
-    console.log("}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}rashid");
-    shippingDetail(req.params.id,req.body.shippingStatus).then((response)=>{
-       
-      res.redirect('/admin/Orders')
-
-
-    })  
-
-
-     
-
-   },
+  
+   
+   
+  
+   
    dashboard(req,res){
 
    
@@ -413,9 +223,9 @@ module.exports={
    AddedBanner(req,res){
     
     var image=req.files.Image
-    console.log(req.body);
+    console.log(req.body,"++++++++++++++++++++++++++++");
 
-    console.log(req.files);
+    console.log(req.files,"}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
     
     adminAddBanner(req.body).then((data)=>{
       
@@ -528,8 +338,9 @@ module.exports={
     res.render('adminviews/AddCoupon',{user:false})
    },
    AddedCoupon(req,res){
-
-    AddCoupons(req.body).then((Coupon)=>{
+       
+    
+    AddCoupons(req.body).then(()=>{
          
       AllCouponDetails().then((Coupons)=>{
       
@@ -551,37 +362,58 @@ module.exports={
    },
    AllOffers(req,res){
     
-    res.render('adminviews/Offers',{user:false})
+    getAllProductOffer().then((ProductOffer)=>{
 
+    res.render('adminviews/Offers',{user:false,ProductOffer})
+
+  })
    },
-   ProductOffer(req,res){
-    
-    getAllproduct().then((products)=>{
-        
-      res.render('adminviews/ProductOffers',{user:false,products})
-
-    })
-   },
-   AddProductOffer(req,res){
-
-    console.log(req.body);
    
-    InsertProductOffer(req.body).then(()=>{
-        
-      getProductOffer(req.body).then(()=>{
-
-        res.redirect('/admin/AllOffers')
-      })
-
-         
-    })
-
-
-
-   },
+  
    CategoryOffer(req,res){
        
     let users = req.session.users
     res.render('adminviews/CategoryOffer',{user:true,users})
-   }
+   },
+   ShowProductOffer(req,res){
+
+    getAllProductOffer().then((ProductOffer)=>{
+  
+      
+      res.render('adminviews/Offers',{user:false,ProductOffer})
+  
+  
+    })
+  },
+  ShowCategoryOffer(req,res){
+
+    getAllCategoryOffer().then((CategoryOffer)=>{
+
+      res.render('adminviews/ShowCategoryOffer',{user:false,CategoryOffer})
+
+    })
+  },
+  editCoupon(req,res){
+
+    adminEditCoupon(req.params.id).then((coupon)=>{
+    
+      res.render('adminviews/EditCoupon',{user:false,coupon})
+
+    })
+  },
+  EditedCoupon(req,res){
+
+    adminEditedCoupon(req.params.id,req.body).then(()=>{
+
+      res.redirect('/admin/AllCoupons')
+    })
+  },
+  deleteCoupon(req,res){
+
+    adminDeleteCoupon(req.params.id).then((response)=>{
+     
+      res.redirect('/admin/AllCoupons')
+
+    })
+  }
 }

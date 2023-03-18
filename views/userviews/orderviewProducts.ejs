@@ -9,6 +9,7 @@
             <th scope="col">Color</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
             
           </tr>
         </thead>
@@ -16,16 +17,276 @@
             <% singleOrder.forEach(function(order, i){ %>
           <tr >
             <!-- <th scope="row"> <%= i+1 %></th> -->
-            <td class="product-images"><img src="/product-images/<%= order.orders._id %>.jpg" alt="no"></td>
+            <td class="product-images"><img src="/product-images/<%= order.orders.productImage[0] %>" alt="no"></td>
             <td><%= order.orders.shoename %></td>
             <td><%= order.orders.companyname %></td>
             <td><%= order.orders.size %></td>
             <td><%= order.orders.color %></td>
             <td><%= order.orders.category %></td>
             <td><%= order.orders.price %></td>
+            <td><%= BillingAddress.products[0].quantity %></td>
            
+          
           </tr>
+          
           <% }); %>
         </tbody>
       </table>
+      <div class="container mt-5 mb-5">
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-8">
+
+                <div class="card">
+
+
+                        <div class="text-left logo p-2 px-5">
+
+                            <img src="/img/gallary/logo/logo-1.png" width="50">
+                            
+
+                        </div>
+
+                        <div class="invoice p-5">
+
+                            <h5>Your order Confirmed!</h5>
+
+                            <span class="font-weight-bold d-block mt-4">Hello, Chris</span>
+                            <span>You order has been confirmed and will be shipped in next two days!</span>
+
+                            <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+
+                              
+
+                                
+                            </div>
+
+
+
+
+                                <div class="product border-bottom table-responsive">
+
+                                    <table class="table table-borderless">
+
+                                    <tbody>
+                                      <% singleOrder.forEach(function(Orders, i){ %>
+                                        <tr>
+                                            <td width="20%">
+                                            
+                                            <img src="/product-images/<%= Orders.orders.productImage[0] %>" width="90">
+
+                                        </td>
+                                    
+                                        <td width="60%">
+                                            <span class="font-weight-bold">shoename:<%= Orders.orders.shoename %></span>
+                                            <div class="product-qty">
+                                                <span class="d-block">Quantity:<%= BillingAddress.products[0].quantity %></span>
+                                                <span>color:<%= Orders.orders.color %></span>
+                                                
+                                            </div>
+                                        </td>
+                                        <td width="20%">
+                                            <div class="text-right">
+                                                <span class="font-weight-bold"><%= Orders.orders.price %></span>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        <% }); %>
+
+                                    </tbody> 
+                                        
+                                    </table>
+                                    
+
+
+                                </div>
+
+
+
+                                <div class="row d-flex justify-content-end">
+
+                                    <div class="col-md-5">
+
+                                        <table class="table table-borderless">
+
+                                            <tbody class="totals">
+                                                <% singleOrder.forEach(function(Orders, i){ %>
+                                                <tr>
+                                                    <td>
+                                                        <div class="text-left">
+
+                                                            <span class="text-muted">Subtotal</span>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span><%= Orders.orders.price %></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                              
+                                                 <tr>
+                                                    <td>
+                                                        <div class="text-left">
+
+                                                            <span class="text-muted">Discount</span>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span class="text-success"><%= Orders.orders.offerAmount* BillingAddress.products[0].quantity  - Orders.orders.price  %></span>
+                                                        </div>
+                                                    </td>
+                                                    
+                                                </tr>
+                                               
+
+                                                 <tr class="border-top border-bottom">
+                                                    <td>
+                                                        <div class="text-left">
+
+                                                            <span class="font-weight-bold">Total</span>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span class="font-weight-bold"><%= Orders.orders.offerAmount*BillingAddress.products[0].quantity %></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+                                            </tbody>
+                                            
+                                        </table>
+                                        
+                                    </div>
+                                    
+
+
+                                </div>
+
+
+                                <p>We will be sending shipping confirmation email when the item shipped successfully!</p>
+                                <p class="font-weight-bold mb-0">Thanks for shopping with us!</p>
+                                <span>Nike Team</span>
+
+
+
+                            
+
+                        </div>
+
+
+                        <div class="d-flex justify-content-between footer p-3">
+
+                            <span>Need Help? visit our <a href="#"> help center</a></span>
+                             <span>12 June, 2020</span>
+                            
+                        </div>
+
+
+
+            
+        </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+
+
+  <h4>Your BIL</h4>
+  <section class="order_details section_gap">
+  <div class="container">
+
+  <div class="row order_d_inner">
+  <div class="col-lg-4">
+  <div class="details_item">
+  <h4>Order Info</h4>
+  <tbody>
+    <% singleOrder.forEach(function(order, i){ %>
+  <tr >
+    <!-- <th scope="row"> <%= i+1 %></th> -->
+    <td>productname:<%= order.orders.shoename %></td><br>
+    
+    <td>productPrice:<%= order.orders.price %></td><br>
+    
+   
+  </tr>
+
+  <% }); %>
+  <tr >
+    
+    <td class="custom-td">TotalAmount:<%= BillingAddress.TotalAmount %></td>
+
+   
+  </tr>
+</tbody>
+  </div>
+  </div>
+  <div class="col-lg-4">
+  <div class="details_item">
+  <h4>Billing Address</h4>
+  <tbody>
+ 
+  <tr >
+   
+    <td>CustomerName:<%= BillingAddress.deliveryDetails.fname %></td><br>
+    <td>CompanyName:<%= BillingAddress.deliveryDetails.cname %></td><br>
+    <td>BillingAddress:<%= BillingAddress.deliveryDetails.add1 %></td><br>
+    <td><%= BillingAddress.deliveryDetails.town %>,<%= BillingAddress.deliveryDetails.country %></td><br>
+  
+    <td>Postcode:<%= BillingAddress.deliveryDetails.postcode %></td><br>
+    <td>phoneNumber:<%= BillingAddress.deliveryDetails.phone %></td><br>
+    <td>Email:<%= BillingAddress.deliveryDetails.email %></td><br>
+    
+   
+  </tr>
+
+</tbody>
+  </div>
+  </div>
+  <div class="col-lg-4">
+  <div class="details_item">
+  <h4>Shipping Address</h4>
+  <ul class="list">
+  <li><a href="#"><span>CustomerName</span> : <%= BillingAddress.deliveryDetails.fname %></a></li>
+  <li><a href="#"><span>CompanyName</span> :<%= BillingAddress.deliveryDetails.cname %></a></li>
+  <li><a href="#"><span>BillingAddress</span> : <%= BillingAddress.deliveryDetails.add1 %></a></li>
+  <li><a href="#"><span> </span>  <%= BillingAddress.deliveryDetails.town %>,<%= BillingAddress.deliveryDetails.country %></a></li>
+  <li><a href="#"><span>Postcode</span> : <%= BillingAddress.deliveryDetails.postcode %></a></li>
+  <li><a href="#"><span>phoneNumber</span> : <%= BillingAddress.deliveryDetails.phone %></a></li>
+  <li><a href="#"><span>Email</span> : <%= BillingAddress.deliveryDetails.email %></a></li>
+  </ul>
+  </div>
+  </div>
+  </div>
+  <div class="order_details_table">
+   
+  </div>
+  </div>
+  </section>
+  <!--================End Order Details Area =================-->
+  
+  <!-- start footer Area -->
+  
+  <!-- End footer Area -->
+  <!--================End Order Details Area =================-->
+  
+  <!-- start footer Area -->
+  
+  <!-- End footer Area -->
+  
+  
+  
+  
+  
     </section>

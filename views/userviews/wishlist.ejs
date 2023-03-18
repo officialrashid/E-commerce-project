@@ -1,14 +1,14 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-<head>
+<!-- <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Gota eCommerce HTML5 Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</head>
+</head> -->
 
 <body>
     
@@ -181,6 +181,7 @@
                                 <td>product Name</td>
                                 <td>price</td>
                                 <td>Option</td>
+                                <td>addTOCart</td>
                                 
                                </tr>
                             <tbody>
@@ -188,7 +189,7 @@
                                 <tr class="max-width-set">
                                     
                                     <td>
-                                        <img src="product-images/<%= product.products._id %>.jpg" alt="">
+                                        <img src="product-images/<%= product.products.productImage[0] %>" alt="">
                                     </td>
                                     <td><%= product.products.shoename %> </td>
                                     <td><%= product.products.price %>  
@@ -197,7 +198,11 @@
                                     
                                      
                                     <td class="width-set">
-                                        <button class="quantity btn btn-danger" onclick="removeWishlistItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
+                                        <button class="quantity badge bg-danger" onclick="removeWishlistItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
+                                    </td>
+                                    <td class="width-set">
+
+                                        <button class="quantity badge bg-dark" onclick="addTOCart('<%= product.products._id %>')">AddTOCart<i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
                                     </td>
                                     
                                 </tr>
@@ -300,5 +305,37 @@ url:'/remove_wishlistItem',
 })
 
    }
+   function addTOCart(proID){
+     console.log("}}}}}}}}}}}}}}}}}}}");
+      $.ajax({
+
+        url:'/Add-to-cart/'+proID,
+        method:'get',
+        success:(response)=>{
+            swal("Added to cart!", "", "success");
+    
+        },
+        error: function(xhr, status, error) {
+                console.log(error);
+
+if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock limit Exceeded") {
+    
+    // alert("Stock limit Exceeded");
+    swal({
+  title: "Stock Limit Exceeded",
+  
+  icon: "warning",
+
+  dangerMode: true,
+})
+
+   
+} else {
+    $('#error').text(error);
+}
+
+}
+      })
+    }
 
 </script>

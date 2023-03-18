@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var user_helpers=require('../Controller/user_controller');
 
-const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem,proceedToCheckout,PlaceOrder,UserOrderView,OrderCancel,OTPlogin,OTPVerify,SuccessOtpverify,userProductView,AddToWishlist,WishlistPage,removeWishlistItem,OrderDetails,verifypayment,Address,addaccount,AddedAddress,getAddAddress,search,priceFilter,checkcoupon,editaccount,EditedAddress} = require('../Controller/user_controller');
+const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem,proceedToCheckout,PlaceOrder,OTPlogin,OTPVerify,SuccessOtpverify,AddToWishlist,WishlistPage,removeWishlistItem,verifypayment,Address,addaccount,AddedAddress,getAddAddress,search,priceFilter,checkcoupon,editaccount,EditedAddress,AllCoupons,Wallet} = require('../Controller/user_controller');
 /* GET home page. */
 
 router.get('/',userlandingpage);
@@ -20,24 +20,26 @@ router.post('/change-product-quantity',changequantity)
 router.post('/remove_cartItem',removeCartItem)
 router.get('/proceedToCheckout',sessioncheck,proceedToCheckout)
 router.post('/place-order',sessioncheck,PlaceOrder)
-router.get('/UserOrderView',sessioncheck,UserOrderView)
-router.post('/OrderCancel/:id',OrderCancel)
 router.get('/OTPlogin',OTPlogin)
 router.post('/OTPVerify',OTPVerify)
 router.post('/SuccessOtpverify',SuccessOtpverify)
-router.get('/userProductView/:id',userProductView)
+
+
 router.get('/Add-to-wishlist/:id',AddToWishlist)
 router.get('/WishlistPage',sessioncheck,WishlistPage)
 router.post('/remove_wishlistItem',removeWishlistItem)
-router.get('/OrderDetails',OrderDetails)
+
 router.post('/verifypayment',verifypayment)
 router.get('/Address',sessioncheck,Address)
 router.get('/add-account',sessioncheck,addaccount)
 router.post('/AddedAddress',sessioncheck,AddedAddress)
-router.get('/getAddAddress/:id',getAddAddress)
+router.post('/getAddAddress',getAddAddress)
 router.post('/search',search)
 router.post('/priceFilter',priceFilter)
 router.post('/checkcoupon',checkcoupon)
 router.get('/edit-account',editaccount)
 router.post('/EditedAddress/:id',sessioncheck,EditedAddress)
+router.get('/AllCoupons',AllCoupons)
+router.get('/Wallet',Wallet)
+
 module.exports = router;

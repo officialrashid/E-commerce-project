@@ -1,19 +1,18 @@
-<!doctype html>
+ <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
-    <meta charset="utf-8">
+     <!-- <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Gota eCommerce HTML5 Template</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">  -->
 
-</head>
+</head>  
 
 <body>
     
-
-    <div class="search_area">
+ <div class="search_area">
         <div class="search_close">
             <span><i class="fal fa-times"></i></span>
         </div>
@@ -75,7 +74,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 
     <div class="fix">
         <div class="side-info">
@@ -104,7 +103,7 @@
     </div>
     <div class="offcanvas-overlay"></div>
 
-  <!-- cart area start  -->
+   <!-- cart area start  --->
   <div class="cart__sidebar">
     <div class="container">
         <div class="cart__content">
@@ -192,16 +191,23 @@
                                 <tr class="max-width-set">
                                     
                                     <td>
-                                        <img src="product-images/<%= product.products._id %>.jpg" alt="">
+                                        <img src="product-images/<%= product.products.productImage[0] %>" alt="">
+                                        
                                     </td>
                                     <td><%= product.products.shoename %></td>
-                                    <td><%= product.products.price %></td>
-                                  
+                                    
+                                 <% if (product.products.offerAmount) { %>
+                                    <td><%= product.products.offerAmount %></td>
+                                    <% } else { %>
+                                        <td><%= product.products.price %></td>
+                                        <% } %>
                                     <td><div class="viewcontent__action single_action pt-30">
-                                        
+                                       
                                         <button class="quantitys btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',-1)">-</button>
                                          <span id="<%= product.products._id %>"><%= product.quantity %></span>
-                                        <button class="quantity btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',1)">+</button>
+                                        <button class="quantity btn btn-dark" onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',1)">+</button><br>
+                                       
+                                        <span id="error" style="color: red;"></span>
                                         
                                     </div></td>
                                      <!-- <td id="RowTotal"><%= Total %></td> -->
@@ -224,7 +230,7 @@
                       <table>
                           <tr class="first-child">
                               <td>Subtotal</td>
-                              <td id="SubTotal"><%= Total %></td>
+                              <td id="Total"><%= Total %></td>
                           </tr>
                           <tr class="first-child lastchild">
                               <td>Shipping</td>
@@ -235,11 +241,13 @@
                               <td>Total</td>
                               <td><span id="Total"><%= Total %></span></td>
                           </tr>
+                        
                           <tr>   
                               <td colspan="2">
                                   <a href="/proceedToCheckout"><input type="submit" value="procced to checkout"></a>
                               </td>
                           </tr>
+                      
                       </table>
                     </div>
                 </div>
@@ -321,7 +329,7 @@
         
         let quantity=parseInt(document.getElementById(proID).innerHTML)
         let CartTotal = document.getElementById('Total').innerHTML
-        let Subtotal = document.getElementById('SubTotal').innerHTML
+        // let Subtotal = document.getElementById('SubTotal').innerHTML
         // let RowTotal = document.getElementById('RowTotal').innerHTML
         count=parseInt(count)
            $.ajax({
@@ -346,11 +354,38 @@
 
                     document.getElementById(proID).innerHTML=quantity+count
                     document.getElementById('Total').innerHTML=parseInt(CartTotal)+(count*price)
-                    document.getElementById('SubTotal').innerHTML = parseInt(Subtotal)+(count*price)
-                    document.getElementById('RowTotal').innerHTML = parseInt(RowTotal)+(count*price)
+                    location.reload()
                 }
                 // alert(response)
-            }
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+
+if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock limit Exceeded") {
+    document.getElementById('error').innerHTML = xhr.responseJSON.error;
+    swal({
+  title: "Stock Limit Exceeded",
+  
+  icon: "warning",
+
+  dangerMode: true,
+})
+
+    
+    setTimeout(function() {
+        document.getElementById('error').innerHTML = "";
+    }, 5000);
+    // Set a timer to clear the error message after 5 seconds
+   
+} else {
+    $('#error').text(error);
+}
+
+}
+
+
+            
+    
             
            })
     }

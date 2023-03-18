@@ -1,4 +1,15 @@
-<section id="footer" class="mt-5">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title> -->
+</head>
+<body>
+  
+
+<section id="" class="mt-5">
     <table class="table table-bordered">
         <thead>
           <tr>
@@ -23,7 +34,7 @@
           
             <td><%= order._id %></td>
             <td><%= order.deliveryDetails.add1%></td>
-            <td><%= order.date %></td>
+            <td><%= order.date.toISOString().split('T')[0]; %></td>
             <td><%= order.deliveryDetails.phone %></td>
             <td><%= order.status %></td>
             <td><%= order.shippingStatus %></td>
@@ -32,17 +43,34 @@
             <td><%= order.deliveryDetails.postcode %></td>
 
             <td>
-                <form action="/OrderCancel/<%= order._id %>" method="post">
-
-                <input name="status" value="<%= order.status %>" hidden>
+              <% if (order.shippingStatus=='Delivered' && order.status != 'ReturnConfirmed') { %>
                 
-               
-                <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
+                  <form action="/order/OrderReturn/<%= order._id %>" method="post">
 
-              </td>
-            </form>
+                    <input name="status" value="<%= order.shippingStatus %>" hidden>
+                    
+                   
+                    <button type="submit" class="badge bg-danger" style="border: none;">Return</button>
+                      
+                  
+                </form>
+
+                <% } else if(order.status == 'placed' || order.status=='ordered' || order.status=='Shipped' || order.status=='Arraving') { %>
+                   
+                  <form action="/order/OrderCancel/<%= order._id %>" method="post">
+
+                    <input name="status" value="<%= order.status %>" hidden>
+                    
+                   
+                    <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
+                      
+                  </td>
+                </form>
+               
+                  <% } %>
+            
             <td>
-              <a href="/userProductView/<%= order._id %>"><button type="submit" class="badge bg-success" style="font-size: 67%; border: none;">View Product</button></a>
+              <a href="/order/userProductView/<%= order._id %>"><button type="submit" class="badge bg-success" style="font-size: 67%; border: none;">View Product</button></a>
             </td>
           </tr>
           <% }); %> 
@@ -50,4 +78,5 @@
       </table>
     </section>
     
-    
+  </body>
+  </html>

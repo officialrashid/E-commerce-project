@@ -21,25 +21,41 @@
           
             <td><%= order.deliveryDetails.fname %></td>
             <td><%= order.deliveryDetails.add1 %></td>
-            <td><%= order.date %></td>
+            <td><%= order.date.toISOString().split('T')[0]; %></td>
             <!-- <td><%= order.deliveryDetails.phone %></td> -->
             <td><%= order.status %>
-              <form action="/admin/adminCancelOrder/<%= order._id %>" method="post">
+              <% if (order.status=='Returnprocessing') { %>
+              
+                <form action="/order/adminReturnedOrder/<%= order._id %>" method="post">
 
-                <input name="status" value="<%= order.status %>" hidden>
-                
-               
-                <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
+                  <input name="status" value="<%= order.status %>" hidden>
+                  
+                 
+                  <button type="submit" class="badge bg-danger" style="border: none;">ConfirmReturn</button>
+                 
 
-            
+                    
+                <% } else if(order.shippingStatus=='ordered' || order.shippingStatus=='Shipped' || order.shippingStatus=='Arraving'||order.shippingStatus=='Ordered'){ %>
+                  <% if (order.status!='order cancelled') { %>
+                  <form action="/order/adminCancelOrder/<%= order._id %>" method="post">
+
+                    <input name="status" value="<%= order.status %>"hidden>
+                    
+                   
+                    <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
+                    <% } %>
+                  <% } %>
             </td>
           </form>
           <td><%= order.shippingStatus %>
+            
+            <% if (order.shippingStatus == 'Ordered'||order.shippingStatus == 'Shipped'||order.shippingStatus == 'Arraving'||order.shippingStatus=='ordered') { %>
+              <% if (order.status!='order cancelled') { %>
             <div class="btn-group">
               <p type="button" class="badge bg-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 OrderStatus
               </p>
-              <form action="/admin/shippingStatus/<%= order._id %>" method="post">
+              <form action="/order/shippingStatus/<%= order._id %>" method="post">
               <div class="dropdown-menu">
                 
                 <button class="dropdown-item" type="submit" value="Ordered" name="shippingStatus" >Order</button>
@@ -49,8 +65,10 @@
               
               </div>
             </div>
-          
+              
           </td>
+          <% } %>
+          <% } %>
         </form>
             <td><%= order.PaymentMethod %></td>
             <td><%= order.TotalAmount %></td>
@@ -58,7 +76,7 @@
 
             <td>
                
-                <a href="/admin/adminProductView/<%= order._id %>"><p type="submit" class="badge bg-success">View Product</p></a>
+                <a href="/order/adminProductView/<%= order._id %>"><p type="submit" class="badge bg-success">View Product</p></a>
               
               </td>
              

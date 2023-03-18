@@ -278,20 +278,11 @@
                 <div class="mobile-menu"></div>
                 <div class="contact-infos mb-30">
                     <div class="contact-list mb-30">
-                        <h4>Office Address</h4>
-                        <p>123/A, Miranda City Likaoli
-                            Prikano, Dope</p>
+                        
+                        <a href="/Logout" style="color: white;">LOGOUT</a>
                     </div>
-                    <div class="contact-list mb-30">
-                        <h4>Phone Number</h4>
-                        <p>+0989 7876 9865 9</p>
-                        <p>+(090) 8765 86543 85</p>
-                    </div>
-                    <div class="contact-list mb-30">
-                        <h4>Email Address</h4>
-                        <p><a href="https://themepure.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f0999e969fb09588919d809c95de939f9d">[email&#160;protected]</a></p>
-                        <p><a href="https://themepure.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d78657c706d717833707c74715d756870337e7270">[email&#160;protected]</a></p>
-                    </div>
+                    
+                  
                 </div>
             </div>
         </div>
@@ -299,18 +290,18 @@
     <div class="offcanvas-overlay"></div>
 
   <!-- cart area start  -->
-  <div class="cart__sidebar">
+  <!-- <div class="cart__sidebar">
     <div class="container">
         <div class="cart__content">
             <div class="cart-text">
                 <h3 class="mb-40">Shopping cart</h3>
                 <div class="add_cart_product">
                     <div class="add_cart_product__thumb">
-                        <img src="assets/img/product/29-3.jpg" alt="">
+                        <img src="" alt="">
                     </div>
                     <div class="add_cart_product__content">
                         <h5><a href="shop.html">Running 3-Stripes</a></h5>
-                        <p>1 × $66.00</p>
+                        <p></p></p>
                         <button class="cart_close"><i class="fal fa-times"></i></button>
                     </div>
                 </div>
@@ -338,7 +329,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="cart-offcanvas-overlay"></div>
 <!-- cart area end  -->
 <!-- slider start -->
@@ -555,7 +546,7 @@
                                                         <div class="product product-4">
                                                             <div class="product__thumb">
                                                                 <a href="single.html">
-                                                                    <a href="/productDetails/<%= product._id %>"><img class="product-primary" src="product-images/<%= product._id %>.jpg" alt="product_image"></a>
+                                                                    <a href="/product/productDetails/<%= product._id %>"><img class="product-primary" src="product-images/<%= product.productImage[0] %>" alt="product_image"></a>
                                                                     <!-- <img class="product-secondary" src="assets/img/product/17-2.jpg"
                                                                         alt="product_image"> -->
                                                                 </a>
@@ -579,7 +570,7 @@
                                                                     <div class="pro-price">
                                                                       
                                                                        
-                                                                    <button class="p-absoulute pr-2 " style="border: none;"  onclick="addTOCart('<%= product._id %>')">add to car</button>
+                                                                    <button class="p-absoulute pr-2 " style="border: none;"  onclick="addTOCart('<%= product._id %>')">add to car<i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
 
                                                                           
                                                                    
@@ -640,8 +631,29 @@
         method:'get',
         success:(response)=>{
 
-          location.reload()
-        }
+        //   location.reload()
+        swal("Added to cart!", "", "success");
+        },
+        error: function(xhr, status, error) {
+                console.log(error);
+
+if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock limit Exceeded") {
+    
+    // alert("Stock limit Exceeded");
+    swal({
+  title: "Stock Limit Exceeded",
+  
+  icon: "warning",
+
+  dangerMode: true,
+})
+
+   
+} else {
+    $('#error').text(error);
+}
+
+}
       })
     }
 </script>
