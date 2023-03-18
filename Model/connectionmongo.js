@@ -5,7 +5,7 @@ const state={
     db:null
 }
 module.exports.connect=function(done){
-    const url='mongodb://127.0.0.1:27017';
+    const url='mongodb+srv://rashid:muhdr123@cluster0.zihpmvk.mongodb.net/?retryWrites=true&w=majority';
     const dbname='dbAlldatas';
 
     mongoClient.connect(url,(err,data)=>{
