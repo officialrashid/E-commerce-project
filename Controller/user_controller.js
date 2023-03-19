@@ -392,7 +392,7 @@ ShopButton(req,res){
               "payment_method": "paypal"
           },
           "redirect_urls": {
-              "return_url": "http://localhost:3000/order/OrderDetails",
+              "return_url": "https://sneakerspot.live/order/OrderDetails",
               "cancel_url": "https://Gota.gq/paymentError"
           },
           "transactions": [{
@@ -416,7 +416,7 @@ ShopButton(req,res){
 
             if (payment.links[index].rel === 'approval_url') {
              console.log('successssssssssssssssssssssssssss');
-              console.log(payment.links[index].href);
+              console.log(payment.links[index]);
               // res.json({  url: payment.links[index].href,status:"payPal" });
               var forwardLink = payment.links[index].href;
         var response = { forwardLink: forwardLink };
