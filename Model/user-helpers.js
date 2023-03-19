@@ -838,8 +838,9 @@ getproductList:(userID)=>{
             return new Promise((resolve,reject)=>{
                 db.get().collection(collection.PRODUCT_COLLECTION).findOne({$text: {$search: value}}).then((productDATA)=>{
                        
-    
+                    console.log(productDATA,"search datas coming the shop page");
                     resolve(productDATA)
+
     
                 })
             })

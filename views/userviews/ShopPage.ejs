@@ -1,13 +1,15 @@
 <!doctype html>
 <html class="no-js" lang="en">
-
+   
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Gota eCommerce HTML5 Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+  
 </head>
+
 <div class="search_area">
     <div class="search_close">
         <span><i class="fal fa-times"></i></span>
@@ -172,7 +174,7 @@
                         </div>
                     </div>
                     <div class="main_search">
-                        <form action="#">
+                        <!-- <form action=""> -->
                             <input type="text" placeholder="Search here..." id="search-input"
                             onkeyup="searchProducts()">
                             <!-- <button class="m-search"><i class="fal fa-search d-sm-none d-md-block"></i></button> -->
@@ -182,7 +184,7 @@
                                 <button class="m-search"><i class="fal fa-search d-sm-none d-md-block"></i></button>
                             </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                 </div>
             </div>
@@ -387,7 +389,7 @@ function closeOverlay() {
       <div class="product-wrap bg-light  " style="width: 400px; margin-left:400px; margin-top:20px;">
         <div class="product-img mb-15">
           <a href="/productdetails/${data._id}">
-            <img src="/product-images/${data._id}.jpg" alt="product">
+            <img src="/product-images/${data.productImage[0]}" alt="product">
           </a>
           <div class="product-action">
           </div>
