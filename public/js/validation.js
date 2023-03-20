@@ -85,6 +85,7 @@
                 return false;
             }
         }
+        
         function validatephonenumber(){
          
             var phone=document.getElementById('check-phone').value;
@@ -120,4 +121,38 @@
             }
               
         }
-       
+        var categorynameError = document.getElementById('category-Error')
+        var categorysubmitError = document.getElementById('add-error')
+        
+        function validateCategoryName(){
+        
+            
+            const name=document.getElementById('check-category').value;
+              
+            if(name.length.value == 0){
+            
+                categorynameError.innerHTML = 'Name is required';
+                return false;
+            }
+            else{
+                console.log("+))(())((_))(())");
+                categorynameError.innerHTML ='<i class="fa-solid fa-circle-check"></i>';
+                return true;
+            }
+            
+        }
+    
+        function validateCategoryForm(){
+            if(!validateCategoryName()){
+                var submit =document.getElementById('add-error').value;
+                categorysubmitError.style.display ='block';
+                categorysubmitError.innerHTML='please fill the form';
+                setTimeout(function(){categorysubmitError.style.display ='none';},3000);
+                return false;
+            }
+            else{
+                return true;
+            }
+            }
+           
+        
