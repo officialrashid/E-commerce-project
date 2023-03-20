@@ -199,9 +199,9 @@
                   
               </div>
                 <div class="viewcontent__action single_action pt-30">
-                    <span><input type="number" placeholder="1"></span>
+                    <!-- <span><input type="number" placeholder="1"></span> -->
                     <% if (DetailProduct.productstock) { %>
-                    <button class="p-absoulute pr-2  mr-5" style="border: none; width: 10% ; height: 40px;" id="cartButton"  onclick="addTOCart('<%= DetailProduct._id %>')">add to car<i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                    <button class="p-absoulute pr-2  mr-5" style="border: none; width: 10% ; height: 40px;" id="cartButton"  onclick="addTOCart('<%= DetailProduct._id %>')">add to cart<i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
                     <% } else { %>
                     <p class="h5 text-danger">sorry,this product is currently out of stock</p>
                     <% } %>

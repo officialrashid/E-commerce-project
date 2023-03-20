@@ -547,6 +547,10 @@
                         value:  <%= data.CANCEL %>,
                         name: 'Cancel'
                       },
+                      {
+                        value:  <%= data.RETURN %>,
+                        name: 'Return'
+                      },
                    
                     ]
                   }]
@@ -577,6 +581,7 @@ function drawChart() {
     ['Task', 'Hours per Day'],
     ['COD',     <%= data.COD %> ],
     ['ONLINE',  <%= data.ONLINE %>],
+    ['Paypal',  <%= data.PAYPAL %>],
   
    
   ]);

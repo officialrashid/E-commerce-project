@@ -10,6 +10,7 @@
         <th scope="col">Color</th>
         <th scope="col">Category</th>
         <th scope="col">Price</th>
+        <th scope="col">Stock</th>
         <th scope="col">Options</th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
         <td><%= product.color %></td>
         <td><%= product.category %></td>
         <td><%= product.price %></td>
+        <td><%= product.StockCount %></td>
         <td>
             <a href="/product/edit-pro/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button" onclick="myFunction(this.id)">Edit</button></a><br>
 

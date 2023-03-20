@@ -447,15 +447,18 @@ module.exports={
 
            data.COD= await db.get().collection(collection.ORDER_COLLECTION).find({PaymentMethod:'COD'}).count()
            data.ONLINE= await db.get().collection(collection.ORDER_COLLECTION).find({PaymentMethod:'ONLINE'}).count()
+           data.PAYPAL= await db.get().collection(collection.ORDER_COLLECTION).find({PaymentMethod:'Paypal'}).count()
            data.PENDING= await db.get().collection(collection.ORDER_COLLECTION).find({status:'pending'}).count()
            data.DELIVERED= await db.get().collection(collection.ORDER_COLLECTION).find({shippingStatus:'Delivered'}).count()
            data.CANCEL= await db.get().collection(collection.ORDER_COLLECTION).find({status:'order cancelled'}).count()
+           data.RETURN= await db.get().collection(collection.ORDER_COLLECTION).find({status:'ReturnConfirmed'}).count()
 
            console.log(data.CANCEL);
            console.log(data.DELIVERED);
            console.log(data.PENDING);
            console.log(data.COD);
            console.log(data.ONLINE);
+           console.log(data.PAYPAL,"++++++++++");
            resolve(data)
               
              
