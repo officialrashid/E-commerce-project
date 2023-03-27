@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"> 
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gota eCommerce HTML5 Template</title>
+    <meta name="description" content=""> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+</head>
+<body>
+    
+
+<div class="page-layout" data-background="/img/slider/shop.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                <div class="breadcrumb-area text-center">
+                    <h2 class="page-title">Address</h2>
+                        <div class="breadcrumb-menu">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="cart.html">cart</a></li>
+                            </ol>
+                        </nav>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xl-7 col-lg-7 col-md-12">
+    <div class="checkout_form mb-100">
+        
+            <form action="/AddedAddress" method="post">
+           
+            <div class="row mb-30">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="checkout__wrap">
+                        <label>First name <span>*</span></label>
+                        <input type="text" name="fname">
+                    </div>
+                </div>
+                <!-- <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="checkout__wrap">
+                        <label>Last name <span>*</span></label>
+                        <input type="text" name="lname">
+                    </div>
+                </div> -->
+            </div>
+            <div class="checkout__wrap">
+                <label>Company name (optional) <span></span></label>
+                <input type="text" name="cname">
+            </div>
+          
+            <div class="checkout__wrap">
+                <label>Street address <span>*</span></label>
+                <input class="mb-20" type="text" name="add1" placeholder="house number and street number">
+               
+            </div>
+            <div class="checkout__wrap">
+                <label>Town / City *<span></span></label>
+                <input type="text" name="town">
+            </div>
+            <div class="checkout__wrap">
+                <label>County (optional)<span></span></label>
+                <input type="text" name="country">
+            </div>
+            <div class="checkout__wrap">
+                <label>Postcode<span>*</span></label>
+                <input type="text" name="postcode">
+            </div>
+            <div class="checkout__wrap">
+                <label>Phone <span>*</span></label>
+                <input type="text" name="phone">
+            </div>
+            <div class="checkout__wrap">
+                <label>Email address <span>*</span></label>
+                <input type="email" name="email">
+                <input type="text" name="userID" id="" value="<%= users._id %>" hidden>
+               
+            </div>
+            <div class="terms pt-50 pb-20">
+                      
+                <div class="order-button">
+                    <button type="submit">AddAddress</button>
+                </div>
+              
+            </div>
+        
+    </div>
+</div>
+</body>
+</html>
