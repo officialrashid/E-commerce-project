@@ -6,6 +6,7 @@ const expressEjsLayouts = require("express-ejs-layouts");
 var paypal = require('paypal-rest-sdk');
 const { getWalletAmount } = require("../Model/order-helpers");
 const cc= require("currency-converter-lt")
+<<<<<<< HEAD
 //require('dotenv').config()
 // const accountSID = process.env.TWILIO_ACCOUNT_SID
 // const authTOKEN = process.env.TWILIO_TOKEN
@@ -18,6 +19,20 @@ const cc= require("currency-converter-lt")
 //     'client_id': PaypalclientID,
 //     'client_secret': PaypalclientSecret
 //   });
+=======
+require('dotenv').config()
+const accountSID = process.env.TWILIO_ACCOUNT_SID
+const authTOKEN = process.env.TWILIO_TOKEN
+const serviceID = process.env.SERVICE_ID
+const client = require("twilio")(accountSID,authTOKEN,serviceID);
+const PaypalclientID = process.env.PAYPAL_CLIENTID
+const PaypalclientSecret=process.env.PAYPAL_CLIENTSECRET
+paypal.configure({
+    'mode': 'sandbox', //sandbox or live
+    'client_id': PaypalclientID,
+    'client_secret': PaypalclientSecret
+  });
+>>>>>>> 2fe3d4ff61ad2843051882a4e0a93c5267a85c75
 let otpusers
 module.exports={
     

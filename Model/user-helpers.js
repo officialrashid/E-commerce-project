@@ -9,6 +9,7 @@ const Razorpay = require('razorpay');
 require('dotenv').config()
 const { get } = require('http');
 const { resolve } = require('path');
+<<<<<<< HEAD
 // var paypal = require('paypal-rest-sdk');
 // const { Number } = require('twilio/lib/twiml/VoiceResponse');
 // const Razorpaykeyid = process.env.RAZORPAY_KEYID
@@ -26,6 +27,25 @@ const { resolve } = require('path');
 //     key_id: Razorpaykeyid,
 //     key_secret: Razorpaykeysecret,
 //   });
+=======
+var paypal = require('paypal-rest-sdk');
+const { Number } = require('twilio/lib/twiml/VoiceResponse');
+const Razorpaykeyid = process.env.RAZORPAY_KEYID
+const Razorpaykeysecret=process.env.RAZORPAY_KEYSECRET
+const PaypalclientID = process.env.PAYPAL_CLIENTID
+const PaypalclientSecret=process.env.PAYPAL_CLIENTSECRET
+paypal.configure({
+    'mode': 'sandbox', //sandbox or live
+    'client_id':PaypalclientID,
+    'client_secret':PaypalclientSecret 
+  });
+  
+  
+var instance = new Razorpay({
+    key_id: Razorpaykeyid,
+    key_secret: Razorpaykeysecret,
+  });
+>>>>>>> 2fe3d4ff61ad2843051882a4e0a93c5267a85c75
 module.exports={
 
 
