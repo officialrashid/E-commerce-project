@@ -1,0 +1,21 @@
+<section class="page-align mt-5" id="footer">
+    <div class="container">
+        <h1>Edit BANNER</h1>
+
+        <form action="/admin/EditedBanner/<%= product._id %>" method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="file" name="Image" id="formFile" value="product.Image">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                   <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
