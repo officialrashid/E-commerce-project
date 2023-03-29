@@ -1,8 +1,13 @@
 const {doadminSignup,getAllusers,removeProduct,userblock,adminAddBanner, getAllBanners,editbanners,adminBannerEdit,TotalSales,TodayOrders,ThisWeekOrders,ThisMonthOrders,ThisYearOrders,TotalRevenues,TodayRevenue,WeekRevenue,YearRevenue,MonthRevenue,admindashboardChart,AllSalesReport,AddCoupons,AllCouponDetails,getAllusersdashboard,getAllProductOffer,getAllCategoryOffer,adminEditCoupon,adminEditedCoupon,adminDeleteCoupon}=require('../Model/admin-helpers')
+
 const {respons, response}=require('express');
+
 const { Result } = require('express-validator');
+
 const multer  = require('multer');
+
 const storage = multer.memoryStorage();
+
 const upload = multer({ storage: storage });
 
 module.exports={
