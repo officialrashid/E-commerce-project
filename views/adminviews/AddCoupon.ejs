@@ -1,0 +1,60 @@
+<section class="page-align mt-5" id="footer">
+    <div class="container">
+        <h1>Add Coupon</h1>
+
+        <form action="/admin/AddedCoupon" method="post">
+          
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Coupn Code</label>
+                <div class="col-sm-10">
+                    <input type="text" name="Code" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputEmail" class="col-sm-2 col-form-label">Coupon Name</label>
+                <div class="col-sm-10">
+                    <input type="text" name="Name" class="form-control">
+                </div>
+            </div>
+             <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Discount</label>
+                <div class="col-sm-10">
+                    <input type="number" name="Discounts" class="form-control">
+                </div>
+            </div> 
+         
+            <div class="row mb-3">
+                <label for="inputDate" class="col-sm-2 col-form-label">Start Date</label>
+                <div class="col-sm-10">
+                    <input type="date" name="StartDates" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputDate" class="col-sm-2 col-form-label">End Date</label>
+                <div class="col-sm-10">
+                    <input type="date" name="EndDates" class="form-control">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Minimum Amount</label>
+                <div class="col-sm-10">
+                    <input type="number" name="MinimumAmounts" class="form-control">
+                </div>
+            </div> 
+            <div class="row mb-3">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Maximum Amount</label>
+                <div class="col-sm-10">
+                    <input type="number" name="MaximumAmounts" class="form-control">
+                </div>
+            </div> 
+            
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                   <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

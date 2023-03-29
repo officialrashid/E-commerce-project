@@ -1,0 +1,24 @@
+<table class="table table-bordered" id="footer" style="margin-top: 8%;">
+    <thead>
+        <tr>
+            <th scope="col">productID</th>
+            <th scope="col">productName</th>
+            <th scope="col">Discount</th>
+            <th scope="col">EndDate</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% CategoryOffer.forEach(function(CatOffer, i){ %>
+        <tr>
+            <td><%= CatOffer._id %></td>
+            <td><%= CatOffer.categoryname %></td>
+            <td><%= CatOffer.Discount %>%</td>
+            <td><%= CatOffer.EndDate.toISOString().split('T')[0]; %></td> 
+          
+           
+        </tr>
+        <% }); %>
+  
+    </tbody>
+  </table>
+  

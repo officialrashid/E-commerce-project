@@ -1,0 +1,33 @@
+
+<section id="footer" class="mt-5">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">CouponCode</th>
+            <th scope="col">CouponName</th>
+            <th scope="col">Discount</th>
+            <th scope="col">StartDate</th>
+            <th scope="col">EndDate</th>
+            <th scope="col">MinimumPrice</th>
+            <th scope="col">MaxPrice</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            <% Coupons.forEach(function(Coupon, i){ %>
+          <tr >
+        
+          
+            <td><%= Coupon.Code %></td>
+            <td><%= Coupon.Name %></td>
+            <td><%= Coupon.Discounts %></td>
+            <td><%= Coupon.StartDates.toISOString().split('T')[0]; %></td>
+            <td><%= Coupon.EndDates.toISOString().split('T')[0]; %></td>
+            <td><%= Coupon.MinimumAmounts %></td>
+            <td><%= Coupon.MaximumAmounts %></td>
+          </tr>
+          <% }); %> 
+        </tbody>
+      </table>
+    </section>
+    
