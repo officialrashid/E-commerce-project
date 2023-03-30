@@ -1,3 +1,4 @@
+
 <% if (usersAddress.Address && usersAddress.Address.length > 0) { %>
 <div class="page-layout" data-background="/img/slider/shop.jpg">
     <div class="container">
@@ -64,6 +65,7 @@
       <% }); %>
       <a href="/add-account"><p class="badge bg-dark">Add Address</p></a>
       <% } else { %>
+        <p style="color: red; text-align: center;">Your Address Field is empty ! please Add your Address</p>
         <div class="main">
         <div class="card">
             <div class="card-body">

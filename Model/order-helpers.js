@@ -115,7 +115,7 @@ OrderDetails:(userID)=>{
 
     return new Promise(async(resolve,reject)=>{
 
-       let OrderDetails= await db.get().collection(collection.ORDER_COLLECTION).find({userID:ObjectId(userID)}).toArray()
+       let OrderDetails= await db.get().collection(collection.ORDER_COLLECTION).find({userID:ObjectId(userID)}).sort({date:-1}).toArray()
 
        
        

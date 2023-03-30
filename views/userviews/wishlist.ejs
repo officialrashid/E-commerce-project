@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head> -->
-
+<% if (products.length > 0) { %>
 <body>
     
 
@@ -280,7 +280,83 @@
     <!-- popup area end -->
 
 </body>
+<% } else { %>
+    <div class="container-fluid  mt-100">
+        <div class="row">
+        
+           <div class="col-md-12">
+           
+                   <div class="card">
+               <div class="card-header">
+               <h5></h5>
+               </div>
+               <div class="card-body cart">
+                       <div class="col-sm-12 empty-cart-cls text-center">
+                           <img src="data:image/jpeg;base64,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" width="130" height="130" class="img-fluid mb-4 mr-3">
 
+                           <h3><strong>Your wishlist is Empty</strong></h3>
+                           <h4>Add something to make me happy :)</h4>
+                           <a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue add wishlist</a>
+                           
+                       
+                       </div>
+               </div>
+       </div>
+               
+           
+           </div>
+        
+        </div>
+       
+       </div>
+       <style>
+        ; body{ background-color: #eee;
+        font-family: 'Calibri', sans-serif !important;
+    }
+    
+    .mt-100{
+       margin-top:100px;
+    
+    }
+    
+    
+    .card {
+        margin-bottom: 30px;
+        border: 0;
+        -webkit-transition: all .3s ease;
+        transition: all .3s ease;
+        letter-spacing: .5px;
+        border-radius: 8px;
+        -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+        box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
+    }
+    
+    .card .card-header {
+        background-color: #fff;
+        border-bottom: none;
+        padding: 24px;
+        border-bottom: 1px solid #f6f7fb;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    
+    .card-header:first-child {
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
+    
+    
+    
+    .card .card-body {
+        padding: 30px;
+        background-color: transparent;
+    }
+    
+    .btn-primary, .btn-primary.disabled, .btn-primary:disabled {
+        background-color: #4466f2!important;
+        border-color: #4466f2!important;
+    } 
+       </style>
+    <% } %>
 
 </html>
 <script>
@@ -298,8 +374,16 @@ url:'/remove_wishlistItem',
  method:'post',
  success:(response)=>{
 
-        alert("product remove from wishlist")
-        location.reload()
+    swal({
+               title: "Are you sure you want to remove this item from your wishlist?",
+               icon: "warning",
+               dangerMode: true,
+               timer: 3000 // in milliseconds
+             }).then((confirm) => {
+             if (confirm) {
+             location.reload();
+    }
+});
     
  }
 })

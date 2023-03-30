@@ -1,6 +1,6 @@
-
-  <section id="footer" class="mt-5">
-    <table class="table table-bordered">
+<% if (Coupons.length > 0) { %>
+  <section id="footer" class="" style="margin-top: 5%;">
+    <table class="table table-bordered datatable">
         <thead>
           <tr>
             <th scope="col">CouponCode</th>
@@ -34,5 +34,7 @@
         </tbody>
       </table>
     </section>
-    
+    <% } else { %>
+      
+   <% } %>
     

@@ -1,9 +1,11 @@
+
 const mongoClient=require('mongodb').MongoClient
 
 const state={
 
     db:null
 }
+
 module.exports.connect=function(done){
     const url='mongodb+srv://rashid:muhdr123@cluster0.zihpmvk.mongodb.net/?retryWrites=true&w=majority';
     const dbname='dbAlldatas';

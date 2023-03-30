@@ -1,19 +1,19 @@
-<section class="h-100 gradient-custom ml-200" id="footer">
+<section class="h-100 gradient-custom ml-200" style="margin-top: 5%;" id="footer">
     <div class="container h-100 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-10">
           <div class="container">
             <div class="row">
               <div class="col-12">
-                <table class="table" id="example">
+                <table class="table datatable" id="example">
                   <thead>
                     <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th></th>
+                      <th>status</th>
+                      <th>UserName</th>
+                      <th>email</th>
+                      <th>mobileNumber</th>
+                      <th>block&unblock</th>
+                      
   
                     </tr>
                   </thead>
@@ -29,7 +29,7 @@
                           alt="Sheep">
                           <% } %>
                       </td>
-                      <th scope="row"> <%= i+1 %></th>
+                      <!-- <th scope="row"> <%= i+1 %></th> -->
                       <td><%= user.name %></td>
                       <td><%= user.email %></td>
                       <td><%= user.phone %></td>  

@@ -590,15 +590,15 @@
                                                                 <div class="product__action">
                                                                     <div class="inner__action">
                                                                         <div class="wishlist">
-                                                                            <a href="#"><i class="fal fa-heart"></i></a>
+                                                                            <a id="wishlistButton" onclick="wishlist('<%= product._id %>')"><i class="fal fa-heart"></i></a>
                                                                         </div>
                                                                         <div class="view">
-                                                                            <a href="javascript:void(0)"><i
+                                                                            <a href="/product/productDetails/<%= product._id %>"><i
                                                                                     class="fal fa-eye"></i></a>
                                                                         </div>
                                                                         <div class="layer">
-                                                                            <a href="#"><i class="fal fa-layer-group"></i></a>
-                                                                        </div>
+                                                                             <a href="#"><i class="fal fa-layer-group"></i></a> 
+                                                                         </div> 
                                                                     </div>
                                                                 </div>
             
@@ -657,5 +657,24 @@ if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock 
       })
     }
 </script>
+
+<script>
+
+    function wishlist(proID){
+    
+    console.log("++++++++++++++++");
+    
+    $.ajax({
+    
+    url:'/Add-to-wishlist/'+proID,
+    method:'get',
+    success:(response)=>{
+         
+        swal("Added to Wishlist!", "", "success");
+    }
+    })
+    }
+    
+    </script>
 
    

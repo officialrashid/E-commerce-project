@@ -39,7 +39,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="checkout__wrap">
                         <label>First name <span>*</span></label>
-                        <input type="text" name="fname">
+                        <input type="text" name="fname" required>
                     </div>
                 </div>
                 <!-- <div class="col-xl-6 col-lg-6 col-md-6">
@@ -51,33 +51,33 @@
             </div>
             <div class="checkout__wrap">
                 <label>Company name (optional) <span></span></label>
-                <input type="text" name="cname">
+                <input type="text" name="cname" required>
             </div>
           
             <div class="checkout__wrap">
                 <label>Street address <span>*</span></label>
-                <input class="mb-20" type="text" name="add1" placeholder="house number and street number">
+                <input class="mb-20" type="text" name="add1" placeholder="house number and street number" required>
                
             </div>
             <div class="checkout__wrap">
                 <label>Town / City *<span></span></label>
-                <input type="text" name="town">
+                <input type="text" name="town" required>
             </div>
             <div class="checkout__wrap">
                 <label>County (optional)<span></span></label>
-                <input type="text" name="country">
+                <input type="text" name="country" required>
             </div>
             <div class="checkout__wrap">
                 <label>Postcode<span>*</span></label>
-                <input type="text" name="postcode">
+                <input type="text" name="postcode" required>
             </div>
             <div class="checkout__wrap">
                 <label>Phone <span>*</span></label>
-                <input type="text" name="phone">
+                <input type="text" name="phone" required>
             </div>
             <div class="checkout__wrap">
                 <label>Email address <span>*</span></label>
-                <input type="email" name="email">
+                <input type="email" name="email" required>
                 <input type="text" name="userID" id="" value="<%= users._id %>" hidden>
                
             </div>

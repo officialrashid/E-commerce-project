@@ -309,10 +309,10 @@
                                                     <div class="product__action">
                                                         <div class="inner__action">
                                                             <div class="wishlist">
-                                                                <a href="#"><i class="fal fa-heart"></i></a>
+                                                                <a id="wishlistButton" onclick="wishlist('<%= product._id %>')"><i class="fal fa-heart"></i></a>
                                                             </div>
                                                             <div class="view">
-                                                                <a href="javascript:void(0)"><i
+                                                                <a href="/productDetails/<%= product._id %>"><i
                                                                         class="fal fa-eye"></i></a>
                                                             </div>
                                                             <div class="layer">
@@ -459,3 +459,22 @@ form.addEventListener('submit', e => {
 });
 </script>
 
+
+<script>
+
+    function wishlist(proID){
+    
+    console.log("++++++++++++++++");
+    
+    $.ajax({
+    
+    url:'/Add-to-wishlist/'+proID,
+    method:'get',
+    success:(response)=>{
+         
+        swal("Added to Wishlist!", "", "success");
+    }
+    })
+    }
+    
+    </script>

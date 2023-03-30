@@ -211,7 +211,7 @@ ShopButton(req,res){
    let users=req.session.users
     let products=getAllCartProducts(req.session.users._id).then((products)=>{
           
-    
+    console.log(products,";;;;;;;;;;;;;;;;;;;;;;;;;;");
       
       getCartTotalAmount(req.session.users._id).then((Total)=>{
       

@@ -1,5 +1,5 @@
-<section id="footer" class="mt-5">
-    <table class="table table-bordered">
+<section id="footer" class="" style="margin-top: 5%;">
+    <table class="table table-bordered datatable top" id="example">
         <thead>
           <tr>
             <th scope="col">Username</th>
@@ -86,3 +86,15 @@
         </tbody>
       </table>
     </section>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $('#example').DataTable();
+      } );
+      </script>
+          <style>
+            .top{
+              margin-top: 2%;
+            }
+          </style>

@@ -259,3 +259,26 @@ function handleSubmit() {
     }
 
 }
+var productSubmitError = document.getElementById('productSubmit-Error');
+var productDiscountError = document.getElementById('productDiscount-Error');
+
+function productDiscount() {
+  var discount = parseInt(document.getElementById('productDiscount').value);
+  if (!discount || discount < 1) {
+    productDiscountError.textContent = 'Discount amount is required and must be a positive integer';
+    return false;
+  } else {
+    productDiscountError.textContent = '';
+    return true;
+  }
+}
+function productOfferSubmit(){
+
+  if(!productDiscount()){
+    productSubmitError.style.display ='block';
+    productSubmitError.innerHTML='please fill the form';
+      setTimeout(function(){productSubmitError.style.display ='none';},3000);
+      return false
+  }
+  return true
+}

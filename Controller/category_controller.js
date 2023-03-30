@@ -83,7 +83,7 @@ Categorypage(req,res,next){
     })
   },
   AddCategoryOffer(req,res){
-
+ console.log(req.body,"}}}}}}}}}}}}}}}}}}]]");
     InsertCategoryOffer(req.body).then((catoffer)=>{
     
      makeCategoryOffer(req.body).then(()=>{

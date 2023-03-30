@@ -67,3 +67,21 @@
     </div>
 </section>
 <script src="/js/validation.js"></script>
+<script>
+
+  
+    let  categoryIput = document.getElementById("couponCode");
+       categoryIput.addEventListener('keypress', (event)=>{    
+         if(event.code=== "Space"){
+          event.preventDefault(); 
+        }
+       
+    })
+     categoryIput = document.getElementById("couponName");
+       categoryIput.addEventListener('keypress', (event)=>{    
+         if(event.code=== "Space"){
+          event.preventDefault(); 
+        }
+       
+    })
+    </script>

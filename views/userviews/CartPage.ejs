@@ -188,6 +188,9 @@
                             <tbody>
 
                                 <% products.forEach(function(product, i){ %>
+                               
+                                       
+                                       
                                 <tr class="max-width-set">
                                     
                                     <td>
@@ -216,7 +219,9 @@
                                     </td>
                                     
                                 </tr>
+                              
                                 <% }); %> 
+                            </div>
                             </tbody>
                             <tfoot>
                                
@@ -241,17 +246,26 @@
                               <td>Total</td>
                               <td><span id="Total"><%= Total %></span></td>
                           </tr>
+                          <tfoot>
+                            <tr>   
+                                <td colspan="2">
+                                    <% if (products.every(product => product.products.productstock)) { %>
+                                        <a href="/proceedToCheckout"><input type="submit" value="proceed to checkout"></a>
+                                    <% } else if (products.some(product => product.products.productstock)) { %>
+                                        <p style="color: red;">Some products in your cart are out of stock.</p>
+                                    <% } else { %> 
+                                        <p style="color: red;">This products is currently out of stock.</p>       
+                                    <% } %>
+                                </td>
+                            </tr>
+                        </tfoot>
                         
-                          <tr>   
-                              <td colspan="2">
-                                  <a href="/proceedToCheckout"><input type="submit" value="procced to checkout"></a>
-                              </td>
-                          </tr>
-                      
+                        
                       </table>
                     </div>
                 </div>
-            </div>
+               
+               
         </div>
     </div>
     
@@ -404,10 +418,21 @@ if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock 
              method:'post',
              success:(response)=>{
 
-                    alert("product remove from cart")
-                    location.reload()
+                swal({
+               title: "Are you sure you want to remove this item from your cart?",
+               icon: "warning",
+               dangerMode: true,
+               timer: 3000 // in milliseconds
+             }).then((confirm) => {
+             if (confirm) {
+             location.reload();
+    }
+});
+
+                
                 
              }
+             
         })
     }
 

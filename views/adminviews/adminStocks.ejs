@@ -1,17 +1,17 @@
 <!-- admin stocks view  -->
 <section id="footer" class="mt-5">
-<table class="table table-bordered">
+<table class="table table-bordered datatable">
     <thead>
       <tr>
-        <th scope="col">Image</th>
-        <th scope="col">Name of the Shoe</th>
-        <th scope="col">company Name</th>
-        <th scope="col">Size</th>
-        <th scope="col">Color</th>
-        <th scope="col">Category</th>
-        <th scope="col">Price</th>
-        <th scope="col">Stock</th>
-        <th scope="col">Options</th>
+        <th scope="col">image</th>
+        <th scope="col">shoeName</th>
+        <th scope="col">companyName</th>
+        <th scope="col">size</th>
+        <th scope="col">color</th>
+        <th scope="col">category</th>
+        <th scope="col">price</th>
+        <th scope="col">stock</th>
+        <th scope="col">options</th>
       </tr>
     </thead>
     <tbody>
@@ -64,23 +64,24 @@
         <form action="/product/AddProductOffer" method="post">
     
           <div class="row mb-3">
-            <label for="inputPassword" class="col-sm-2 col-form-label">Discount</label>
+            <label for="inputPassword" class="col-sm-2 col-form-label" on>Discount</label>
             <div class="col-sm-10">
-                <input type="number" name="Discount"  class="form-control">
+                <input type="number" name="Discount"  class="form-control" min="1" id="productDiscount" oninput="return productDiscount()" required>
                 <input type="text" name="proID" id="proID" value="" hidden>
                 <input type="text" name="price" id="price" value="" hidden>
                 <input type="text" name="shoename" id="shoename" value="" hidden>   
+                <span id="productDiscount-Error" style="color: red;"></span>
             </div>
         </div> 
         <div class="row mb-3">
             <label for="inputDate" class="col-sm-2 col-form-label">End Date</label>
             <div class="col-sm-10">
-                <input type="date" name="EndDate" class="form-control">
+                <input type="date" name="EndDate" class="form-control" required>
             </div>
         </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-secondary">AddOffer</button>
-           
+            <button type="submit" class="btn btn-secondary" onclick="return productOfferSubmit()">AddOffer</button>
+            <span id="productSubmit-Error" style="color: red;"></span>
           </div>
         </form>
       </div>
@@ -101,3 +102,16 @@ function isIdPass(proID,price,shoename){
 </script>          
 
 
+<script src="/js/validation.js"></script>
+<script>
+
+  
+    let  categoryIput = document.getElementById("productDiscount");
+       categoryIput.addEventListener('keypress', (event)=>{    
+         if(event.code=== "Space"){
+          event.preventDefault(); 
+        }
+       
+    })
+    
+    </script>
