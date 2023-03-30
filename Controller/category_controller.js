@@ -1,5 +1,7 @@
 const {respons, response}=require('express');
+
 const {getAllcategory,AddCategorys,adminCategoryEdit,CategoryEdit,removeCategory,filterByCategory,getCategory,InsertCategoryOffer,makeCategoryOffer}=require('../Model/category-helpers')
+
 module.exports={
 
 Categorypage(req,res,next){
@@ -23,6 +25,7 @@ Categorypage(req,res,next){
     AddCategorys(req.body).then((addcategory)=>{
 
       res.redirect('/category/Category')
+      
     }).catch((error)=>{
       
       getAllcategory().then((getcategory)=>{
