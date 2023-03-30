@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user_helpers=require('../Controller/user_controller');
-
+const {verifyUser}= require("../Controller/auth");
 const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem,proceedToCheckout,PlaceOrder,OTPlogin,OTPVerify,SuccessOtpverify,AddToWishlist,WishlistPage,removeWishlistItem,verifypayment,Address,addaccount,AddedAddress,getAddAddress,search,priceFilter,checkcoupon,editaccount,EditedAddress,AllCoupons,Wallet} = require('../Controller/user_controller');
 
 /* GET home page. */
@@ -10,13 +10,13 @@ router.get('/',userlandingpage);
 router.post('/Userlogin',userLoged);
 router.post('/UserRegister',userRegistered)
 router.get('/LoginandSignupButton',nocache,loginredirect,LoginandSignupButton)
-router.get('/productDetails/:id',sessioncheck,productDetails)
+router.get('/productDetails/:id',verifyUser,productDetails)
 router.get('/Logout',Logout)
 // router.get('/AddtoCart/:id',verifyLogin,AddtoCart)
-router.get('/ShopButton',sessioncheck,ShopButton)
-router.post('/categoryfilter',categoryfilter)
-router.get('/Add-to-cart/:id',sessioncheck,AddtoCart)
-router.get('/CartPage',sessioncheck,CartPage)
+router.get('/ShopButton',verifyUser,sessioncheck,ShopButton)
+router.post('/categoryfilter',verifyUser,categoryfilter)
+router.get('/Add-to-cart/:id',verifyUser,sessioncheck,AddtoCart)
+router.get('/CartPage',verifyUser,sessioncheck,CartPage)
 router.post('/change-product-quantity',changequantity)
 router.post('/remove_cartItem',removeCartItem)
 router.get('/proceedToCheckout',sessioncheck,proceedToCheckout)

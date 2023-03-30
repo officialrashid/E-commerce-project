@@ -1067,7 +1067,18 @@ getproductList:(userID)=>{
                     })
                 
             })
-        }
+        },
+        getUSer: (Id) => {
+            return new Promise(async (resolve, reject) => {
+                console.log(Id,"id coming here");
+              let user = await db
+                .get()
+                .collection(collection.USER_COLLECTION)
+                .findOne({ _id:ObjectId(Id) });
+                console.log(user,"MMMMMMMMMMMMMMMMMMMMMMMMMMm");
+              resolve(user);
+            });
+          },
         
      }
    
