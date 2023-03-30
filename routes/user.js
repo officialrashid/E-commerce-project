@@ -3,6 +3,7 @@ var router = express.Router();
 var user_helpers=require('../Controller/user_controller');
 
 const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem,proceedToCheckout,PlaceOrder,OTPlogin,OTPVerify,SuccessOtpverify,AddToWishlist,WishlistPage,removeWishlistItem,verifypayment,Address,addaccount,AddedAddress,getAddAddress,search,priceFilter,checkcoupon,editaccount,EditedAddress,AllCoupons,Wallet} = require('../Controller/user_controller');
+
 /* GET home page. */
 
 router.get('/',userlandingpage);

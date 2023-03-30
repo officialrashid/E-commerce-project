@@ -7,12 +7,13 @@
         <div class="row mb-3">
             <label for="inputEmail" class="col-sm-2 col-form-label">Category</label>
             <div class="col-sm-5">
-                <input type="text" name="name" class="form-control" id="check-category" oninput="return validateCategoryName()" required >
+                <input type="text" name="name" class="form-control" id="username1"required >
                
                 <span id="category-Error" style="color: red;"></span>
             </div>
             <div class="col-sm-5">
-                <button class="btn btn-secondary" type="submit" class="form-control" id="check-submitCategory" onclick="return validateCategoryForm()" required>Add</button><br>
+                <button class="btn btn-secondary" type="submit" class="form-control" id="check-submitCategory" required>Add</button><br>
+             
                 <span id="add-error" style="color: red;"></span>
                 
                 <a class="return-add-category" href=""></a>
@@ -84,6 +85,16 @@
 </div>
 </section>
 <script>
+
+  
+let  categoryIput = document.getElementById("username1");
+   categoryIput.addEventListener('keypress', (event)=>{    
+     if(event.code=== "Space"){
+      event.preventDefault(); 
+    }
+})
+</script>
+<script>
     function isIdPass(catname){
         
       console.log(catname);
@@ -93,8 +104,5 @@
       }
   </script>          
   <script src="/js/validation.js"></script>
-  <script>
-    function repo(){
-      
-    }
-  </script>
+ 
+
