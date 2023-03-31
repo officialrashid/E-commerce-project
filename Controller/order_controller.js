@@ -3,7 +3,7 @@ const {respons, response}=require('express');
 const {UserOrderDetails,productView,adminOrderCancellled,shippingDetail,OrderDetails,OrderCancelled,orderProductView,BillingAddress,productOffer,orderReturned,orderProductList,stockIncreamentAfterReturn,orderReturnConfirm,getWalletAmount,ReturnAfterCreateWallet}=require('../Model/order-helpers')
 
 module.exports={
-    sessioncheck:(req,res,next)=>{
+    sessionCheck:(req,res,next)=>{
      
         if(req.session.users){
            
@@ -43,7 +43,7 @@ module.exports={
           res.redirect('/LoginandSignupButton')
         }
       },
- Orders(req,res){
+ orders(req,res){
     
     UserOrderDetails().then((UserOrder)=>{
 
@@ -84,7 +84,7 @@ module.exports={
      
 
    },
-   UserOrderView(req,res){
+   userOrderView(req,res){
     
 
     let users=req.session.users
@@ -96,7 +96,7 @@ module.exports={
     
 
   },
-  OrderCancel(req,res){
+  orderCancel(req,res){
 
     OrderCancelled(req.params.id,req.body.status).then(()=>{
 
@@ -129,13 +129,13 @@ module.exports={
          
       
   },
-  OrderDetails(req,res){
+  orderDetails(req,res){
          
     let users=req.session.users
       res.render('userviews/OrderDetails',{user:true,users})
   },
 
-  OrderReturn(req,res){
+  orderReturn(req,res){
 
     orderReturned(req.params.id,req.body.status).then((response)=>{
      

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {Stocks,AddProduct,AddedProduct,editproduct,editsubmit,productManage,ProductOffer,AddProductOffer,sessioncheck,productDetails,ShowProductOffer}= require('../Controller/product_controller')
+const {stocks,addProduct,addedProduct,editProduct,editSubmit,productManage,productOffer,addProductOffer,sessioncheck,productDetails,ShowProductOffer}= require('../Controller/product_controller')
 var multer=require('multer')
 const {verifyUser}= require("../Controller/auth");
 const storage = multer.diskStorage({
@@ -18,20 +18,20 @@ const storage = multer.diskStorage({
 
 
 
-router.get('/Stocks',Stocks)
-router.get('/AddProduct',AddProduct)
-router.post('/AddedProduct',upload.array('Image1',4),AddedProduct)
-router.get('/edit-pro/:id',editproduct)
+router.get('/Stocks',stocks)
+router.get('/AddProduct',addProduct)
+router.post('/AddedProduct',upload.array('Image1',4),addedProduct)
+router.get('/edit-pro/:id',editProduct)
 router.post('/edit-product-submit/:id',upload.fields([
     {name:'Image1',maxCount:1},
     {name:'Image2',maxCount:1},
     {name:'Image3',maxCount:1},
     {name:'Image4',maxCount:1},
   
-  ]),editsubmit)
+  ]),editSubmit)
 router.post('/delete-pro/:id',productManage)
-router.get('/ProductOffer',ProductOffer)
-router.post('/AddProductOffer',AddProductOffer)
+router.get('/ProductOffer',productOffer)
+router.post('/AddProductOffer',addProductOffer)
 router.get('/productDetails/:id',verifyUser,sessioncheck,productDetails)
 
 module.exports = router;

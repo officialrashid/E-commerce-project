@@ -1,36 +1,36 @@
 var express = require('express');
 var router = express.Router();
 const {uploadMultiple}=require('../middlewares/multer')
-const {adminlogin,adminRegisterd,AllUsers,blockmanagement,dashboard,AddBanner,AddedBanner,editbanner,EditedBanner,TodayOrderList,Weeksales,Monthsales,Yearsales,TotalRevenue,SalesReport,AddCoupon,AddedCoupon,AllCoupons,AllOffers,CategoryOffer,ShowProductOffer,ShowCategoryOffer,editCoupon,EditedCoupon,deleteCoupon}=require('../Controller/admin_controller')
+const {adminLogin,adminRegisterd,allUsers,blockManagement,dashboard,addBanner,addedBanner,editBanner,editedBanner,todayOrderList,weekSales,monthSales,yearSales,totalRevenue,salesReport,addCoupon,addedCoupon,allCoupons,allOffers,categoryOffer,showProductOffer,showCategoryOffer,editCoupon,editedCoupon,deleteCoupon}=require('../Controller/admin_controller')
 
 
 
 /* GET users listing. */
-router.get('/',adminlogin);
+router.get('/',adminLogin);
  router.post('/adminLoged',adminRegisterd)
-router.get('/AllUsers',AllUsers)
+router.get('/AllUsers',allUsers)
 // router.post('/delete-pro/:id',deleteproduct)
-router.post('/Block/:id',blockmanagement)
+router.post('/Block/:id',blockManagement)
 router.get('/dashboard',dashboard)
-router.get('/Banner',AddBanner)
-router.post('/AddedBanner',AddedBanner)
-router.get('/edit-banner/:id',editbanner)
-router.post('/EditedBanner/:id',EditedBanner)
-router.get('/TodayOrderList',TodayOrderList)
-router.get('/Weeksales',Weeksales)
-router.get('/Monthsales',Monthsales)
-router.get('/Yearsales',Yearsales)
-router.get('/TotalRevenue',TotalRevenue)
-router.get('/SalesReport',SalesReport)
-router.get('/AddCoupon',AddCoupon)
-router.post('/AddedCoupon',AddedCoupon)
-router.get('/AllCoupons',AllCoupons)
-router.get('/AllOffers',AllOffers)
-router.get('/ShowProductOffer',ShowProductOffer)
-router.get('/ShowCategoryOffer',ShowCategoryOffer)
+router.get('/Banner',addBanner)
+router.post('/AddedBanner',addedBanner)
+router.get('/edit-banner/:id',editBanner)
+router.post('/EditedBanner/:id',editedBanner)
+router.get('/TodayOrderList',todayOrderList)
+router.get('/Weeksales',weekSales)
+router.get('/Monthsales',monthSales)
+router.get('/Yearsales',yearSales)
+router.get('/TotalRevenue',totalRevenue)
+router.get('/SalesReport',salesReport)
+router.get('/AddCoupon',addCoupon)
+router.post('/AddedCoupon',addedCoupon)
+router.get('/AllCoupons',allCoupons)
+router.get('/AllOffers',allOffers)
+router.get('/ShowProductOffer',showProductOffer)
+router.get('/ShowCategoryOffer',showCategoryOffer)
 
-router.get('/CategoryOffer',CategoryOffer)
+router.get('/CategoryOffer',categoryOffer)
 router.get('/editCoupon/:id',editCoupon)
-router.post('/EditedCoupon/:id',EditedCoupon)
+router.post('/EditedCoupon/:id',editedCoupon)
 router.get('/deleteCoupon/:id',deleteCoupon)
 module.exports = router;

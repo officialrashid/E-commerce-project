@@ -58,7 +58,7 @@ module.exports={
       },
 
 
-    Stocks(req,res,next){
+    stocks(req,res,next){
     
         getAllproduct().then((products)=>{
          
@@ -68,7 +68,7 @@ module.exports={
     
     
        },
-       AddProduct(req,res,next){
+       addProduct(req,res,next){
     
         getAllcategorydropdown().then((getcategorydropdown)=>{
     
@@ -77,7 +77,7 @@ module.exports={
         
         
        },
-       AddedProduct(req,res,next){
+       addedProduct(req,res,next){
          
         const files = req.files
         console.log(files);
@@ -96,7 +96,7 @@ module.exports={
 
     
    },
-   editproduct(req,res){
+   editProduct(req,res){
 
     let productid=req.params.id
     getcategory().then((geteditcategory)=>{
@@ -111,7 +111,7 @@ module.exports={
    
     })
    },
-   editsubmit:async(req,res)=>{
+   editSubmit:async(req,res)=>{
 
     let id=req.params.id
     let data = req.body
@@ -137,7 +137,7 @@ module.exports={
 
     })
    },
-   ProductOffer(req,res){
+   productOffer(req,res){
     
     getAllproduct().then((products)=>{
         
@@ -145,7 +145,7 @@ module.exports={
 
     })
    },
-   AddProductOffer(req,res){
+   addProductOffer(req,res){
 
     console.log(req.body);
    

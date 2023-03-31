@@ -12,7 +12,7 @@ const upload = multer({ storage: storage });
 
 module.exports={
 
-    adminlogin(req,res,next){
+    adminLogin(req,res,next){
           
         res.render('adminviews/adminlogin');
          
@@ -93,7 +93,7 @@ module.exports={
         })
         })
     },
-    AllUsers(req,res,next){
+    allUsers(req,res,next){
           
      getAllusers().then((users)=>{
       
@@ -125,7 +125,7 @@ module.exports={
   
 
   
-   blockmanagement(req,res){
+   blockManagement(req,res){
 
     userblock(req.params.id,req.body.status).then(()=>{
       
@@ -210,7 +210,7 @@ module.exports={
      
     
    },
-   AddBanner(req,res){
+   addBanner(req,res){
      
     let users=req.session.users
 
@@ -224,7 +224,7 @@ module.exports={
 
 
    },
-   AddedBanner(req,res){
+   addedBanner(req,res){
     
     var image=req.files.Image
     console.log(req.body,"++++++++++++++++++++++++++++");
@@ -247,7 +247,7 @@ module.exports={
     })
 
    },
-   editbanner(req,res){
+   editBanner(req,res){
     
     let productid=req.params.id
     editbanners(productid).then((product)=>{
@@ -258,7 +258,7 @@ module.exports={
    
 
    },
-   EditedBanner(req,res){
+   editedBanner(req,res){
     
     let id=req.params.id
     console.log(id+"||||||||||||||||||||||||||||||||||||||");
@@ -279,7 +279,7 @@ module.exports={
 
 
    },
-   TodayOrderList(req,res){
+   todayOrderList(req,res){
      
    
 
@@ -294,7 +294,7 @@ module.exports={
       
 
    },
-   Weeksales(req,res){
+   weekSales(req,res){
 
     ThisWeekOrders().then(()=>{
      
@@ -302,7 +302,7 @@ module.exports={
 
     })
    },
-   Monthsales(req,res){
+   monthSales(req,res){
 
     ThisMonthOrders().then(()=>{
 
@@ -310,7 +310,7 @@ module.exports={
     })
 
    },
-   Yearsales(req,res){
+   yearSales(req,res){
 
     ThisYearOrders().then(()=>{
      
@@ -318,7 +318,7 @@ module.exports={
       
     })
    },
-   TotalRevenue(req,res){
+   totalRevenue(req,res){
     
     TotalRevenues().then((TotalRevenue)=>{
 
@@ -326,7 +326,7 @@ module.exports={
     })
 
    },
-   SalesReport(req,res){
+   salesReport(req,res){
     
     AllSalesReport().then((salesReport)=>{
 
@@ -337,11 +337,11 @@ module.exports={
   
 
    },
-   AddCoupon(req,res){
+   addCoupon(req,res){
 
     res.render('adminviews/AddCoupon',{user:false})
    },
-   AddedCoupon(req,res){
+   addedCoupon(req,res){
        
     
     AddCoupons(req.body).then(()=>{
@@ -356,7 +356,7 @@ module.exports={
       })
     })
    },
-   AllCoupons(req,res){
+   allCoupons(req,res){
 
     AllCouponDetails().then((Coupons)=>{
       
@@ -364,7 +364,7 @@ module.exports={
           
     })
    },
-   AllOffers(req,res){
+   allOffers(req,res){
     
     getAllProductOffer().then((ProductOffer)=>{
 
@@ -374,12 +374,12 @@ module.exports={
    },
    
   
-   CategoryOffer(req,res){
+   categoryOffer(req,res){
        
     let users = req.session.users
     res.render('adminviews/CategoryOffer',{user:true,users})
    },
-   ShowProductOffer(req,res){
+   showProductOffer(req,res){
 
     getAllProductOffer().then((ProductOffer)=>{
   
@@ -389,7 +389,7 @@ module.exports={
   
     })
   },
-  ShowCategoryOffer(req,res){
+  showCategoryOffer(req,res){
 
     getAllCategoryOffer().then((CategoryOffer)=>{
 
@@ -405,7 +405,7 @@ module.exports={
 
     })
   },
-  EditedCoupon(req,res){
+  editedCoupon(req,res){
 
     adminEditedCoupon(req.params.id,req.body).then(()=>{
 

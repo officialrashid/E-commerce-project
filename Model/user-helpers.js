@@ -871,12 +871,13 @@ getproductList:(userID)=>{
           AddCheckCoupon:(code,Total)=>{
 
             console.log(code);
-            console.log(Total);
-            Total = parseInt(Total)
            
+            Total = parseInt(Total)
+            console.log(Total);
             return new Promise(async(resolve,reject)=>{
               
                 const coupon = await db.get().collection(collection.COUPON_COLLECTION).aggregate([
+                   
                     {
                         $match: {
                           $and: [
@@ -905,8 +906,9 @@ getproductList:(userID)=>{
                       }
                   
                 ]).toArray()
-               
+               console.log(coupon[0]?.offerAmount,"{{{{{{{{{{{{{{{");
                 if(coupon.length !=0){
+                    console.log(coupon[0]?.offerAmount,"{{{{{{{{{{{{{{{");
                     resolve(coupon[0]?.offerAmount)
                   }else{
                     reject()

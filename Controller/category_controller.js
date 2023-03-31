@@ -4,7 +4,7 @@ const {getAllcategory,AddCategorys,adminCategoryEdit,CategoryEdit,removeCategory
 
 module.exports={
 
-Categorypage(req,res,next){
+categoryPage(req,res,next){
      
     getAllcategory().then((getcategory)=>{
         
@@ -13,14 +13,14 @@ Categorypage(req,res,next){
     })
     
    },
-   addcategory(req,res,next){
+   addCategory(req,res,next){
 
      
 
     res.redirect('/category/Category')
    
  },
- AddedCategory(req,res,){
+ addedCategory(req,res,){
      
     AddCategorys(req.body).then((addcategory)=>{
 
@@ -33,7 +33,7 @@ Categorypage(req,res,next){
     })
   })
    },
-   EditCategory(req,res,next){
+   editCategory(req,res,next){
      
     let categoryid=req.params.id
     adminCategoryEdit(categoryid).then((categoryEdit)=>{
@@ -43,14 +43,14 @@ Categorypage(req,res,next){
     
 
    },
-   EditCategorySubmit(req,res,next){
+   editCategorySubmit(req,res,next){
       
     CategoryEdit(req.params.id,req.body).then(()=>{
 
      res.redirect('/category/Category')
     })
   },
-  DeleteCategory(req,res){
+  deleteCategory(req,res){
     
     let deleteCategoryid=req.params.id
       
@@ -60,7 +60,7 @@ Categorypage(req,res,next){
     })
     
    },
-   categoryfilter(req,res){
+   categoryFilter(req,res){
 
     let users=req.session.user
     let name=req.body;
@@ -82,7 +82,7 @@ Categorypage(req,res,next){
      
     })
   },
-  AddCategoryOffer(req,res){
+  addCategoryOffer(req,res){
  console.log(req.body,"}}}}}}}}}}}}}}}}}}]]");
     InsertCategoryOffer(req.body).then((catoffer)=>{
     

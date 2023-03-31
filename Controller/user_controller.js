@@ -21,7 +21,7 @@ paypal.configure({
 let otpusers
 module.exports={
     
-    sessioncheck:(req,res,next)=>{
+    sessionCheck:(req,res,next)=>{
      
         if(req.session.users){
            
@@ -31,7 +31,7 @@ module.exports={
             res.redirect('/LoginandSignupButton')
         }
     },
-    loginredirect:(req,res,next)=>{
+    loginRedirect:(req,res,next)=>{
 
         if(!req.session.users){
       
@@ -62,7 +62,7 @@ module.exports={
         }
       },
 
-    userlandingpage(req,res,next){
+    userLandingPage(req,res,next){
     
     let users=req.session.users
      ShowProduct().then((ShowProducts)=>{
@@ -108,7 +108,7 @@ userRegistered(req,res,next){
    
 
 },
-LoginandSignupButton(req,res,next){
+loginAndSignupButton(req,res,next){
 
     res.render('userviews/userlogin and signup');
 },
@@ -123,7 +123,7 @@ productDetails(req,res,next){
     })
 },
 
-Logout(req,res){
+logout(req,res){
     
     req.session.loggedIn=false;
     req.session.users=null;
@@ -143,7 +143,7 @@ Logout(req,res){
 // },
 
 
-ShopButton(req,res){
+shopButton(req,res){
    
   users=req.session.users
   console.log(users);
@@ -171,7 +171,7 @@ ShopButton(req,res){
 
   },
 
-  categoryfilter(req,res){
+  categoryFilter(req,res){
 
     let users=req.session.user
     let name=req.body;
@@ -193,7 +193,7 @@ ShopButton(req,res){
      
     })
   },
-  AddtoCart(req,res){
+  addToCart(req,res){
      
     users=req.session.users
     AddTOCART(req.params.id,req.session.users._id).then(()=>{
@@ -206,7 +206,7 @@ ShopButton(req,res){
 
     })
   },
-  CartPage(req,res){
+  cartPage(req,res){
 
    let users=req.session.users
     let products=getAllCartProducts(req.session.users._id).then((products)=>{
@@ -238,7 +238,7 @@ ShopButton(req,res){
 
     })
   },
-  changequantity(req,res,next){
+  changeQuantity(req,res,next){
 
           console.log(req.body);
           
@@ -309,7 +309,7 @@ ShopButton(req,res){
         res.redirect("/");
       });
   },
- async  PlaceOrder(req,res){
+ async  placeOrder(req,res){
    
    let Total = parseInt(req.body.Total)
      console.log(Total,"+++++++++++++++++++------------");
@@ -484,12 +484,12 @@ console.log("))))))))))))))))))))");
  
   
  
-  OTPlogin(req,res){
+  otpLogin(req,res){
    
    let users=req.session.users
     res.render('userviews/OTPLOGIN',{user:true,users})
   },
-  OTPVerify(req,res){
+  otpVerify(req,res){
         
     console.log(req.body);
    let users=req.session.users
@@ -524,7 +524,7 @@ console.log("))))))))))))))))))))");
       res.render('userviews/OTPLOGIN');
     });
   },
-  SuccessOtpverify(req,res){
+  successOtpVerify(req,res){
 
     client.verify
     .services(serviceID)
@@ -543,7 +543,7 @@ console.log("))))))))))))))))))))");
     })
   },
   
-  AddToWishlist(req,res){
+  addToWishlist(req,res){
    console.log(req.params.id,req.session.users._id);
      users=req.session.users
     
@@ -557,7 +557,7 @@ console.log("))))))))))))))))))))");
     })
 
   },
-  WishlistPage(req,res){
+  wishlistPage(req,res){
      
     let users=req.session.users
 
@@ -582,7 +582,7 @@ console.log("))))))))))))))))))))");
     })
        
   },
-  verifypayment(req,res){
+  verifyPayment(req,res){
  
    console.log(req.body);
 
@@ -603,7 +603,7 @@ console.log("))))))))))))))))))))");
    })
 
   },
-  Address(req,res){
+  address(req,res){
    
     let users=req.session.users
     console.log(req.params.id);
@@ -622,12 +622,12 @@ console.log("))))))))))))))))))))");
     
    },
 
-   addaccount(req,res){
+   addAccount(req,res){
     let users=req.session.users
     console.log(users);
     res.render('userviews/AddAddress',{user:true,users})
    },
-   AddedAddress(req,res){
+   addedAddress(req,res){
      
     let users=req.session.users
     console.log(req.body);
@@ -681,8 +681,8 @@ console.log("))))))))))))))))))))");
     })
 
    },
-   checkcoupon(req,res){
-
+   checkCoupon(req,res){
+console.log("Mmmmmmmmmmmm,,,,,,,,,,,,,,,,,,");
     AddCheckCoupon(req.body.data,req.body.Total).then((response)=>{
      
       res.json(response)
@@ -693,7 +693,7 @@ console.log("))))))))))))))))))))");
       res.status(400).json({ error: error })
     })
    },
-   editaccount(req,res){
+   editAccount(req,res){
     
     let users=req.session.users
     userEditAccount().then((EditAccount)=>{
@@ -703,7 +703,7 @@ console.log("))))))))))))))))))))");
     })
     
    },
-   EditedAddress(req,res){
+   editedAddress(req,res){
       
  
     userEditedProfile(req.params.id,req.body).then((updateAddress)=>{
@@ -717,7 +717,7 @@ console.log("))))))))))))))))))))");
     })
 
    },
-   AllCoupons(req,res){
+   allCoupons(req,res){
 
     let users=req.session.users
     AllCouponDetails().then((Coupons)=>{
@@ -727,7 +727,7 @@ console.log("))))))))))))))))))))");
     })
 
    },
-   Wallet(req,res){
+   wallet(req,res){
 
     let users = req.session.users
     

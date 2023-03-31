@@ -1,14 +1,14 @@
 var express = require('express');
 const { verifyUser } = require('../Controller/auth');
 var router = express.Router();
-const{Categorypage,addcategory,AddedCategory,EditCategory,EditCategorySubmit,DeleteCategory,categoryfilter,AddCategoryOffer}=require('../Controller/category_controller')
+const{categoryPage,addCategory,addedCategory,editCategory,editCategorySubmit,deleteCategory,categoryFilter,addCategoryOffer}=require('../Controller/category_controller')
 
-router.get('/Category',Categorypage)
-router.get('/AddCategory',addcategory)
-router.post('/AddedCategory',AddedCategory)
-router.get('/EditCategory/:id',EditCategory)
-router.post('/EditCategory-Submit/:id',EditCategorySubmit)
-router.get('/DeleteCategory/:id',DeleteCategory)
-router.post('/categoryfilter',verifyUser,categoryfilter)
-router.post('/AddCategoryOffer',AddCategoryOffer)
+router.get('/Category',categoryPage)
+router.get('/AddCategory',addCategory)
+router.post('/AddedCategory',addedCategory)
+router.get('/EditCategory/:id',editCategory)
+router.post('/EditCategory-Submit/:id',editCategorySubmit)
+router.get('/DeleteCategory/:id',deleteCategory)
+router.post('/categoryfilter',verifyUser,categoryFilter)
+router.post('/AddCategoryOffer',addCategoryOffer)
 module.exports = router;
