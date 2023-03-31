@@ -1,5 +1,5 @@
 const {respons, response}=require('express');
-const {getAllproduct,getAllcategorydropdown,adminadd,getcategory,adminedit,adminEditsubmit,productListandUnlist,InsertProductOffer,getProductOffer,productAlldetails,getAllProductOffer}=require('../Model/product-helpers');
+const {getAllProduct,getAllCategoryDropdown,adminAdd,getCategory,adminEdit,adminEditSubmit,productListAndUnlist,insertProductOffer,getProductOffer,productAllDetails,getAllProductOffer}=require('../Model/product-helpers');
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination:(req,file,cb)=>{
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
   
 module.exports={
    
-    sessioncheck:(req,res,next)=>{
+    sessionCheck:(req,res,next)=>{
      
         if(req.session.users){
            
@@ -60,7 +60,7 @@ module.exports={
 
     stocks(req,res,next){
     
-        getAllproduct().then((products)=>{
+      getAllProduct().then((products)=>{
          
             res.render('adminviews/adminStocks',{user:false,products})
         })
@@ -70,7 +70,7 @@ module.exports={
        },
        addProduct(req,res,next){
     
-        getAllcategorydropdown().then((getcategorydropdown)=>{
+        getAllCategoryDropdown().then((getcategorydropdown)=>{
     
         res.render('adminviews/AddProduct',{user:false,getcategorydropdown})
         })
@@ -87,7 +87,7 @@ module.exports={
 
         let data=req.body
          data.productImage=fileName
-        adminadd(req.body).then((data)=>{
+         adminAdd(req.body).then((data)=>{
 
        
               res.redirect('/product/Stocks')
@@ -99,10 +99,10 @@ module.exports={
    editProduct(req,res){
 
     let productid=req.params.id
-    getcategory().then((geteditcategory)=>{
+    getCategory().then((geteditcategory)=>{
 
    
-     adminedit(productid).then((product)=>{
+      adminEdit(productid).then((product)=>{
       
       res.render('adminviews/EditProduct',{user:false,product,geteditcategory})
 
@@ -116,13 +116,8 @@ module.exports={
     let id=req.params.id
     let data = req.body
     let img= req.files
-  
-    
-          
-      
-      
         console.log(req.file);
-    adminEditsubmit(req.params.id,req.body,img).then(()=>{
+        adminEditSubmit(req.params.id,req.body,img).then(()=>{
       
       res.redirect('/product/Stocks')
    })
@@ -131,7 +126,7 @@ module.exports={
    productManage(req,res){
     console.log(req.params.id,req.body.stock);
 
-    productListandUnlist(req.params.id,req.body.stock).then((response)=>{
+    productListAndUnlist(req.params.id,req.body.stock).then((response)=>{
         
       res.redirect('/product/Stocks')
 
@@ -139,7 +134,7 @@ module.exports={
    },
    productOffer(req,res){
     
-    getAllproduct().then((products)=>{
+    getAllProduct().then((products)=>{
         
       res.render('adminviews/ProductOffers',{user:false,products})
 
@@ -149,7 +144,7 @@ module.exports={
 
     console.log(req.body);
    
-    InsertProductOffer(req.body).then(()=>{
+    insertProductOffer(req.body).then(()=>{
         
       getProductOffer(req.body).then(()=>{
 
@@ -164,7 +159,7 @@ module.exports={
    },
    productDetails(req,res,next){
     let users=req.session.users
-    productAlldetails(req.params.id).then((DetailProduct)=>{
+    productAllDetails(req.params.id).then((DetailProduct)=>{
       
       res.render('userviews/productDetails',{user:true,DetailProduct,users})
     }).catch(()=>{

@@ -1,6 +1,6 @@
 const {respons, response}=require('express');
 
-const {UserOrderDetails,productView,adminOrderCancellled,shippingDetail,OrderDetails,OrderCancelled,orderProductView,BillingAddress,productOffer,orderReturned,orderProductList,stockIncreamentAfterReturn,orderReturnConfirm,getWalletAmount,ReturnAfterCreateWallet}=require('../Model/order-helpers')
+const {userOrderDetails,productView,adminOrderCancellled,shippingDetail,orderDetails,orderCancelled,orderProductView,billingAddress,productOffer,orderReturned,orderProductList,stockIncreamentAfterReturn,orderReturnConfirm,getWalletAmount,returnAfterCreateWallet}=require('../Model/order-helpers')
 
 module.exports={
     sessionCheck:(req,res,next)=>{
@@ -45,7 +45,7 @@ module.exports={
       },
  orders(req,res){
     
-    UserOrderDetails().then((UserOrder)=>{
+  userOrderDetails().then((UserOrder)=>{
 
         res.render('adminviews/UserOrders',{user:false,UserOrder})
     })
@@ -88,7 +88,7 @@ module.exports={
     
 
     let users=req.session.users
-    OrderDetails(req.session.users._id).then((OrderDetails)=>{
+    orderDetails(req.session.users._id).then((OrderDetails)=>{
     
       res.render('userviews/UserOrderView',{user:true,OrderDetails,users})
     })
@@ -98,7 +98,7 @@ module.exports={
   },
   orderCancel(req,res){
 
-    OrderCancelled(req.params.id,req.body.status).then(()=>{
+    orderCancelled(req.params.id,req.body.status).then(()=>{
 
            res.redirect('/order/UserOrderView')
     })
@@ -110,7 +110,7 @@ module.exports={
 
         
 
-            BillingAddress(req.params.id).then((BillingAddress)=>{
+        billingAddress(req.params.id).then((BillingAddress)=>{
                 
               productOffer(req.params.id).then(()=>{
 
@@ -170,7 +170,7 @@ module.exports={
   
       getWalletAmount(req.params.id).then((wallet)=>{
 
-        ReturnAfterCreateWallet(wallet.TotalAmount,wallet.userID).then(()=>{
+        returnAfterCreateWallet(wallet.TotalAmount,wallet.userID).then(()=>{
           
          
           res.redirect('/order/Orders')

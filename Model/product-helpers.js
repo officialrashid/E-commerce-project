@@ -8,7 +8,7 @@ const { promiseImpl } = require('ejs');
 
 module.exports={
 
-getAllproduct:()=>{
+getAllProduct:()=>{
 
     return new Promise(async(resolve,reject)=>{
        
@@ -17,7 +17,7 @@ getAllproduct:()=>{
 
     })
 },
-getAllcategorydropdown:()=>{
+getAllCategoryDropdown:()=>{
 
     return new Promise(async(resolve,reject)=>{
 
@@ -27,7 +27,7 @@ getAllcategorydropdown:()=>{
 
     })
 },
-adminadd(product){
+adminAdd(product){
     
      product.StockCount=parseInt(product.StockCount)
     productstock=true
@@ -46,7 +46,7 @@ adminadd(product){
       console.log(err);
   })
 },
-getcategory:()=>{
+getCategory:()=>{
 
     return new Promise(async(resolve,reject)=>{
 
@@ -55,7 +55,7 @@ getcategory:()=>{
         resolve(geteditcategory)
     })
 },
-adminedit:(productid)=>{
+adminEdit:(productid)=>{
 
     return new Promise((resolve,reject)=>{
         db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:ObjectId(productid)}).then((product)=>{
@@ -64,7 +64,7 @@ adminedit:(productid)=>{
         })
     })
 },
-adminEditsubmit:(editid,body,img)=>{
+adminEditSubmit:(editid,body,img)=>{
 
   
 
@@ -114,7 +114,7 @@ adminEditsubmit:(editid,body,img)=>{
         })
     })
 },
-productListandUnlist:(proID,stock)=>{
+productListAndUnlist:(proID,stock)=>{
     console.log(proID,stock);
      if(stock=='true'){
 
@@ -141,7 +141,7 @@ productListandUnlist:(proID,stock)=>{
 
      })
  },
- InsertProductOffer:(OfferID)=>{
+ insertProductOffer:(OfferID)=>{
        
     OfferID.EndDate = new Date(OfferID.EndDate)
     OfferID.Discount = parseInt(OfferID.Discount)
@@ -212,7 +212,7 @@ productListandUnlist:(proID,stock)=>{
      })
 
    },
-   productAlldetails:(productID)=>{
+   productAllDetails:(productID)=>{
 
     return new Promise((resolve,reject)=>{
      

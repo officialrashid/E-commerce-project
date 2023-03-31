@@ -1,5 +1,5 @@
 
-const {doSignup,doLogin,ShowProduct,productAlldetails,getCategory,filterByCategory,AddTOCART,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount,PlaceOrdered,getproductList,OrderDetails,OrderCancelled,findByNumber,orderProductView,UserWishlist,getAllWishlist,removeWishlistItems,generateRazorpay,verifypayments,changePaymentStatus,AddAddress,getAddress,getSearchProduct,getPriceFilter,AddCheckCoupon,userEditAccount,userEditedProfile,getAllAddress,createPaypal,getCartOfferAmount,AllCouponDetails,removeCartAfterOrder,WalletAmount,changeWalletAmount}=require('../Model/user-helpers');
+const {doSignup,doLogin,showProduct,productAllDetails,getCategory,filterByCategory,addToCart,getAllCartProducts,changeProductQuantity,removeCartItems,getCartTotalAmount,placeOrdered,getProductList,OrderDetails,OrderCancelled,findByNumber,orderProductView,userWishlist,getAllWishlist,removeWishlistItems,generateRazorpay,verifyPayments,changePaymentStatus,addAddress,getAddress,getSearchProduct,getPriceFilter,addCheckCoupon,userEditAccount,userEditedProfile,getAllAddress,createPaypal,getCartOfferAmount,allCouponDetails,removeCartAfterOrder,WalletAmount,changeWalletAmount}=require('../Model/user-helpers');
 const {respons, response}=require('express');
 const session = require('express-session');
 const expressEjsLayouts = require("express-ejs-layouts");
@@ -65,7 +65,7 @@ module.exports={
     userLandingPage(req,res,next){
     
     let users=req.session.users
-     ShowProduct().then((ShowProducts)=>{
+    showProduct().then((ShowProducts)=>{
 
       getCategory().then((getCategoryData)=>{
         
@@ -115,7 +115,7 @@ loginAndSignupButton(req,res,next){
 
 productDetails(req,res,next){
     let users=req.session.users
-    productAlldetails(req.params.id).then((DetailProduct)=>{
+    productAllDetails(req.params.id).then((DetailProduct)=>{
       
       res.render('userviews/productDetails',{user:true,DetailProduct,users})
     }).catch(()=>{
@@ -148,7 +148,7 @@ shopButton(req,res){
   users=req.session.users
   console.log(users);
 
-  ShowProduct().then((ShowProducts)=>{
+  showProduct().then((ShowProducts)=>{
   
   getCategory().then((getCategoryData)=>{
    
@@ -196,7 +196,7 @@ shopButton(req,res){
   addToCart(req,res){
      
     users=req.session.users
-    AddTOCART(req.params.id,req.session.users._id).then(()=>{
+    addToCart(req.params.id,req.session.users._id).then(()=>{
 
        res.json({status:true})
     }).catch(()=>{
@@ -331,11 +331,11 @@ shopButton(req,res){
    
     let users=req.session.users
    
-    getproductList(req.body.userID).then((products)=>{
+    getProductList(req.body.userID).then((products)=>{
 
       getCartTotalAmount(req.body.userID).then((Total)=>{
     
-    PlaceOrdered(req.body,products,finalPrice).then((orderID)=>{
+        placeOrdered(req.body,products,finalPrice).then((orderID)=>{
          
       function destruct(products) { 
         let data =[]
@@ -547,7 +547,7 @@ console.log("))))))))))))))))))))");
    console.log(req.params.id,req.session.users._id);
      users=req.session.users
     
-    UserWishlist(req.params.id,req.session.users._id).then((response)=>{
+     userWishlist(req.params.id,req.session.users._id).then((response)=>{
 
       res.json({status:true})
 
@@ -586,7 +586,7 @@ console.log("))))))))))))))))))))");
  
    console.log(req.body);
 
-   verifypayments(req.body).then(()=>{
+   verifyPayments(req.body).then(()=>{
   
     changePaymentStatus(req.body['order[receipt]']).then(()=>{
       
@@ -631,7 +631,7 @@ console.log("))))))))))))))))))))");
      
     let users=req.session.users
     console.log(req.body);
-    AddAddress(req.body).then((addressID)=>{
+    addAddress(req.body).then((addressID)=>{
       
       res.redirect('/Address')
    
@@ -683,7 +683,7 @@ console.log("))))))))))))))))))))");
    },
    checkCoupon(req,res){
 console.log("Mmmmmmmmmmmm,,,,,,,,,,,,,,,,,,");
-    AddCheckCoupon(req.body.data,req.body.Total).then((response)=>{
+  addCheckCoupon(req.body.data,req.body.Total).then((response)=>{
      
       res.json(response)
 
@@ -720,7 +720,7 @@ console.log("Mmmmmmmmmmmm,,,,,,,,,,,,,,,,,,");
    allCoupons(req,res){
 
     let users=req.session.users
-    AllCouponDetails().then((Coupons)=>{
+    allCouponDetails().then((Coupons)=>{
 
      res.render('userviews/Coupons',{user:true,Coupons,users})
 

@@ -8,7 +8,7 @@ const { promiseImpl } = require('ejs');
 
 module.exports={
 
-    getAllcategory:()=>{
+    getAllCategory:()=>{
 
         return new Promise(async(resolve,reject)=>{
 
@@ -16,7 +16,7 @@ module.exports={
             resolve(getcategory)
         })
     },
-    AddCategorys:(addcategory)=>{
+    addCategorys:(addcategory)=>{
     
         return new Promise(async(resolve,reject)=>{
 
@@ -50,7 +50,7 @@ module.exports={
             })
         
         },
-        CategoryEdit:(EditCategoryId,catID)=>{
+        categoryEdit:(EditCategoryId,catID)=>{
        
             return new Promise((resolve,reject)=>{
     
@@ -110,7 +110,7 @@ module.exports={
             })
            
         },
-        InsertCategoryOffer:(catID)=>{
+        insertCategoryOffer:(catID)=>{
 
             catID.EndDate = new Date(catID.EndDate)
             catID.Discount = parseInt(catID.Discount)

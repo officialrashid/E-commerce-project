@@ -9,7 +9,7 @@ const { PRODUCTOFFER_COLLECTION, PRODUCT_COLLECTION } = require('./collections')
 
 module.exports={
 
-  UserOrderDetails:()=>{
+  userOrderDetails:()=>{
 
     return new Promise(async(resolve,reject)=>{
            
@@ -111,7 +111,7 @@ shippingDetail:(orderID,shippingStatus)=>{
       })
 
 },
-OrderDetails:(userID)=>{
+orderDetails:(userID)=>{
 
     return new Promise(async(resolve,reject)=>{
 
@@ -122,7 +122,7 @@ OrderDetails:(userID)=>{
        resolve(OrderDetails)
     })
 },
-OrderCancelled:(orderID,status)=>{
+orderCancelled:(orderID,status)=>{
 
     if(status=='placed'|| status=='pending'){
 
@@ -187,7 +187,7 @@ orderProductView:(orderID)=>{
      
     })
   },
-  BillingAddress:(orderID)=>{
+  billingAddress:(orderID)=>{
        
    
     
@@ -324,7 +324,7 @@ orderProductView:(orderID)=>{
         resolve(Wallet)
     })
   },
-  ReturnAfterCreateWallet:(TotalAmount,userID)=>{
+  returnAfterCreateWallet:(TotalAmount,userID)=>{
 
     return new Promise(async(resolve,reject)=>{
 

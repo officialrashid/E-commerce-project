@@ -1,4 +1,4 @@
-const {doadminSignup,getAllusers,removeProduct,userblock,adminAddBanner, getAllBanners,editbanners,adminBannerEdit,TotalSales,TodayOrders,ThisWeekOrders,ThisMonthOrders,ThisYearOrders,TotalRevenues,TodayRevenue,WeekRevenue,YearRevenue,MonthRevenue,admindashboardChart,AllSalesReport,AddCoupons,AllCouponDetails,getAllusersdashboard,getAllProductOffer,getAllCategoryOffer,adminEditCoupon,adminEditedCoupon,adminDeleteCoupon}=require('../Model/admin-helpers')
+const {doAdminSignup,getAllUsers,removeProduct,userBlock,adminAddBanner, getAllBanners,editBanners,adminBannerEdit,totalSales,todayOrders,thisWeekOrders,thisMonthOrders,thisYearOrders,totalRevenues,todayRevenue,weekRevenue,yearRevenue,monthRevenue,adminDashboardChart,allSalesReport,addCoupons,allCouponDetails,getAllUsersDashboard,getAllProductOffer,getAllCategoryOffer,adminEditCoupon,adminEditedCoupon,adminDeleteCoupon}=require('../Model/admin-helpers')
 
 const {respons, response}=require('express');
 
@@ -19,31 +19,31 @@ module.exports={
     },
     adminRegisterd(req,res,next){
 
-        doadminSignup(req.body).then((adminData)=>{
+      doAdminSignup(req.body).then((adminData)=>{
 
-          TotalSales().then((TotalSales)=>{
+        totalSales().then((TotalSales)=>{
 
-            TodayOrders().then((TodaySales)=>{
+          todayOrders().then((TodaySales)=>{
      
-              ThisWeekOrders().then((WeekSales)=>{
+            thisWeekOrders().then((WeekSales)=>{
       
-                ThisMonthOrders().then((MonthSales)=>{
+              thisMonthOrders().then((MonthSales)=>{
       
-                  ThisYearOrders().then((YearSales)=>{
+                thisYearOrders().then((YearSales)=>{
 
-                    TotalRevenues().then((TotalRevenue)=>{
+                  totalRevenues().then((TotalRevenue)=>{
 
-                      TodayRevenue().then((TodayRevenue)=>{
+                    todayRevenue().then((TodayRevenue)=>{
 
-                        WeekRevenue().then((WeekRevenue)=>{
+                      weekRevenue().then((WeekRevenue)=>{
 
-                          YearRevenue().then((YearRevenue)=>{
+                        yearRevenue().then((YearRevenue)=>{
 
-                           MonthRevenue().then((MonthRevenue)=>{
+                          monthRevenue().then((MonthRevenue)=>{
                              
-                            admindashboardChart().then((data)=>{
+                            adminDashboardChart().then((data)=>{
 
-                              getAllusersdashboard().then((usersdashboard)=>{
+                              getAllUsersDashboard().then((usersdashboard)=>{
 
                               console.log(TotalSales);
 
@@ -95,7 +95,7 @@ module.exports={
     },
     allUsers(req,res,next){
           
-     getAllusers().then((users)=>{
+      getAllUsers().then((users)=>{
       
         res.render('adminviews/adminAllUsers',{users,user:false})
      })
@@ -109,7 +109,7 @@ module.exports={
 
    
 
-   deleteproduct(req,res){
+   deleteProduct(req,res){
 
     let deleteid=req.params.id
     removeProduct(deleteid).then((response)=>{
@@ -127,7 +127,7 @@ module.exports={
   
    blockManagement(req,res){
 
-    userblock(req.params.id,req.body.status).then(()=>{
+    userBlock(req.params.id,req.body.status).then(()=>{
       
       res.redirect('/admin/AllUsers')
 
@@ -141,29 +141,29 @@ module.exports={
    dashboard(req,res){
 
    
-    TotalSales().then((TotalSales)=>{
+    totalSales().then((TotalSales)=>{
 
-      TodayOrders().then((TodaySales)=>{
+      todayOrders().then((TodaySales)=>{
      
-        ThisWeekOrders().then((WeekSales)=>{
+        thisWeekOrders().then((WeekSales)=>{
 
-          ThisMonthOrders().then((MonthSales)=>{
+          thisMonthOrders().then((MonthSales)=>{
 
-            ThisYearOrders().then((YearSales)=>{
+            thisYearOrders().then((YearSales)=>{
      
-              TotalRevenues().then((TotalRevenue)=>{
+              totalRevenues().then((TotalRevenue)=>{
 
-                TodayRevenue().then((TodayRevenue)=>{
+                todayRevenue().then((TodayRevenue)=>{
 
-                  WeekRevenue().then((WeekRevenue)=>{
+                  weekRevenue().then((WeekRevenue)=>{
 
-                    YearRevenue().then((YearRevenue)=>{
+                    yearRevenue().then((YearRevenue)=>{
 
-                     MonthRevenue().then((MonthRevenue)=>{
+                     monthRevenue().then((MonthRevenue)=>{
                        
-                      admindashboardChart().then((data)=>{
+                      adminDashboardChart().then((data)=>{
                          
-                        getAllusersdashboard().then((usersdashboard)=>{
+                        getAllUsersDashboard().then((usersdashboard)=>{
 
                           console.log(TotalSales);
 
@@ -250,7 +250,7 @@ module.exports={
    editBanner(req,res){
     
     let productid=req.params.id
-    editbanners(productid).then((product)=>{
+    editBanners(productid).then((product)=>{
       
       res.render('adminviews/EditBanner',{user:false,product})
 
@@ -283,7 +283,7 @@ module.exports={
      
    
 
-    TodayOrders().then((response)=>{
+    todayOrders().then((response)=>{
 
     console.log(response);
       // res.redirect('/admin/dashboard')
@@ -296,7 +296,7 @@ module.exports={
    },
    weekSales(req,res){
 
-    ThisWeekOrders().then(()=>{
+    thisWeekOrders().then(()=>{
      
       res.redirect('/admin/dashboard')
 
@@ -304,7 +304,7 @@ module.exports={
    },
    monthSales(req,res){
 
-    ThisMonthOrders().then(()=>{
+    thisMonthOrders().then(()=>{
 
       res.redirect('/admin/dashboard')
     })
@@ -312,7 +312,7 @@ module.exports={
    },
    yearSales(req,res){
 
-    ThisYearOrders().then(()=>{
+    thisYearOrders().then(()=>{
      
       res.redirect('/admin/dashboard')
       
@@ -320,7 +320,7 @@ module.exports={
    },
    totalRevenue(req,res){
     
-    TotalRevenues().then((TotalRevenue)=>{
+    totalRevenues().then((TotalRevenue)=>{
 
       res.redirect('/admin/adminLoged')
     })
@@ -328,7 +328,7 @@ module.exports={
    },
    salesReport(req,res){
     
-    AllSalesReport().then((salesReport)=>{
+    allSalesReport().then((salesReport)=>{
 
      
       res.render('adminviews/SalesReport',{user:false,salesReport})
@@ -344,9 +344,9 @@ module.exports={
    addedCoupon(req,res){
        
     
-    AddCoupons(req.body).then(()=>{
+    addCoupons(req.body).then(()=>{
          
-      AllCouponDetails().then((Coupons)=>{
+      allCouponDetails().then((Coupons)=>{
       
        
             
@@ -358,7 +358,7 @@ module.exports={
    },
    allCoupons(req,res){
 
-    AllCouponDetails().then((Coupons)=>{
+    allCouponDetails().then((Coupons)=>{
       
       res.render('adminviews/Coupons',{user:false,Coupons})
           

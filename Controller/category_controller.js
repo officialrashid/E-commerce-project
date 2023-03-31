@@ -1,12 +1,12 @@
 const {respons, response}=require('express');
 
-const {getAllcategory,AddCategorys,adminCategoryEdit,CategoryEdit,removeCategory,filterByCategory,getCategory,InsertCategoryOffer,makeCategoryOffer}=require('../Model/category-helpers')
+const {getAllCategory,addCategorys,adminCategoryEdit,categoryEdit,removeCategory,filterByCategory,getCategory,insertCategoryOffer,makeCategoryOffer}=require('../Model/category-helpers')
 
 module.exports={
 
 categoryPage(req,res,next){
      
-    getAllcategory().then((getcategory)=>{
+  getAllCategory().then((getcategory)=>{
         
 
       res.render('adminviews/adminCategory',{user:false,getcategory})
@@ -22,13 +22,13 @@ categoryPage(req,res,next){
  },
  addedCategory(req,res,){
      
-    AddCategorys(req.body).then((addcategory)=>{
+  addCategorys(req.body).then((addcategory)=>{
 
       res.redirect('/category/Category')
       
     }).catch((error)=>{
       
-      getAllcategory().then((getcategory)=>{
+      getAllCategory().then((getcategory)=>{
      res.render('adminviews/adminCategory',{error:`${error.error}`,getcategory,user:false})
     })
   })
@@ -45,7 +45,7 @@ categoryPage(req,res,next){
    },
    editCategorySubmit(req,res,next){
       
-    CategoryEdit(req.params.id,req.body).then(()=>{
+    categoryEdit(req.params.id,req.body).then(()=>{
 
      res.redirect('/category/Category')
     })
@@ -84,7 +84,7 @@ categoryPage(req,res,next){
   },
   addCategoryOffer(req,res){
  console.log(req.body,"}}}}}}}}}}}}}}}}}}]]");
-    InsertCategoryOffer(req.body).then((catoffer)=>{
+ insertCategoryOffer(req.body).then((catoffer)=>{
     
      makeCategoryOffer(req.body).then(()=>{
 

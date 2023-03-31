@@ -9,7 +9,7 @@ const {adminLogin,adminRegisterd,allUsers,blockManagement,dashboard,addBanner,ad
 router.get('/',adminLogin);
  router.post('/adminLoged',adminRegisterd)
 router.get('/AllUsers',allUsers)
-// router.post('/delete-pro/:id',deleteproduct)
+// router.post('/delete-pro/:id',deleteProduct)
 router.post('/Block/:id',blockManagement)
 router.get('/dashboard',dashboard)
 router.get('/Banner',addBanner)

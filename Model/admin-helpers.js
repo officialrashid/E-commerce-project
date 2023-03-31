@@ -10,7 +10,7 @@ const { promiseImpl } = require('ejs');
 
 module.exports={
     //   admin login check
-    doadminSignup:(adminData)=>{
+    doAdminSignup:(adminData)=>{
        
         // return new Promise(async(resolve,reject)=>{
            
@@ -52,7 +52,7 @@ module.exports={
     },
 
     // getAll users
-    getAllusers:()=>{
+    getAllUsers:()=>{
 
         return new Promise(async(resolve,reject)=>{
         
@@ -78,7 +78,7 @@ module.exports={
    
    
    
-    userblock:(userId,status)=>{
+    userBlock:(userId,status)=>{
          
         if(status=='true'){
 
@@ -130,7 +130,7 @@ module.exports={
             resolve(Banners)
         })
     },
-    editbanners:(productID)=>{
+    editBanners:(productID)=>{
 
     return new Promise((resolve,reject)=>{
 
@@ -165,7 +165,7 @@ module.exports={
 
         
     },
-    TotalSales:()=>{
+    totalSales:()=>{
 
         return new Promise(async(resolve,reject)=>{
 
@@ -179,7 +179,7 @@ module.exports={
 
         })
     },
-    TodayOrders:()=>{
+    todayOrders:()=>{
         const currentDate = new Date();
         return new Promise(async (resolve, reject) => {
             try {
@@ -208,7 +208,7 @@ module.exports={
               
         });
       },
-      ThisWeekOrders:()=>{
+      thisWeekOrders:()=>{
         const currentDate = new Date();
         return new Promise(async (resolve, reject) => {
             const Weekorders = await db.get().collection(collection.ORDER_COLLECTION)
@@ -247,7 +247,7 @@ module.exports={
             }
           });
       },
-      ThisMonthOrders:()=>{
+      thisMonthOrders:()=>{
        
         return new Promise(async (resolve, reject) => {
             const Monthorders = await db.get().collection(collection.ORDER_COLLECTION)
@@ -265,7 +265,7 @@ module.exports={
        
 
       },
-      ThisYearOrders:()=>{
+      thisYearOrders:()=>{
         const currentDate = new Date();
         return new Promise(async (resolve, reject) => {
             const currentDate = new Date();
@@ -288,7 +288,7 @@ module.exports={
             
         });
       },
-      TotalRevenues:()=>{
+      totalRevenues:()=>{
        
         return new Promise(async(resolve,reject)=>{
         
@@ -317,7 +317,7 @@ module.exports={
 
 
       },
-      TodayRevenue:()=>{
+      todayRevenue:()=>{
 
         const currentDate = new Date();
         return new Promise(async (resolve, reject) => {
@@ -353,7 +353,7 @@ module.exports={
 
         });
       },
-      WeekRevenue(){
+      weekRevenue(){
         
         return new Promise(async (resolve, reject) => {
             const Weeksales = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
@@ -376,7 +376,7 @@ module.exports={
           });
 
       },
-      YearRevenue:()=>{
+      yearRevenue:()=>{
         
         const currentDate = new Date();
         return new Promise(async (resolve, reject) => {
@@ -401,7 +401,7 @@ module.exports={
         });
 
       },
-      MonthRevenue: () => {
+      monthRevenue: () => {
        
            
           const currentDate = new Date();
@@ -438,7 +438,7 @@ module.exports={
       
     
     
-      admindashboardChart:()=>{
+      adminDashboardChart:()=>{
 
           return new Promise(async(resolve,reject)=>{
             
@@ -468,7 +468,7 @@ module.exports={
           })
 
       },
-      AllSalesReport:()=>{
+      allSalesReport:()=>{
 
         return new Promise(async(resolve,reject)=>{
 
@@ -503,7 +503,7 @@ module.exports={
 
         })
       },
-      AddCoupons:(CouponID)=>{
+      addCoupons:(CouponID)=>{
           
        
         CouponID.StartDates = new Date(CouponID.StartDates)
@@ -522,7 +522,7 @@ module.exports={
           })
         })
       },
-      AllCouponDetails:()=>{
+      allCouponDetails:()=>{
         
         return new Promise(async(resolve,reject)=>{
 
@@ -533,7 +533,7 @@ module.exports={
       
       },
     
-      getAllusersdashboard:()=>{
+      getAllUsersDashboard:()=>{
 
         return new Promise(async(resolve,reject)=>{
 

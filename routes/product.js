@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const {stocks,addProduct,addedProduct,editProduct,editSubmit,productManage,productOffer,addProductOffer,sessioncheck,productDetails,ShowProductOffer}= require('../Controller/product_controller')
+const {stocks,addProduct,addedProduct,editProduct,editSubmit,productManage,productOffer,addProductOffer,sessionCheck,productDetails,ShowProductOffer}= require('../Controller/product_controller')
 var multer=require('multer')
 const {verifyUser}= require("../Controller/auth");
 const storage = multer.diskStorage({
@@ -32,6 +32,6 @@ router.post('/edit-product-submit/:id',upload.fields([
 router.post('/delete-pro/:id',productManage)
 router.get('/ProductOffer',productOffer)
 router.post('/AddProductOffer',addProductOffer)
-router.get('/productDetails/:id',verifyUser,sessioncheck,productDetails)
+router.get('/productDetails/:id',verifyUser,sessionCheck,productDetails)
 
 module.exports = router;

@@ -91,7 +91,7 @@ module.exports={
          }
         });
     },
-    ShowProduct:()=>{
+    showProduct:()=>{
 
         return new Promise(async(resolve,reject)=>{
 
@@ -99,7 +99,7 @@ module.exports={
             resolve(ShowProducts)
         })
     },
-    productAlldetails:(productID)=>{
+    productAllDetails:(productID)=>{
 
         return new Promise((resolve,reject)=>{
          
@@ -141,7 +141,7 @@ module.exports={
             reject()
         })
     },
-    AddTOCART:(proID,userID)=>{
+    addToCart:(proID,userID)=>{
          
       
         let proObj={
@@ -418,7 +418,7 @@ module.exports={
        })
 
     },
-    PlaceOrdered:(order,products,Total)=>{
+    placeOrdered:(order,products,Total)=>{
          
         
        
@@ -503,7 +503,7 @@ for(let i=0;i<item.length;i++){
 })
 },
 
-getproductList:(userID)=>{
+getProductList:(userID)=>{
 
      return new Promise(async(resolve,reject)=>{
       
@@ -540,7 +540,7 @@ getproductList:(userID)=>{
       },
 
     
-      UserWishlist:(proID,userID)=>{
+      userWishlist:(proID,userID)=>{
           
     
             let proObj={
@@ -716,7 +716,7 @@ getproductList:(userID)=>{
     })
    }, 
 
-    verifypayments:(details)=>{
+    verifyPayments:(details)=>{
 
        return new Promise((resolve,reject)=>{
 
@@ -765,7 +765,7 @@ getproductList:(userID)=>{
 
       },
     
-      AddAddress:(addressID)=>{
+      addAddress:(addressID)=>{
 
         return new Promise(async(resolve,reject)=>{
 
@@ -868,7 +868,7 @@ getproductList:(userID)=>{
             })
           },
           
-          AddCheckCoupon:(code,Total)=>{
+          addCheckCoupon:(code,Total)=>{
 
             console.log(code);
            
@@ -1034,7 +1034,7 @@ getproductList:(userID)=>{
         
 
         }),
-        AllCouponDetails:()=>{
+        allCouponDetails:()=>{
           
             return new Promise(async(resolve,reject)=>{
 
