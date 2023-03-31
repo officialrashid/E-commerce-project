@@ -1,38 +1,53 @@
-<section id="footer" class="mt-5" >
+<section id="footer" class="mt-5">
     <table class="table table-bordered">
         <thead>
-          <tr>
-            <th scope="col">Image</th>
-            <th scope="col">Name of the Shoe</th>
-            <th scope="col">company Name</th>
-            <th scope="col">Size</th>
-            <th scope="col">Color</th>
-            <th scope="col">Category</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            
-          </tr>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name of the Shoe</th>
+                <th scope="col">company Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Color</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+
+            </tr>
         </thead>
         <tbody>
             <% singleOrder.forEach(function(order, i){ %>
-          <tr >
-            <!-- <th scope="row"> <%= i+1 %></th> -->
-            <td class="product-images"><img src="/product-images/<%= order.orders.productImage[0] %>" alt="no"></td>
-            <td><%= order.orders.shoename %></td>
-            <td><%= order.orders.companyname %></td>
-            <td><%= order.orders.size %></td>
-            <td><%= order.orders.color %></td>
-            <td><%= order.orders.category %></td>
-            <td><%= order.orders.price %></td>
-            <td><%= BillingAddress.products[0].quantity %></td>
-           
-          
-          </tr>
-          
-          <% }); %>
+                <tr>
+                    <!-- <th scope="row"> <%= i+1 %></th> -->
+                    <td class="product-images"><img src="/product-images/<%= order.orders.productImage[0] %>" alt="no">
+                    </td>
+                    <td>
+                        <%= order.orders.shoename %>
+                    </td>
+                    <td>
+                        <%= order.orders.companyname %>
+                    </td>
+                    <td>
+                        <%= order.orders.size %>
+                    </td>
+                    <td>
+                        <%= order.orders.color %>
+                    </td>
+                    <td>
+                        <%= order.orders.category %>
+                    </td>
+                    <td>
+                        <%= order.orders.price %>
+                    </td>
+                    <td>
+                        <%= BillingAddress.products[0].quantity %>
+                    </td>
+
+
+                </tr>
+
+                <% }); %>
         </tbody>
-      </table>
-      <div class="container mt-5 mb-5" id="invoice">
+    </table>
+    <div class="container mt-5 mb-5" id="invoice">
 
         <div class="row d-flex justify-content-center">
 
@@ -41,93 +56,101 @@
                 <div class="card">
 
 
-                        <div class="text-left logo p-2 px-5">
+                    <div class="text-left logo p-2 px-5">
 
-                            <img src="/img/gallary/logo/logo-1.png" width="50">
-                            
+                        <img src="/img/gallary/logo/logo-1.png" width="50">
+
+
+                    </div>
+
+                    <div class="invoice p-5">
+
+                        <h5>Your order Confirmed!</h5>
+
+
+
+                        <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+
+
+
 
                         </div>
 
-                        <div class="invoice p-5">
-
-                            <h5>Your order Confirmed!</h5>
-
-                           
-
-                            <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
-
-                              
-
-                                
-                            </div>
 
 
 
+                        <div class="product border-bottom table-responsive">
 
-                                <div class="product border-bottom table-responsive">
+                            <table class="table table-borderless">
 
-                                    <table class="table table-borderless">
-
-                                    <tbody>
-                                      <% singleOrder.forEach(function(Orders, i){ %>
+                                <tbody>
+                                    <% singleOrder.forEach(function(Orders, i){ %>
                                         <tr>
                                             <td width="20%">
-                                            
-                                            <img src="/product-images/<%= Orders.orders.productImage[0] %>" width="90">
 
-                                        </td>
-                                    
-                                        <td width="60%">
-                                            <span class="font-weight-bold">shoename:<%= Orders.orders.shoename %></span>
-                                            <div class="product-qty">
-                                                <span class="d-block">Quantity:<%= BillingAddress.products[0].quantity %></span>
-                                                <span>color:<%= Orders.orders.color %></span>
-                                                
-                                            </div>
-                                        </td>
-                                        <td width="20%">
-                                            <div class="text-right">
-                                                <span class="font-weight-bold"><%= Orders.orders.price* BillingAddress.products[0].quantity %></span>
-                                            </div>
-                                        </td>
+                                                <img src="/product-images/<%= Orders.orders.productImage[0] %>"
+                                                    width="90">
+
+                                            </td>
+
+                                            <td width="60%">
+                                                <span class="font-weight-bold">shoename:<%= Orders.orders.shoename %>
+                                                        </span>
+                                                <div class="product-qty">
+                                                    <span class="d-block">Quantity:<%=
+                                                            BillingAddress.products[0].quantity %></span>
+                                                    <span>color:<%= Orders.orders.color %></span>
+
+                                                </div>
+                                            </td>
+                                            <td width="20%">
+                                                <div class="text-right">
+                                                    <span class="font-weight-bold">
+                                                        <%= Orders.orders.price* BillingAddress.products[0].quantity %>
+                                                    </span>
+                                                </div>
+                                            </td>
                                         </tr>
                                         <% }); %>
 
-                                    </tbody> 
-                                        
-                                    </table>
-                                    
+                                </tbody>
 
-
-                                </div>
+                            </table>
 
 
 
-                                <div class="row d-flex justify-content-end">
+                        </div>
 
-                                    <div class="col-md-5">
 
-                                        <table class="table table-borderless">
 
-                                            <tbody class="totals">
-                                                <% singleOrder.forEach(function(Orders, i){ %>
-                                                <tr>
-                                                    <td>
-                                                        <div class="text-left">
-                                                             
-                                                            <span class="text-muted">Subtotal:</span>
-                                                            
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="text-right">
-                                                            <span><%= Orders.orders.price* BillingAddress.products[0].quantity %></span>
-                                                        </div>
-                                                    </td>
-                                                   
-                                                </tr>
-                                               
-                                                 <!-- <tr>
+                        <div class="row d-flex justify-content-end">
+
+                            <div class="col-md-5">
+
+                                <table class="table table-borderless">
+
+                                    <tbody class="totals">
+                                        <% singleOrder.forEach(function(Orders, i){ %>
+                                            <tr>
+                                                <td>
+                                                    <div class="text-left">
+
+                                                        <span class="text-muted">Subtotal:</span>
+
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="text-right">
+                                                        <span>
+                                                            <%= Orders.orders.price* BillingAddress.products[0].quantity
+                                                                %>
+                                                        </span>
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                            <!-- <tr>
                                                     <td>
                                                         <div class="text-left">
 
@@ -145,7 +168,7 @@
                                                 </tr>
                                                 -->
 
-                                                 <!-- <tr class="border-top border-bottom">
+                                            <!-- <tr class="border-top border-bottom">
                                                     <td>
                                                         <div class="text-left">
 
@@ -155,136 +178,157 @@
                                                     </td>
                                                    
                                                 </tr> -->
-                                                
-                                                <% }); %>
-                                                
-                                              
-                                                       
-                                                    </div>
-                                                </div>
-                                           
-                                            </tbody>
-                                            
-                                        </table>
-                                        
-                                        <td>
-                                            <div class="text-left">
 
-                                                <span class="font-weight-bold" style="margin-left: 2%;">Total:</span>
-                                            
-                                                <span class="font-weight-bold" style="margin-left:46%; color: black;"><%=  BillingAddress.TotalAmount %></span>
+                                            <% }); %>
 
-                                                </div>
-                                            
-                                        </td>
-                                      
-                                    </div>
-                                    
 
+
+                            </div>
+                        </div>
+
+                        </tbody>
+
+                        </table>
+
+                        <td>
+                            <div class="text-left">
+
+                                <span class="font-weight-bold" style="margin-left: 2%;">Total:</span>
+
+                                <span class="font-weight-bold" style="margin-left:46%; color: black;">
+                                    <%= BillingAddress.TotalAmount %>
+                                </span>
+
+                            </div>
+
+                        </td>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+                <!-- <h4>Your BIL</h4> -->
+                <section class="order_details section_gap" style="margin-bottom: 5%;" id="invoice">
+                    <div class="container">
+
+                        <div class="row order_d_inner">
+                            <div class="col-lg-4">
+                                <div class="details_item">
 
                                 </div>
-                                
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="details_item">
+                                    <h4>Billing Address</h4>
+                                    <tbody>
 
-                               
-  <!-- <h4>Your BIL</h4> -->
-  <section class="order_details section_gap"style="margin-bottom: 5%;" id="invoice">
-  <div class="container">
+                                        <tr>
 
-  <div class="row order_d_inner">
-  <div class="col-lg-4">
-  <div class="details_item">
- 
-  </div>
-  </div>
-  <div class="col-lg-4">
-  <div class="details_item">
-  <h4>Billing Address</h4>
-  <tbody >
- 
-  <tr >
-   
-    <td>CustomerName:<%= BillingAddress.deliveryDetails.fname %></td><br>
-    <td>CompanyName:<%= BillingAddress.deliveryDetails.cname %></td><br>
-    <td>BillingAddress:<%= BillingAddress.deliveryDetails.add1 %></td><br>
-    <td><%= BillingAddress.deliveryDetails.town %>,<%= BillingAddress.deliveryDetails.country %></td><br>
-  
-    <td>Postcode:<%= BillingAddress.deliveryDetails.postcode %></td><br>
-    <td>phoneNumber:<%= BillingAddress.deliveryDetails.phone %></td><br>
-    <td>Email:<%= BillingAddress.deliveryDetails.email %></td><br>
-    
-   
-  </tr>
+                                            <td>CustomerName:<%= BillingAddress.deliveryDetails.fname %>
+                                            </td><br>
+                                            <td>CompanyName:<%= BillingAddress.deliveryDetails.cname %>
+                                            </td><br>
+                                            <td>BillingAddress:<%= BillingAddress.deliveryDetails.add1 %>
+                                            </td><br>
+                                            <td>
+                                                <%= BillingAddress.deliveryDetails.town %>,<%=
+                                                        BillingAddress.deliveryDetails.country %>
+                                            </td><br>
 
-</tbody>
-  </div>
-  </div>
-  <div class="col-lg-4">
-  <div class="details_item">
-  <h4>Shipping Address</h4>
-  <ul class="list">
-  <li><a href="#"><span>CustomerName</span> : <%= BillingAddress.deliveryDetails.fname %></a></li>
-  <li><a href="#"><span>CompanyName</span> :<%= BillingAddress.deliveryDetails.cname %></a></li>
-  <li><a href="#"><span>BillingAddress</span> : <%= BillingAddress.deliveryDetails.add1 %></a></li>
-  <li><a href="#"><span> </span>  <%= BillingAddress.deliveryDetails.town %>,<%= BillingAddress.deliveryDetails.country %></a></li>
-  <li><a href="#"><span>Postcode</span> : <%= BillingAddress.deliveryDetails.postcode %></a></li>
-  <li><a href="#"><span>phoneNumber</span> : <%= BillingAddress.deliveryDetails.phone %></a></li>
-  <li><a href="#"><span>Email</span> : <%= BillingAddress.deliveryDetails.email %></a></li>
-  </ul>
-  </div>
-  </div>
-  </div>
-  <div class="order_details_table">
-   
-  </div>
-  </div>
-  </section>
+                                            <td>Postcode:<%= BillingAddress.deliveryDetails.postcode %>
+                                            </td><br>
+                                            <td>phoneNumber:<%= BillingAddress.deliveryDetails.phone %>
+                                            </td><br>
+                                            <td>Email:<%= BillingAddress.deliveryDetails.email %>
+                                            </td><br>
 
 
-  <button type="button" id="download-button" class="badge bg-dark bg-lg"><i class=""></i> Download PDF</button>                          
-</div>
+                                        </tr>
+
+                                    </tbody>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="details_item">
+                                    <h4>Shipping Address</h4>
+                                    <ul class="list">
+                                        <li><a href="#"><span>CustomerName</span> : <%=
+                                                    BillingAddress.deliveryDetails.fname %></a></li>
+                                        <li><a href="#"><span>CompanyName</span> :<%=
+                                                    BillingAddress.deliveryDetails.cname %></a></li>
+                                        <li><a href="#"><span>BillingAddress</span> : <%=
+                                                    BillingAddress.deliveryDetails.add1 %></a></li>
+                                        <li><a href="#"><span> </span>
+                                                <%= BillingAddress.deliveryDetails.town %>,<%=
+                                                        BillingAddress.deliveryDetails.country %>
+                                            </a></li>
+                                        <li><a href="#"><span>Postcode</span> : <%=
+                                                    BillingAddress.deliveryDetails.postcode %></a></li>
+                                        <li><a href="#"><span>phoneNumber</span> : <%=
+                                                    BillingAddress.deliveryDetails.phone %></a></li>
+                                        <li><a href="#"><span>Email</span> : <%= BillingAddress.deliveryDetails.email %>
+                                                    </a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order_details_table">
+
+                        </div>
+                    </div>
+                </section>
 
 
-
-
-
-            
-        </div>
-                
+                <button type="button" id="download-button" class="badge bg-dark bg-lg"><i class=""></i> Download
+                    PDF</button>
             </div>
-            
+
+
+
+
+
+
         </div>
-        
+
     </div>
-   
+
+    </div>
+
+    </div>
 
 
 
-  <!--================End Order Details Area =================-->
-  
-  <!-- start footer Area -->
-  
-  <!-- End footer Area -->
-  <!--================End Order Details Area =================-->
-  
-  <!-- start footer Area -->
-  
-  <!-- End footer Area -->
-  
-  
-  
-  
-  
-    </section>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
+    <!--================End Order Details Area =================-->
+
+    <!-- start footer Area -->
+
+    <!-- End footer Area -->
+    <!--================End Order Details Area =================-->
+
+    <!-- start footer Area -->
+
+    <!-- End footer Area -->
+
+
+
+
+
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <script>
-       const button = document.getElementById('download-button');
-  
-  function generatePDF() {
-    // Choose the element that your content will be rendered to.
-    const element = document.getElementById('invoice');
-    // Choose the element and save the PDF for your user.
-    html2pdf().from(element).save();
-  }
+    const button = document.getElementById('download-button');
 
-  button.addEventListener('click', generatePDF);
+    function generatePDF() {
+        // Choose the element that your content will be rendered to.
+        const element = document.getElementById('invoice');
+        // Choose the element and save the PDF for your user.
+        html2pdf().from(element).save();
+    }
+
+    button.addEventListener('click', generatePDF);
 </script>

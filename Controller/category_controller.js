@@ -1,98 +1,103 @@
-const {respons, response}=require('express');
+const { respons, response } = require('express');
 
-const {getAllCategory,addCategorys,adminCategoryEdit,categoryEdit,removeCategory,filterByCategory,getCategory,insertCategoryOffer,makeCategoryOffer}=require('../Model/category-helpers')
+const { getAllCategory, addCategorys, adminCategoryEdit, categoryEdit, removeCategory, filterByCategory, getCategory, insertCategoryOffer, makeCategoryOffer } = require('../Model/category-helpers')
 
-module.exports={
+module.exports = {
 
-categoryPage(req,res,next){
-     
-  getAllCategory().then((getcategory)=>{
-        
+  categoryPage(req, res, next) {
+  try {
+    getAllCategory().then((getcategory) => {
+      res.render('adminviews/adminCategory', { user: false, getcategory });
+    });
+  } catch (error) {
+    next(error);
+  }
+},
 
-      res.render('adminviews/adminCategory',{user:false,getcategory})
-    })
-    
-   },
-   addCategory(req,res,next){
+addCategory(req, res, next) {
+  try {
+    res.redirect('/category/Category');
+  } catch (error) {
+    next(error);
+  }
+},
 
-     
+addedCategory(req, res) {
+  try {
+    addCategorys(req.body).then((addcategory) => {
+      res.redirect('/category/Category');
+    }).catch((error) => {
+      getAllCategory().then((getcategory) => {
+        res.render('adminviews/adminCategory', { error: `${error.error}`, getcategory, user: false });
+      });
+    });
+  } catch (error) {
+    next(error);
+  }
+},
 
-    res.redirect('/category/Category')
-   
- },
- addedCategory(req,res,){
-     
-  addCategorys(req.body).then((addcategory)=>{
+editCategory(req, res, next) {
+  try {
+    let categoryid = req.params.id;
+    adminCategoryEdit(categoryid).then((categoryEdit) => {
+      res.render('adminviews/EditCategory', { user: false, categoryEdit });
+    });
+  } catch (error) {
+    next(error);
+  }
+},
 
-      res.redirect('/category/Category')
-      
-    }).catch((error)=>{
-      
-      getAllCategory().then((getcategory)=>{
-     res.render('adminviews/adminCategory',{error:`${error.error}`,getcategory,user:false})
-    })
-  })
-   },
-   editCategory(req,res,next){
-     
-    let categoryid=req.params.id
-    adminCategoryEdit(categoryid).then((categoryEdit)=>{
+editCategorySubmit(req, res, next) {
+  try {
+    categoryEdit(req.params.id, req.body).then(() => {
+      res.redirect('/category/Category');
+    });
+  } catch (error) {
+    next(error);
+  }
+},
 
-      res.render('adminviews/EditCategory',{user:false,categoryEdit})
-    })
-    
+deleteCategory(req, res) {
+  try {
+    let deleteCategoryid = req.params.id;
+    removeCategory(deleteCategoryid).then((response) => {
+      res.redirect('/category/Category');
+    });
+  } catch (error) {
+    next(error);
+  }
+},
 
-   },
-   editCategorySubmit(req,res,next){
-      
-    categoryEdit(req.params.id,req.body).then(()=>{
-
-     res.redirect('/category/Category')
-    })
-  },
-  deleteCategory(req,res){
-    
-    let deleteCategoryid=req.params.id
-      
-    removeCategory(deleteCategoryid).then((response)=>{
-      
-      res.redirect('/category/Category')
-    })
-    
-   },
-   categoryFilter(req,res){
-
-    let users=req.session.user
-    let name=req.body;
-
+categoryFilter(req, res) {
+  try {
+    let users = req.session.user;
+    let name = req.body;
     console.log(users);
     console.log(name);
-
-    filterByCategory(name).then((ShowProducts)=>{
-     
-      getCategory().then((getCategoryData)=>{
-      
-        res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
-
-
-      }).catch(()=>{
-
-        res.render('userviews/ShopPage',{user:true,ShowProducts,users,getCategoryData})
-      })
-     
-    })
-  },
-  addCategoryOffer(req,res){
- console.log(req.body,"}}}}}}}}}}}}}}}}}}]]");
- insertCategoryOffer(req.body).then((catoffer)=>{
-    
-     makeCategoryOffer(req.body).then(()=>{
-
-      
-      res.redirect('/admin/AllOffers')
-     })
-
-    })
+    filterByCategory(name).then((ShowProducts) => {
+      getCategory().then((getCategoryData) => {
+        res.render('userviews/ShopPage', { user: true, ShowProducts, users, getCategoryData });
+      }).catch(() => {
+        res.render('userviews/ShopPage', { user: true, ShowProducts, users, getCategoryData });
+      });
+    });
+  } catch (error) {
+    next(error);
   }
+},
+
+addCategoryOffer(req, res) {
+  try {
+    console.log(req.body, "}}}}}}}}}}}}}}}}}}]]");
+    insertCategoryOffer(req.body).then((catoffer) => {
+      makeCategoryOffer(req.body).then(() => {
+        res.redirect('/admin/AllOffers');
+      });
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 
 }

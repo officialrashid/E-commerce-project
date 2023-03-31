@@ -1,6 +1,6 @@
 <!-- admin stocks view  -->
 <section id="footer" class="mt-5">
-<table class="table table-bordered datatable">
+  <table class="table table-bordered datatable">
     <thead>
       <tr>
         <th scope="col">image</th>
@@ -15,103 +15,125 @@
       </tr>
     </thead>
     <tbody>
-        <a href="/product/AddProduct"> <button type="button" class="btn btn-success mt-4">Add Product</button></a>
-        <a href="/category/AddCategory"> <button type="button" class="btn btn-success mt-4">Add Category</button></a>
-        <% products.forEach(function(product, i){ %>
-      <tr >
-        <!-- <th scope="row"> <%= i+1 %></th> -->
-        <td class="product-images"><img src="/product-images/<%= product.productImage[0] %>" alt="no" style="width: 100px;height: 100px;"></td>
-        <td><%= product.shoename %></td>
-        <td><%= product.companyname %></td>
-        <td><%= product.size %></td>
-        <td><%= product.color %></td>
-        <td><%= product.category %></td>
-        <td><%= product.price %></td>
-        <td><%= product.StockCount %></td>
-        <td>
-            <a href="/product/edit-pro/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button" onclick="myFunction(this.id)">Edit</button></a><br>
+      <a href="/product/AddProduct"> <button type="button" class="btn btn-success mt-4">Add Product</button></a>
+      <a href="/category/AddCategory"> <button type="button" class="btn btn-success mt-4">Add Category</button></a>
+      <% products.forEach(function(product, i){ %>
+        <tr>
+          <!-- <th scope="row"> <%= i+1 %></th> -->
+          <td class="product-images"><img src="/product-images/<%= product.productImage[0] %>" alt="no"
+              style="width: 100px;height: 100px;"></td>
+          <td>
+            <%= product.shoename %>
+          </td>
+          <td>
+            <%= product.companyname %>
+          </td>
+          <td>
+            <%= product.size %>
+          </td>
+          <td>
+            <%= product.color %>
+          </td>
+          <td>
+            <%= product.category %>
+          </td>
+          <td>
+            <%= product.price %>
+          </td>
+          <td>
+            <%= product.StockCount %>
+          </td>
+          <td>
+            <a href="/product/edit-pro/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button"
+                onclick="myFunction(this.id)">Edit</button></a><br>
 
-            
-             
-              <button type="button" class="badge bg-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 30px;" onclick="isIdPass('<%= product._id %>','<%= product.price %>','<%= product.shoename %>')">CreateOffer</button>
-     
-            
+
+
+            <button type="button" class="badge bg-dark" data-toggle="modal" data-target="#exampleModal"
+              data-whatever="@mdo" style="margin-top: 30px;"
+              onclick="isIdPass('<%= product._id %>','<%= product.price %>','<%= product.shoename %>')">CreateOffer</button>
+
+
             <form action="/product/delete-pro/<%= product._id %>" method="post">
-            <input name="stock" value="<%= product.productstock %>" hidden>
-            <% if (product.productstock) { %>
-            <button type="submit" class="btn btn-danger mt-3">Unlist</button>
-            <% } else { %>
-            <button type="submit" class="btn btn-success">List</button>
+              <input name="stock" value="<%= product.productstock %>" hidden>
+              <% if (product.productstock) { %>
+                <button type="submit" class="btn btn-danger mt-3">Unlist</button>
+                <% } else { %>
+                  <button type="submit" class="btn btn-success">List</button>
 
-            <% } %>
-        </td>
-      </form>
-      </tr>
-      <% }); %>
+                  <% } %>
+          </td>
+          </form>
+        </tr>
+        <% }); %>
     </tbody>
   </table>
 </section>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> <P>RODUCT OFFER</P></h5>
+        <h5 class="modal-title" id="exampleModalLabel">
+          <P>RODUCT OFFER</P>
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form action="/product/AddProductOffer" method="post">
-    
+
           <div class="row mb-3">
             <label for="inputPassword" class="col-sm-2 col-form-label" on>Discount</label>
             <div class="col-sm-10">
-                <input type="number" name="Discount"  class="form-control" min="1" id="productDiscount" oninput="return productDiscount()" required>
-                <input type="text" name="proID" id="proID" value="" hidden>
-                <input type="text" name="price" id="price" value="" hidden>
-                <input type="text" name="shoename" id="shoename" value="" hidden>   
-                <span id="productDiscount-Error" style="color: red;"></span>
+              <input type="number" name="Discount" class="form-control" min="1" id="productDiscount"
+                oninput="return productDiscount()" required>
+              <input type="text" name="proID" id="proID" value="" hidden>
+              <input type="text" name="price" id="price" value="" hidden>
+              <input type="text" name="shoename" id="shoename" value="" hidden>
+              <span id="productDiscount-Error" style="color: red;"></span>
             </div>
-        </div> 
-        <div class="row mb-3">
+          </div>
+          <div class="row mb-3">
             <label for="inputDate" class="col-sm-2 col-form-label">End Date</label>
             <div class="col-sm-10">
-                <input type="date" name="EndDate" class="form-control" required>
+              <input type="date" name="EndDate" class="form-control" required>
             </div>
-        </div>
+          </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-secondary" onclick="return productOfferSubmit()">AddOffer</button>
             <span id="productSubmit-Error" style="color: red;"></span>
           </div>
         </form>
       </div>
-     
+
     </div>
   </div>
 </div>
 </section>
 <script>
-function isIdPass(proID,price,shoename){
-    
-  console.log(proID);
-  document.getElementById('proID').value = proID
-  document.getElementById('price').value = price
-  document.getElementById('shoename').value = shoename
+  function isIdPass(proID, price, shoename) {
+
+    console.log(proID);
+    document.getElementById('proID').value = proID
+    document.getElementById('price').value = price
+    document.getElementById('shoename').value = shoename
 
   }
-</script>          
+</script>
 
 
 <script src="/js/validation.js"></script>
 <script>
 
-  
-    let  categoryIput = document.getElementById("productDiscount");
-       categoryIput.addEventListener('keypress', (event)=>{    
-         if(event.code=== "Space"){
-          event.preventDefault(); 
-        }
-       
-    })
-    
-    </script>
+
+  let categoryIput = document.getElementById("productDiscount");
+  categoryIput.addEventListener('keypress', (event) => {
+    if (event.code === "Space") {
+      event.preventDefault();
+    }
+
+  })
+
+</script>

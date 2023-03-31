@@ -1,14 +1,16 @@
 <!doctype html>
 <html class="no-js" lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Gota eCommerce HTML5 Template</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/style.css">   
-    </head>
-    <body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gota eCommerce HTML5 Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
 
     <!-- header area start -->
     <header class="header-area">
@@ -21,9 +23,9 @@
                                 <li><a href="#">usd<i class="fal fa-chevron-down"></i></a>
                                      <li><a href="#">euro</a></li>
                                     </ul><ul class="additional_dropdown"> -->
-                                       
-                                <!-- </li> -->
-                                <!-- <li><a href="#">english<i class="fal fa-chevron-down"></i></a>
+
+                            <!-- </li> -->
+                            <!-- <li><a href="#">english<i class="fal fa-chevron-down"></i></a>
                                     <ul class="additional_dropdown">
                                         <li><a href="#">frences</a></li>
                                         <li><a href="#">japanes</a></li>
@@ -35,7 +37,7 @@
                     <div class="col-xl-4 offset-xl-5 col-lg-6 col-md-6 col-sm-6 text-end">
                         <div class="gota_right">
                             <ul>
-                                 <li><a href="/Wallet">wallet</a></li>
+                                <li><a href="/Wallet">wallet</a></li>
                                 <li><a href="/Address">Address</a></li>
                                 <!-- <li><a href="checkout.html">Checkout</a></li> -->
                                 <li><a href="/LoginandSignupButton">Login & register</a></li>
@@ -154,15 +156,15 @@
                                     <li><a class="d-none d-xl-block" href="index.html">
                                             <img class="pl-50 pr-50" src="/img/gallary/logo/logo-1.png" alt="">
                                         </a></li>
-                                        <li class=""><a href="/WishlistPage">Wishlist</a>
-                                            <!-- <ul class="sub-menu">
+                                    <li class=""><a href="/WishlistPage">Wishlist</a>
+                                        <!-- <ul class="sub-menu">
                                                 <li><a href="blog-grid.html">Blog Grid</a></li>
                                                 <li><a href="blog-large.html">Blog large</a></li>
                                                 <li><a href="blog-left.html">Blog left</a></li>
                                                 <li><a href="blog-right.html">Blog Right</a></li>
                                                 <li><a href="blog-no-sidebar.html">Blog no sidebar</a></li>
                                             </ul> -->
-                                        </li>
+                                    </li>
                                     <li class=""><a href="/AllCoupons">Offer</a>
                                         <!-- <ul class="sub-menu">
                                                        <li><a href="about.html">about us</a></li>
@@ -186,7 +188,8 @@
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4">
                         <div class="gota_cart gotat_cart_1 text-end">
-                            <a href="/CartPage"><i class="fal fa-shopping-cart"></i>My Bag<span class="counter"></span></a>
+                            <a href="/CartPage"><i class="fal fa-shopping-cart"></i>My Bag<span
+                                    class="counter"></span></a>
                         </div>
                     </div>
                 </div>
@@ -202,14 +205,14 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                     <div class="breadcrumb-area text-center">
                         <h2 class="page-title">My account</h2>
-                            <div class="breadcrumb-menu">
+                        <div class="breadcrumb-menu">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb justify-content-center">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                     <li class="breadcrumb-item"><a href="login.html">My account</a></li>
                                 </ol>
                             </nav>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -226,80 +229,89 @@
                     <h3 class="title-7">Login</h3>
                     <div class="login_wrapper">
                         <% if(locals.error) { %>
-                            <div class="alert alert-danger" role="alert"><%= error %></div>
-                            <% } %>
-                        <form action="/Userlogin" method="post">
+                            <div class="alert alert-danger" role="alert">
+                                <%= error %>
+                            </div>
+                                     <% } %>
+                                <form action="/Userlogin" method="post">
+                                    <div class="input_wrap">
+                                        <label>email address<span>*</span></label>
+                                        <input type="email" name="email" class="form-control">
+                                    </div>
+                                    <div class="input_wrap">
+                                        <label>Password<span>*</span></label>
+                                        <input type="password" name="password" class="form-control">
+                                        <span class="show-pass"><i class=""></i></span>
+                                    </div>
+                                    <div class="input_wrapp-2">
+                                        <input type="checkbox" name="check">
+                                        <span>Remember me </span>
+                                    </div>
+                                    <div class="input_wrap">
+                                        <button type="submit">log in</button>
+                                    </div>
+                                    <div class="input_wrap">
+                                        <a href="/OTPlogin"><button type="button">log in with PhoneNumber</button></a>
+                                    </div>
+                                    <div class="input_wrap">
+                                        <a href="#">Lost your password?</a>
+                                    </div>
+                                </form>
+                    </div>
+                </div>
+                <!-- user login End -->
+
+                <!-- use signup -->
+
+                <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
+                    <h3 class="title-7">register</h3>
+                    <div class="login_wrapper login_wrapper_2">
+                        <form action="/UserRegister" method="post">
                             <div class="input_wrap">
-                                <label>email address<span>*</span></label>
-                                <input type="email" name="email" class="form-control">
+                                <label>Username<span>*</span></label>
+                                <input type="text" name="name" class="form-control" id="check-name"
+                                    oninput="return validateName()" required>
+                                <span id="name-error"></span>
+                            </div>
+
+                            <div class="input_wrap">
+                                <label>Email address<span>*</span></label>
+                                <input type="email" name="email" class="form-control" id="check-email"
+                                    oninput="return validateEmail()" required>
+                                <span id="email-error"></span>
                             </div>
                             <div class="input_wrap">
                                 <label>Password<span>*</span></label>
-                                <input type="password" name="password" class="form-control">
-                                <span class="show-pass"><i class=""></i></span>
+                                <input type="password" name="password" class="form-control" id="check-password"
+                                    required>
+                                <span id="password-error"></span>
+
                             </div>
-                            <div class="input_wrapp-2">
-                                <input type="checkbox" name="check">
-                                <span>Remember me </span>
+
+                            <div class="input_wrap">
+                                <label>Confirm Password<span>*</span></label>
+                                <input type="password" class="form-control" id="check-confirmpassword"
+                                    oninput="return validateConfirmPassword()" required>
+                                <span id="confirmpassword-error"></span>
                             </div>
                             <div class="input_wrap">
-                                <button type="submit">log in</button>
+                                <label>Phone<span>*</span></label>
+                                <input type="text" class="form-control" name="phone" id="check-phone"
+                                    oninput="return validatephonenumber()" required>
+                                <span id="phone-error"></span>
                             </div>
-                            <div class="input_wrap">
-                                <a href="/OTPlogin"><button type="button">log in with PhoneNumber</button></a>
-                            </div>
-                            <div class="input_wrap">
-                                <a href="#">Lost your password?</a>
+
+                            <p style="color: red;"></p>
+                            <div class="input_wrap input_wrap_3">
+
+                                <button type="submit" id="check-submit"
+                                    onclick="return validateForm()">register</button>
+
+                                <span id="submit-error"></span>
                             </div>
                         </form>
                     </div>
                 </div>
-     <!-- user login End -->
-
-     <!-- use signup -->
-
-     <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12">
-        <h3 class="title-7">register</h3>
-        <div class="login_wrapper login_wrapper_2">
-            <form action="/UserRegister" method="post">
-                <div class="input_wrap">
-                    <label>Username<span>*</span></label>
-                    <input type="text" name="name" class="form-control" id="check-name" oninput="return validateName()" required>
-                    <span id="name-error"></span>
-                </div>
-                
-                <div class="input_wrap">
-                    <label>Email address<span>*</span></label>
-                    <input type="email" name="email" class="form-control" id="check-email" oninput="return validateEmail()" required>
-                    <span id="email-error"></span>
-                </div>
-                <div class="input_wrap">
-                    <label>Password<span>*</span></label>
-                    <input type="password" name="password" class="form-control" id="check-password" required>
-                    <span id="password-error"></span>
-                    
-                </div>
-
-                <div class="input_wrap">
-                    <label>Confirm Password<span>*</span></label>
-                    <input type="password"class="form-control" id="check-confirmpassword" oninput="return validateConfirmPassword()" required>
-                    <span id="confirmpassword-error"></span>
-                </div>
-                <div class="input_wrap">
-                    <label>Phone<span>*</span></label>
-                    <input type="text"class="form-control" name="phone" id="check-phone" oninput="return validatephonenumber()" required>
-                    <span id="phone-error"></span>
-                </div>
-                
-                <p  style="color: red;"></p>
-                <div class="input_wrap input_wrap_3">
-                  
-                    <button type="submit" id="check-submit" onclick="return validateForm()">register</button>
-        
-                    <span id="submit-error"></span>
-                </div>
-            </form>
-        </div>
-    </div>      
 </body>
+
 </html>

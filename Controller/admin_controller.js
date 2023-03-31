@@ -1,423 +1,445 @@
-const {doAdminSignup,getAllUsers,removeProduct,userBlock,adminAddBanner, getAllBanners,editBanners,adminBannerEdit,totalSales,todayOrders,thisWeekOrders,thisMonthOrders,thisYearOrders,totalRevenues,todayRevenue,weekRevenue,yearRevenue,monthRevenue,adminDashboardChart,allSalesReport,addCoupons,allCouponDetails,getAllUsersDashboard,getAllProductOffer,getAllCategoryOffer,adminEditCoupon,adminEditedCoupon,adminDeleteCoupon}=require('../Model/admin-helpers')
+const { doAdminSignup, getAllUsers, removeProduct, userBlock, adminAddBanner, getAllBanners, editBanners, adminBannerEdit, totalSales, todayOrders, thisWeekOrders, thisMonthOrders, thisYearOrders, totalRevenues, todayRevenue, weekRevenue, yearRevenue, monthRevenue, adminDashboardChart, allSalesReport, addCoupons, allCouponDetails, getAllUsersDashboard, getAllProductOffer, getAllCategoryOffer, adminEditCoupon, adminEditedCoupon, adminDeleteCoupon } = require('../Model/admin-helpers')
 
-const {respons, response}=require('express');
+const { respons, response } = require('express');
 
 const { Result } = require('express-validator');
 
-const multer  = require('multer');
+const multer = require('multer');
 
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage: storage });
 
-module.exports={
+module.exports = {
 
-    adminLogin(req,res,next){
-          
+  adminLogin(req, res, next) {
+
+    res.render('adminviews/adminlogin');
+
+  },
+  adminRegisterd(req, res, next) {
+    try {
+      doAdminSignup(req.body).then((adminData) => {
+        totalSales().then((TotalSales) => {
+          todayOrders().then((TodaySales) => {
+            thisWeekOrders().then((WeekSales) => {
+              thisMonthOrders().then((MonthSales) => {
+                thisYearOrders().then((YearSales) => {
+                  totalRevenues().then((TotalRevenue) => {
+                    todayRevenue().then((TodayRevenue) => {
+                      weekRevenue().then((WeekRevenue) => {
+                        yearRevenue().then((YearRevenue) => {
+                          monthRevenue().then((MonthRevenue) => {
+                            adminDashboardChart().then((data) => {
+                              getAllUsersDashboard().then((usersdashboard) => {
+                                console.log(TotalSales);
+                                console.log(adminData);
+                                res.render('adminviews/admindashboard', { user: false, TotalSales, TodaySales, WeekSales, MonthSales, YearSales, TotalRevenue, TodayRevenue, WeekRevenue, YearRevenue, MonthRevenue, data, usersdashboard });
+                              }).catch((error) => {
+                                console.error(error);
+                                res.render('adminviews/adminlogin');
+                              });
+                            }).catch((error) => {
+                              console.error(error);
+                              res.render('adminviews/adminlogin');
+                            });
+                          }).catch((error) => {
+                            console.error(error);
+                            res.render('adminviews/adminlogin');
+                          });
+                        }).catch((error) => {
+                          console.error(error);
+                          res.render('adminviews/adminlogin');
+                        });
+                      }).catch((error) => {
+                        console.error(error);
+                        res.render('adminviews/adminlogin');
+                      });
+                    }).catch((error) => {
+                      console.error(error);
+                      res.render('adminviews/adminlogin');
+                    });
+                  }).catch((error) => {
+                    console.error(error);
+                    res.render('adminviews/adminlogin');
+                  });
+                }).catch((error) => {
+                  console.error(error);
+                  res.render('adminviews/adminlogin');
+                });
+              }).catch((error) => {
+                console.error(error);
+                res.render('adminviews/adminlogin');
+              });
+            }).catch((error) => {
+              console.error(error);
+              res.render('adminviews/adminlogin');
+            });
+          }).catch((error) => {
+            console.error(error);
+            res.render('adminviews/adminlogin');
+          });
+        }).catch((error) => {
+          console.error(error);
+          res.render('adminviews/adminlogin');
+        });
+      }).catch((error) => {
+        console.error(error);
         res.render('adminviews/adminlogin');
-         
-    },
-    adminRegisterd(req,res,next){
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  allUsers(req, res, next) {
+    try {
+      getAllUsers().then((users) => {
+        res.render('adminviews/adminAllUsers', { users, user: false });
+      });
+    } catch (error) {
+      console.log(error);
+      res.render('adminviews/errorPage', { errorMessage: 'Error fetching all users' });
+    }
+  },
 
-      doAdminSignup(req.body).then((adminData)=>{
+  deleteProduct(req, res) {
+    try {
+      let deleteid = req.params.id;
+      removeProduct(deleteid).then((response) => {
+        res.redirect('/admin/Stocks');
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Error deleting product');
+    }
+  },
 
-        totalSales().then((TotalSales)=>{
+  blockManagement(req, res) {
+    try {
+      userBlock(req.params.id, req.body.status).then(() => {
+        res.redirect('/admin/AllUsers');
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Error blocking/unblocking user');
+    }
+  },
 
-          todayOrders().then((TodaySales)=>{
-     
-            thisWeekOrders().then((WeekSales)=>{
-      
-              thisMonthOrders().then((MonthSales)=>{
-      
-                thisYearOrders().then((YearSales)=>{
 
-                  totalRevenues().then((TotalRevenue)=>{
+  dashboard(req, res) {
 
-                    todayRevenue().then((TodayRevenue)=>{
+    try {
+      totalSales().then((TotalSales) => {
 
-                      weekRevenue().then((WeekRevenue)=>{
+        todayOrders().then((TodaySales) => {
 
-                        yearRevenue().then((YearRevenue)=>{
+          thisWeekOrders().then((WeekSales) => {
 
-                          monthRevenue().then((MonthRevenue)=>{
-                             
-                            adminDashboardChart().then((data)=>{
+            thisMonthOrders().then((MonthSales) => {
 
-                              getAllUsersDashboard().then((usersdashboard)=>{
+              thisYearOrders().then((YearSales) => {
+
+                totalRevenues().then((TotalRevenue) => {
+
+                  todayRevenue().then((TodayRevenue) => {
+
+                    weekRevenue().then((WeekRevenue) => {
+
+                      yearRevenue().then((YearRevenue) => {
+
+                        monthRevenue().then((MonthRevenue) => {
+
+                          adminDashboardChart().then((data) => {
+
+                            getAllUsersDashboard().then((usersdashboard) => {
 
                               console.log(TotalSales);
 
-                              console.log(adminData);
-                  
-                              res.render('adminviews/admindashboard',{user:false,TotalSales,TodaySales,WeekSales,MonthSales,YearSales,TotalRevenue,TodayRevenue,WeekRevenue,YearRevenue,MonthRevenue,data,usersdashboard})
-                
-                              }).catch((error)=>{
-          
-                                res.render('adminviews/adminlogin')
-      
-                                  })
-
-                                })
+                              res.render('adminviews/admindashboard', { user: false, TotalSales, TodaySales, WeekSales, MonthSales, YearSales, TotalRevenue, TodayRevenue, WeekRevenue, YearRevenue, MonthRevenue, data, usersdashboard })
                             })
-                                     
-                     
 
-                        
+
+                          }).catch((error) => {
+
+                            console.log(error);
+                            res.status(500).send('Internal Server Error');
+                          })
                         })
 
-                          })
 
-                          
-                       
+
 
                       })
-                      
-                    
 
                     })
-           
-               
-      
-        
-                })
-      
-            })
-      
-         }) 
-          
-      
-      })
-            
-          
 
-        })
-        })
-    },
-    allUsers(req,res,next){
-          
-      getAllUsers().then((users)=>{
-      
-        res.render('adminviews/adminAllUsers',{users,user:false})
-     })
-        
-    },
-   
-  
 
-   
-   
 
-   
 
-   deleteProduct(req,res){
-
-    let deleteid=req.params.id
-    removeProduct(deleteid).then((response)=>{
-
-      res.redirect('/admin/Stocks')
-    })
-   },
-
-   
-   
-   
-  
-  
-
-  
-   blockManagement(req,res){
-
-    userBlock(req.params.id,req.body.status).then(()=>{
-      
-      res.redirect('/admin/AllUsers')
-
-    })
-   },
-  
-   
-   
-  
-   
-   dashboard(req,res){
-
-   
-    totalSales().then((TotalSales)=>{
-
-      todayOrders().then((TodaySales)=>{
-     
-        thisWeekOrders().then((WeekSales)=>{
-
-          thisMonthOrders().then((MonthSales)=>{
-
-            thisYearOrders().then((YearSales)=>{
-     
-              totalRevenues().then((TotalRevenue)=>{
-
-                todayRevenue().then((TodayRevenue)=>{
-
-                  weekRevenue().then((WeekRevenue)=>{
-
-                    yearRevenue().then((YearRevenue)=>{
-
-                     monthRevenue().then((MonthRevenue)=>{
-                       
-                      adminDashboardChart().then((data)=>{
-                         
-                        getAllUsersDashboard().then((usersdashboard)=>{
-
-                          console.log(TotalSales);
-
-                          res.render('adminviews/admindashboard',{user:false,TotalSales,TodaySales,WeekSales,MonthSales,YearSales,TotalRevenue,TodayRevenue,WeekRevenue,YearRevenue,MonthRevenue,data,usersdashboard})
-                        })
-              
-          
-                        }).catch((error)=>{
-    
-                         console.log(error);
-
-                            })
-                      })
-                               
-               
-
-                  
                   })
 
-                    })
 
-                    
-                 
 
                 })
-                
-              
+
+
+
 
               })
-     
-         
-
-  
-          })
 
             })
 
-  
+
           })
 
+        })
+
       })
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Internal Server Error');
+    }
 
-      }) 
-     
-    
-   },
-   addBanner(req,res){
-     
-    let users=req.session.users
+  },
 
-    getAllBanners().then((Banners)=>{
+  addBanner(req, res) {
+    let users = req.session.users;
+    try {
+      getAllBanners().then((Banners) => {
+        res.render('adminviews/AddBanner', { user: false, users, Banners });
+      });
+    } catch (error) {
+      console.log(error);
+      res.render('adminviews/AddBanner', { user: false, users, Banners: [] });
+    }
+  },
 
-      res.render('adminviews/AddBanner',{user:false,users,Banners})
-    
-    })
+  addedBanner(req, res) {
+    try {
+      var image = req.files.Image;
+      console.log(req.body, "++++++++++++++++++++++++++++");
+      console.log(req.files, "}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
 
-   
+      adminAddBanner(req.body).then((data) => {
+        image.mv('./public/Banner-images/' + data.id + '.jpg', (err, done) => {
+          if (err) {
+            console.log(err);
+            throw err;
+          } else {
+            res.redirect('/admin/Banner');
+          }
+        });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  editBanner(req, res) {
 
+    let productid = req.params.id
 
-   },
-   addedBanner(req,res){
-    
-    var image=req.files.Image
-    console.log(req.body,"++++++++++++++++++++++++++++");
-
-    console.log(req.files,"}}}}}}}}}}}}}}}}}}}}}}}}}}}}}");
-    
-    adminAddBanner(req.body).then((data)=>{
-      
-      image.mv('./public/Banner-images/'+data.id+'.jpg',(err,done)=>{
-      
-        if(err){
-          console.log(err);
-
-        }else{
-          res.redirect('/admin/Banner')
-        }
+    try {
+      editBanners(productid).then((product) => {
+        res.render('adminviews/EditBanner', { user: false, product })
+      }).catch((error) => {
+        console.log(error)
+        res.redirect('/admin/Banner')
       })
-      
-       
-    })
-
-   },
-   editBanner(req,res){
-    
-    let productid=req.params.id
-    editBanners(productid).then((product)=>{
-      
-      res.render('adminviews/EditBanner',{user:false,product})
-
-    })
-   
-
-   },
-   editedBanner(req,res){
-    
-    let id=req.params.id
-    console.log(id+"||||||||||||||||||||||||||||||||||||||");
-    adminBannerEdit(req.params.id,req.body).then(()=>{
-      
-           
+    } catch (error) {
+      console.log(error)
       res.redirect('/admin/Banner')
-      
+    }
+
+  },
+
+  editedBanner(req, res) {
+    try {
+      let id = req.params.id
+      console.log(id + "||||||||||||||||||||||||||||||||||||||");
+      adminBannerEdit(req.params.id, req.body).then(() => {
+
+        res.redirect('/admin/Banner')
+
         console.log(req.file);
-         if(req.files?.Image){
+        if (req.files?.Image) {
 
-        var image=req.files.Image
-        image.mv('./public/Banner-images/'+id+'.jpg')
+          var image = req.files.Image
+          image.mv('./public/Banner-images/' + id + '.jpg')
 
-         }
-
-    })
-
-
-   },
-   todayOrderList(req,res){
-     
-   
-
-    todayOrders().then((response)=>{
-
-    console.log(response);
-      // res.redirect('/admin/dashboard')
-         
-      res.json(response)
-
-     })
-      
-
-   },
-   weekSales(req,res){
-
-    thisWeekOrders().then(()=>{
-     
-      res.redirect('/admin/dashboard')
-
-    })
-   },
-   monthSales(req,res){
-
-    thisMonthOrders().then(()=>{
-
-      res.redirect('/admin/dashboard')
-    })
-
-   },
-   yearSales(req,res){
-
-    thisYearOrders().then(()=>{
-     
-      res.redirect('/admin/dashboard')
-      
-    })
-   },
-   totalRevenue(req,res){
-    
-    totalRevenues().then((TotalRevenue)=>{
-
-      res.redirect('/admin/adminLoged')
-    })
-
-   },
-   salesReport(req,res){
-    
-    allSalesReport().then((salesReport)=>{
-
-     
-      res.render('adminviews/SalesReport',{user:false,salesReport})
-
-    })
-  
-
-   },
-   addCoupon(req,res){
-
-    res.render('adminviews/AddCoupon',{user:false})
-   },
-   addedCoupon(req,res){
-       
-    
-    addCoupons(req.body).then(()=>{
-         
-      allCouponDetails().then((Coupons)=>{
-      
-       
-            
-    
-       res.render('adminviews/Coupons',{user:false,Coupons})
+        }
 
       })
-    })
-   },
-   allCoupons(req,res){
-
-    allCouponDetails().then((Coupons)=>{
-      
-      res.render('adminviews/Coupons',{user:false,Coupons})
-          
-    })
-   },
-   allOffers(req,res){
-    
-    getAllProductOffer().then((ProductOffer)=>{
-
-    res.render('adminviews/Offers',{user:false,ProductOffer})
-
-  })
-   },
-   
-  
-   categoryOffer(req,res){
-       
-    let users = req.session.users
-    res.render('adminviews/CategoryOffer',{user:true,users})
-   },
-   showProductOffer(req,res){
-
-    getAllProductOffer().then((ProductOffer)=>{
-  
-      
-      res.render('adminviews/Offers',{user:false,ProductOffer})
-  
-  
-    })
+    } catch (err) {
+      console.log(err)
+      res.status(500).send('Internal server error')
+    }
   },
-  showCategoryOffer(req,res){
-
-    getAllCategoryOffer().then((CategoryOffer)=>{
-
-      res.render('adminviews/ShowCategoryOffer',{user:false,CategoryOffer})
-
-    })
+  todayOrderList(req, res) {
+    try {
+      todayOrders().then((response) => {
+        console.log(response);
+        res.json(response)
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
   },
-  editCoupon(req,res){
-
-    adminEditCoupon(req.params.id).then((coupon)=>{
-    
-      res.render('adminviews/EditCoupon',{user:false,coupon})
-
-    })
+  weekSales(req, res) {
+    try {
+      thisWeekOrders().then(() => {
+        res.redirect('/admin/dashboard')
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
   },
-  editedCoupon(req,res){
-
-    adminEditedCoupon(req.params.id,req.body).then(()=>{
-
-      res.redirect('/admin/AllCoupons')
-    })
+  monthSales(req, res) {
+    try {
+      thisMonthOrders().then(() => {
+        res.redirect('/admin/dashboard')
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
   },
-  deleteCoupon(req,res){
+  yearSales(req, res) {
+    try {
+      thisYearOrders().then(() => {
+        res.redirect('/admin/dashboard')
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  totalRevenue(req, res) {
+    try {
+      totalRevenues().then((TotalRevenue) => {
+        res.redirect('/admin/adminLoged')
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  salesReport(req, res) {
+    try {
+      allSalesReport().then((salesReport) => {
+        res.render('adminviews/SalesReport', { user: false, salesReport })
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  addCoupon(req, res) {
+    try {
+      res.render('adminviews/AddCoupon', { user: false });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  addedCoupon(req, res) {
+    try {
+      addCoupons(req.body).then(() => {
+        allCouponDetails().then((Coupons) => {
+          res.render('adminviews/Coupons', { user: false, Coupons });
+        });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
 
-    adminDeleteCoupon(req.params.id).then((response)=>{
-     
-      res.redirect('/admin/AllCoupons')
+  allCoupons(req, res) {
+    try {
+      allCouponDetails().then((Coupons) => {
+        res.render('adminviews/Coupons', { user: false, Coupons });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  allOffers(req, res) {
+    try {
+      getAllProductOffer().then((ProductOffer) => {
+        res.render('adminviews/Offers', { user: false, ProductOffer });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
 
-    })
+  categoryOffer(req, res) {
+    try {
+      let users = req.session.users
+      res.render('adminviews/CategoryOffer', { user: true, users });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  showProductOffer(req, res) {
+    try {
+      getAllProductOffer().then((ProductOffer) => {
+        res.render('adminviews/Offers', { user: false, ProductOffer });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    }
+  },
+  showCategoryOffer(req, res) {
+    try {
+      getAllCategoryOffer().then((CategoryOffer) => {
+        res.render('adminviews/ShowCategoryOffer', { user: false, CategoryOffer });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Error occurred while retrieving category offer details.");
+    }
+  },
+
+  editCoupon(req, res) {
+    try {
+      adminEditCoupon(req.params.id).then((coupon) => {
+        res.render('adminviews/EditCoupon', { user: false, coupon });
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Error occurred while editing coupon.");
+    }
+  },
+
+  editedCoupon(req, res) {
+    try {
+      adminEditedCoupon(req.params.id, req.body).then(() => {
+        res.redirect('/admin/AllCoupons');
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Error occurred while updating coupon details.");
+    }
+  },
+
+  deleteCoupon(req, res) {
+    try {
+      adminDeleteCoupon(req.params.id).then((response) => {
+        res.redirect('/admin/AllCoupons');
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).send("Error occurred while deleting coupon.");
+    }
   }
+
 }

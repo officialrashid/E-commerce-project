@@ -1,112 +1,132 @@
-<% if (Coupons.length > 0) { %>
-<section id="footer" class="mt-5">
+<% if (Coupons.length> 0) { %>
+  <section id="footer" class="mt-5">
     <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">CouponCode</th>
-            <th scope="col">CouponName</th>
-            <th scope="col">Discount</th>
-            <th scope="col">StartDate</th>
-            <th scope="col">EndDate</th>
-            <th scope="col">MinimumPrice</th>
-            <th scope="col">MaxPrice</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-            <% Coupons.forEach(function(Coupon, i){ %>
-          <tr >
-        
-          
-            <td><%= Coupon.Code %></td>
-            <td><%= Coupon.Name %></td>
-            <td><%= Coupon.Discounts %></td>
-            <td><%= Coupon.StartDates.toISOString().split('T')[0]; %></td>
-            <td><%= Coupon.EndDates.toISOString().split('T')[0]; %></td>
-            <td><%= Coupon.MinimumAmounts %></td>
-            <td><%= Coupon.MaximumAmounts %></td>
-          </tr>
-          <% }); %> 
-        </tbody>
-      </table>
-    </section>
-    <% } else { %>
-      <div class="container-fluid  mt-100">
-        <div class="row">
-        
-           <div class="col-md-12">
-           
-                   <div class="card">
-               <div class="card-header">
-               <h5></h5>
-               </div>
-               <div class="card-body cart">
-                       <div class="col-sm-12 empty-cart-cls text-center">
-                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSV8lEl0rpWCNRn00cAtxfvGsB9X_x1ZoDx-LdwBqgZ4jPGllSW8ex3Vi8Y_VrTT_E_0&usqp=CAU" style="width: 20%;">
+      <thead>
+        <tr>
+          <th scope="col">CouponCode</th>
+          <th scope="col">CouponName</th>
+          <th scope="col">Discount</th>
+          <th scope="col">StartDate</th>
+          <th scope="col">EndDate</th>
+          <th scope="col">MinimumPrice</th>
+          <th scope="col">MaxPrice</th>
 
-                           <h3><strong>NO Offer Available</strong></h3>
-                           <h4>Add something to make me happy :)</h4>
-                           <a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Go Back</a>
-                           
-                       
-                       </div>
-               </div>
-       </div>
-               
-           
-           </div>
-        
+        </tr>
+      </thead>
+      <tbody>
+        <% Coupons.forEach(function(Coupon, i){ %>
+          <tr>
+
+
+            <td>
+              <%= Coupon.Code %>
+            </td>
+            <td>
+              <%= Coupon.Name %>
+            </td>
+            <td>
+              <%= Coupon.Discounts %>
+            </td>
+            <td>
+              <%= Coupon.StartDates.toISOString().split('T')[0]; %>
+            </td>
+            <td>
+              <%= Coupon.EndDates.toISOString().split('T')[0]; %>
+            </td>
+            <td>
+              <%= Coupon.MinimumAmounts %>
+            </td>
+            <td>
+              <%= Coupon.MaximumAmounts %>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+  </section>
+  <% } else { %>
+    <div class="container-fluid  mt-100">
+      <div class="row">
+
+        <div class="col-md-12">
+
+          <div class="card">
+            <div class="card-header">
+              <h5></h5>
+            </div>
+            <div class="card-body cart">
+              <div class="col-sm-12 empty-cart-cls text-center">
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSV8lEl0rpWCNRn00cAtxfvGsB9X_x1ZoDx-LdwBqgZ4jPGllSW8ex3Vi8Y_VrTT_E_0&usqp=CAU"
+                  style="width: 20%;">
+
+                <h3><strong>NO Offer Available</strong></h3>
+                <h4>Add something to make me happy :)</h4>
+                <a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Go Back</a>
+
+
+              </div>
+            </div>
+          </div>
+
+
         </div>
-       
-       </div>
-       <style>
-        ; body{ background-color: #eee;
+
+      </div>
+
+    </div>
+    <style>
+      ;
+
+      body {
+        background-color: #eee;
         font-family: 'Calibri', sans-serif !important;
-    }
-    
-    .mt-100{
-       margin-top:100px;
-    
-    }
-    
-    
-    .card {
+      }
+
+      .mt-100 {
+        margin-top: 100px;
+
+      }
+
+
+      .card {
         margin-bottom: 30px;
         border: 0;
         -webkit-transition: all .3s ease;
         transition: all .3s ease;
         letter-spacing: .5px;
         border-radius: 8px;
-        -webkit-box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
-        box-shadow: 1px 5px 24px 0 rgba(68,102,242,.05);
-    }
-    
-    .card .card-header {
+        -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+        box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+      }
+
+      .card .card-header {
         background-color: #fff;
         border-bottom: none;
         padding: 24px;
         border-bottom: 1px solid #f6f7fb;
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
-    }
-    
-    .card-header:first-child {
+      }
+
+      .card-header:first-child {
         border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    }
-    
-    
-    
-    .card .card-body {
+      }
+
+
+
+      .card .card-body {
         padding: 30px;
         background-color: transparent;
-    }
-    
-    .btn-primary, .btn-primary.disabled, .btn-primary:disabled {
-        background-color: #4466f2!important;
-        border-color: #4466f2!important;
-    } 
-       </style>
+      }
+
+      .btn-primary,
+      .btn-primary.disabled,
+      .btn-primary:disabled {
+        background-color: #4466f2 !important;
+        border-color: #4466f2 !important;
+      }
+    </style>
     <% } %>
 
-</html>
-     
+      </html>

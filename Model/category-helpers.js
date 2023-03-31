@@ -1,169 +1,169 @@
-var db=require('./connectionmongo');
-var collection=require('./collections');
-var bcrypt=require('bcrypt');
+var db = require('./connectionmongo');
+var collection = require('./collections');
+var bcrypt = require('bcrypt');
 const { ObjectId } = require('mongodb');
 const { body } = require('express-validator');
 const { shippingStatus } = require('../Controller/admin_controller');
 const { promiseImpl } = require('ejs');
 
-module.exports={
+module.exports = {
 
-    getAllCategory:()=>{
+    getAllCategory: () => {
 
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
 
-            let getcategory=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+            let getcategory = await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
             resolve(getcategory)
         })
     },
-    addCategorys:(addcategory)=>{
-    
-        return new Promise(async(resolve,reject)=>{
+    addCategorys: (addcategory) => {
 
-     let category = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({name:addcategory.name})
-     console.log(category,"PPPPP))((");
-     if(!category){
+        return new Promise(async (resolve, reject) => {
 
-        db.get().collection(collection.CATEGORY_COLLECTION).insertOne(addcategory).then((addcategory)=>{
-    
-            resolve(addcategory)
-        })
-     }else{
+            let category = await db.get().collection(collection.CATEGORY_COLLECTION).findOne({ name: addcategory.name })
+            console.log(category, "PPPPP))((");
+            if (!category) {
 
+                db.get().collection(collection.CATEGORY_COLLECTION).insertOne(addcategory).then((addcategory) => {
 
-        reject({error:'Category Already use'})
-     }
-         
-   
-    
-        })
-           
-    
-        },
-        adminCategoryEdit:(categoryid)=>{
-      
-            return new Promise((resolve,reject)=>{
-                db.get().collection(collection.CATEGORY_COLLECTION).findOne({_id:ObjectId(categoryid)}).then((categoryEdit)=>{
-    
-                    resolve(categoryEdit)
+                    resolve(addcategory)
                 })
+            } else {
+
+
+                reject({ error: 'Category Already use' })
+            }
+
+
+
+        })
+
+
+    },
+    adminCategoryEdit: (categoryid) => {
+
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.CATEGORY_COLLECTION).findOne({ _id: ObjectId(categoryid) }).then((categoryEdit) => {
+
+                resolve(categoryEdit)
             })
-        
-        },
-        categoryEdit:(EditCategoryId,catID)=>{
-       
-            return new Promise((resolve,reject)=>{
-    
-                db.get().collection(collection.CATEGORY_COLLECTION)
-                .updateOne({_id:ObjectId(EditCategoryId)},{
-    
-                    $set:{
-                        
-                        name:catID.name
-                        
-    
-    
+        })
+
+    },
+    categoryEdit: (EditCategoryId, catID) => {
+
+        return new Promise((resolve, reject) => {
+
+            db.get().collection(collection.CATEGORY_COLLECTION)
+                .updateOne({ _id: ObjectId(EditCategoryId) }, {
+
+                    $set: {
+
+                        name: catID.name
+
+
+
                     }
-                }).then((response)=>{
-    
+                }).then((response) => {
+
                     resolve()
                 })
-            })
-    
-        },
-        removeCategory:(deleteCategoryid)=>{
-      
-            return new Promise((resolve,reject)=>{
-    
-                db.get().collection(collection.CATEGORY_COLLECTION).deleteOne({_id:ObjectId(deleteCategoryid)}).then((response)=>{
-    
-                    resolve(response)
-    
-                })
-            })
-    
-        },
-        filterByCategory:(proCategory)=>{
+        })
 
-            return new Promise(async(resolve,reject)=>{
-    
-                let ShowProducts=await db.get().collection(collection.PRODUCT_COLLECTION).find({category:proCategory.name}).toArray()
-                 
-                resolve(ShowProducts)
-            }).catch((error)=>{
-    
-                reject()
+    },
+    removeCategory: (deleteCategoryid) => {
+
+        return new Promise((resolve, reject) => {
+
+            db.get().collection(collection.CATEGORY_COLLECTION).deleteOne({ _id: ObjectId(deleteCategoryid) }).then((response) => {
+
+                resolve(response)
+
             })
-        },
-        getCategory:()=>{
-         
-            return new Promise(async(resolve,reject)=>{
-    
-            
-            let getCategoryData=await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
+        })
+
+    },
+    filterByCategory: (proCategory) => {
+
+        return new Promise(async (resolve, reject) => {
+
+            let ShowProducts = await db.get().collection(collection.PRODUCT_COLLECTION).find({ category: proCategory.name }).toArray()
+
+            resolve(ShowProducts)
+        }).catch((error) => {
+
+            reject()
+        })
+    },
+    getCategory: () => {
+
+        return new Promise(async (resolve, reject) => {
+
+
+            let getCategoryData = await db.get().collection(collection.CATEGORY_COLLECTION).find().toArray()
             resolve(getCategoryData)
-            
-    
-            }).catch((error)=>{
-    
-             reject()
-            })
-           
-        },
-        insertCategoryOffer:(catID)=>{
 
-            catID.EndDate = new Date(catID.EndDate)
-            catID.Discount = parseInt(catID.Discount)
-            return new Promise((resolve,reject)=>{
-              
-            db.get().collection(collection.CATEGORYOFFER_COLLECTION).insertOne(catID).then((catoffer)=>{
 
-            resolve(catoffer)
-            })
+        }).catch((error) => {
 
-           
+            reject()
+        })
 
-            })
-        },
-        makeCategoryOffer:(catID)=>{
-            
-            let catname =catID.categoryname
-             catID.Discount = parseInt(catID.Discount)
-             let Discount = catID.Discount
-             
-          
+    },
+    insertCategoryOffer: (catID) => {
 
-                return new Promise(async (resolve, reject) => {
-           
-                    var offers = await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([
-                        {
-                            $match: { category: catname}
-                        },
-                        {
-                            $project: { price: 1 }
-                        },
-        
-                        {
-                            $addFields: {
-                                offer: { $subtract: ['$price', { $divide: [{ $multiply: ['$price', Discount] }, 100] }] }
-        
-                            }
-                        }
-                        
-                    ]).toArray()
-                    console.log(offers);
-                   offers.forEach(element => {
-                        db.get().collection(collection.PRODUCT_COLLECTION).updateMany({_id:element._id},{
-                        $set:{
-                          catoffer:element.offer
-                        }
-                      }).then((catoffer)=>{
+        catID.EndDate = new Date(catID.EndDate)
+        catID.Discount = parseInt(catID.Discount)
+        return new Promise((resolve, reject) => {
 
-                        resolve()
-                      })
-                    
-                      });
+            db.get().collection(collection.CATEGORYOFFER_COLLECTION).insertOne(catID).then((catoffer) => {
+
+                resolve(catoffer)
             })
 
-        }
+
+
+        })
+    },
+    makeCategoryOffer: (catID) => {
+
+        let catname = catID.categoryname
+        catID.Discount = parseInt(catID.Discount)
+        let Discount = catID.Discount
+
+
+
+        return new Promise(async (resolve, reject) => {
+
+            var offers = await db.get().collection(collection.PRODUCT_COLLECTION).aggregate([
+                {
+                    $match: { category: catname }
+                },
+                {
+                    $project: { price: 1 }
+                },
+
+                {
+                    $addFields: {
+                        offer: { $subtract: ['$price', { $divide: [{ $multiply: ['$price', Discount] }, 100] }] }
+
+                    }
+                }
+
+            ]).toArray()
+            console.log(offers);
+            offers.forEach(element => {
+                db.get().collection(collection.PRODUCT_COLLECTION).updateMany({ _id: element._id }, {
+                    $set: {
+                        catoffer: element.offer
+                    }
+                }).then((catoffer) => {
+
+                    resolve()
+                })
+
+            });
+        })
+
+    }
 }

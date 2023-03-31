@@ -1,195 +1,209 @@
-const {respons, response}=require('express');
+const { respons, response } = require('express');
 
-const {userOrderDetails,productView,adminOrderCancellled,shippingDetail,orderDetails,orderCancelled,orderProductView,billingAddress,productOffer,orderReturned,orderProductList,stockIncreamentAfterReturn,orderReturnConfirm,getWalletAmount,returnAfterCreateWallet}=require('../Model/order-helpers')
+const { userOrderDetails, productView, adminOrderCancellled, shippingDetail, orderDetails, orderCancelled, orderProductView, billingAddress, productOffer, orderReturned, orderProductList, stockIncreamentAfterReturn, orderReturnConfirm, getWalletAmount, returnAfterCreateWallet } = require('../Model/order-helpers')
 
-module.exports={
-    sessionCheck:(req,res,next)=>{
-     
-        if(req.session.users){
-           
-            next();
-        }else{
-
-            res.redirect('/LoginandSignupButton')
-        }
-    },
-    loginredirect:(req,res,next)=>{
-
-        if(!req.session.users){
-      
-          req.session.loggedIn=false
-      
-        }if(req.session.users){
-          
-          res.redirect('/')
-        }else{
-          next();
-        }
-      },
-      nocache:(req, res, next)=>{
-        res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        res.header('Expires', '-1');
-        res.header('Pragma', 'no-cache');
+module.exports = {
+  sessionCheck: (req, res, next) => {
+    try {
+      if (req.session.users) {
         next();
-      },
-      verifyLogin:(req,res,next)=>{
-
-        if(req.session.users){
-          
-          next()
-
-        }else{
-
-          res.redirect('/LoginandSignupButton')
-        }
-      },
- orders(req,res){
-    
-  userOrderDetails().then((UserOrder)=>{
-
-        res.render('adminviews/UserOrders',{user:false,UserOrder})
-    })
-
-   },
-   adminProductView(req,res){
-     
-    productView(req.params.id).then((singleOrder)=>{
-
-        res.render('adminviews/OrderProductDetails',{singleOrder,user:false})
-    })
-
-   },
-   adminCancelOrder(req,res){
-    
-   
-    adminOrderCancellled(req.params.id,req.body.status).then((response)=>{
-
-     
-  res.redirect('/order/Orders')
-        
-    
-})
-   },
-   shippingStatus(req,res,next){
-    
+      } else {
+        res.redirect('/LoginandSignupButton');
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
   
-    shippingDetail(req.params.id,req.body.shippingStatus).then((response)=>{
-       
-      res.redirect('/order/Orders')
-
-
-    })  
-
-
-     
-
-   },
-   userOrderView(req,res){
-    
-
-    let users=req.session.users
-    orderDetails(req.session.users._id).then((OrderDetails)=>{
-    
-      res.render('userviews/UserOrderView',{user:true,OrderDetails,users})
-    })
-   
-    
-
+  loginredirect: (req, res, next) => {
+    try {
+      if (!req.session.users) {
+        req.session.loggedIn = false;
+      } else if (req.session.users) {
+        res.redirect('/');
+      } else {
+        next();
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
   },
-  orderCancel(req,res){
-
-    orderCancelled(req.params.id,req.body.status).then(()=>{
-
-           res.redirect('/order/UserOrderView')
-    })
+  
+  nocache: (req, res, next) => {
+    try {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      next();
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
   },
-  userProductView(req,res){
-       console.log(req.body);
-    let users=req.session.users
-      orderProductView(req.params.id).then((singleOrder)=>{
-
-        
-
-        billingAddress(req.params.id).then((BillingAddress)=>{
-                
-              productOffer(req.params.id).then(()=>{
-
-                console.log(BillingAddress,"billingAddress");
-
-                res.render('userviews/orderviewProducts',{user:true,singleOrder,users,BillingAddress})
-
-              })
-             
-            })
-         
-           
-
-      
+  
+  verifyLogin: (req, res, next) => {
+    try {
+      if (req.session.users) {
+        next();
+      } else {
+        res.redirect('/LoginandSignupButton');
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  
+  orders(req, res) {
+    try {
+      userOrderDetails().then((UserOrder) => {
+        res.render('adminviews/UserOrders', { user: false, UserOrder });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  
+  adminProductView(req, res) {
+    try {
+      productView(req.params.id).then((singleOrder) => {
+        res.render('adminviews/OrderProductDetails', { singleOrder, user: false });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  
+  adminCancelOrder(req, res) {
+    try {
+      adminOrderCancellled(req.params.id, req.body.status).then((response) => {
+        res.redirect('/order/Orders');
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  
+  shippingStatus(req, res, next) {
+    try {
+      shippingDetail(req.params.id, req.body.shippingStatus).then((response) => {
+        res.redirect('/order/Orders');
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  
+  userOrderView(req, res) {
+    try {
+      let users = req.session.users;
+      orderDetails(req.session.users._id).then((OrderDetails) => {
+        res.render('userviews/UserOrderView', { user: true, OrderDetails, users });
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  
+  orderCancel(req, res) {
+    try {
+      orderCancelled(req.params.id, req.body.status).then(() => {
+        res.redirect('/order/UserOrderView');
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error');
+    }
+  },
+  userProductView(req, res) {
+    try {
+      console.log(req.body);
+      let users = req.session.users
+      orderProductView(req.params.id).then((singleOrder) => {
+  
+        billingAddress(req.params.id).then((BillingAddress) => {
+  
+          productOffer(req.params.id).then(() => {
+  
+            console.log(BillingAddress, "billingAddress");
+  
+            res.render('userviews/orderviewProducts', { user: true, singleOrder, users, BillingAddress })
+  
+          })
+  
         })
-         
-      
-  },
-  orderDetails(req,res){
-         
-    let users=req.session.users
-      res.render('userviews/OrderDetails',{user:true,users})
-  },
-
-  orderReturn(req,res){
-
-    orderReturned(req.params.id,req.body.status).then((response)=>{
-     
-
-      res.redirect('/order/UserOrderView')
-
-    })
-  },
-  adminReturnedOrder(req,res){
-    
-    
-    orderReturnConfirm(req.params.id,req.body.status).then(()=>{
-
-      orderProductList(req.params.id).then((products)=>{
-
-        console.log(products,"products coming");
   
-        function destruct(products) { 
-          let data =[]
-          for(let i=0;i<products.length;i++){
-            let obj ={}  
-            obj.prod= products[i].item
-            obj.quantity= products[i].quantity
-            data.push(obj)
+      })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while loading the order product view page.')
+    }
+  },
+  orderDetails(req, res) {
+    try {
+      let users = req.session.users
+      res.render('userviews/OrderDetails', { user: true, users })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while loading the order details page.')
+    }
+  },
+  orderReturn(req, res) {
+    try {
+      orderReturned(req.params.id, req.body.status).then((response) => {
+        res.redirect('/order/UserOrderView')
+      })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while processing the order return request.')
+    }
+  },
+  adminReturnedOrder(req, res) {
+    try {
+      orderReturnConfirm(req.params.id, req.body.status).then(() => {
+        orderProductList(req.params.id).then((products) => {
+  
+          console.log(products, "products coming");
+  
+          function destruct(products) {
+            let data = []
+            for (let i = 0; i < products.length; i++) {
+              let obj = {}
+              obj.prod = products[i].item
+              obj.quantity = products[i].quantity
+              data.push(obj)
+            }
+            return data
           }
-          return data
-        }
-        let ids = destruct(products)
-        console.log(ids,"ids");
-
-      stockIncreamentAfterReturn(ids).then(()=>{
+          let ids = destruct(products)
+          console.log(ids, "ids");
   
-      getWalletAmount(req.params.id).then((wallet)=>{
-
-        returnAfterCreateWallet(wallet.TotalAmount,wallet.userID).then(()=>{
-          
-         
-          res.redirect('/order/Orders')
-
+          stockIncreamentAfterReturn(ids).then(() => {
+  
+            getWalletAmount(req.params.id).then((wallet) => {
+  
+              returnAfterCreateWallet(wallet.TotalAmount, wallet.userID).then(() => {
+                res.redirect('/order/Orders')
+              })
+  
+            })
+  
+          })
+  
         })
-        
-      
       })
-       
-  
-      })
-  
-       
-  
-      })
-
-      
-        
-    })
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('An error occurred while processing the admin returned order request.')
+    }
   }
+  
 
 }

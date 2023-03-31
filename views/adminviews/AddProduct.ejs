@@ -15,49 +15,54 @@
                     <input type="text" name="companyname" class="form-control" id="companyname" required>
                 </div>
             </div>
-             <div class="row mb-3">
+            <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Size</label>
                 <div class="col-sm-10">
                     <input type="number" name="size" class="form-control" min="1" id="size" required>
                 </div>
-            </div> 
+            </div>
             <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Color</label>
                 <div class="col-sm-10">
                     <input type="text" name="color" class="form-control" id="color" required>
                 </div>
-            </div> 
+            </div>
             <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="description" type="text" style="height: 100px" id="description" required></textarea>
+                    <textarea class="form-control" name="description" type="text" style="height: 100px" id="description"
+                        required></textarea>
                 </div>
             </div>
-            
+
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
-                    <select class="form-select" name="category" type="text" aria-label="Default select example" required>
-                       
+                    <select class="form-select" name="category" type="text" aria-label="Default select example"
+                        required>
+
                         <option selected>Select category</option>
                         <% getcategorydropdown.forEach(function(getcategorydropdowns, i){ %>
-                        <option><%= getcategorydropdowns.name %></option>
-                        <!-- <option>casual</option>
+                            <option>
+                                <%= getcategorydropdowns.name %>
+                            </option>
+                            <!-- <option>casual</option>
                         <option>sneakers</option> -->
-                        <% }); %>
+                            <% }); %>
                     </select>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                 <div class="col-sm-10">
-                    <input class="form-control" type="file" name="Image1" id="formFile" accept="image/*" multiple required>
-                    
+                    <input class="form-control" type="file" name="Image1" id="formFile" accept="image/*" multiple
+                        required>
+
                 </div>
             </div>
-         
-       
-       
+
+
+
             <div class="row mb-3">
                 <label for="inputDate" class="col-sm-2 col-form-label">Date of Manufacture</label>
                 <div class="col-sm-10">
@@ -70,7 +75,7 @@
                     <input type="number" name="StockCount" class="form-control" min="1" id="StockCount" required>
                 </div>
             </div>
-                        <div class="row mb-3">
+            <div class="row mb-3">
                 <label for="inputDate" class="col-sm-2 col-form-label">Price</label>
                 <div class="col-sm-10">
                     <input type="number" name="price" class="form-control" min="1" id="price" required>
@@ -79,7 +84,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                   <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </div>
 
@@ -88,61 +93,61 @@
 </section>
 <script>
 
-  
-   let categoryIput = document.getElementById("shoename");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("companyname");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("size");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("color");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("description");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("dateofmanufacture");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("StockCount");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  categoryIput = document.getElementById("price");
-     categoryIput.addEventListener('keypress', (event)=>{    
-       if(event.code=== "Space"){
-        event.preventDefault(); 
-      }
-     
-  })
-  </script>
+
+    let categoryIput = document.getElementById("shoename");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("companyname");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("size");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("color");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("description");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("dateofmanufacture");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("StockCount");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("price");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+</script>

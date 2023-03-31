@@ -1,47 +1,44 @@
 <section class="page-align mt-5" id="footer">
-    <div class="container">
-        <h1>Add BANNER</h1>
+  <div class="container">
+    <h1>Add BANNER</h1>
 
-        <form action="/admin/AddedBanner" method="post" enctype="multipart/form-data">
-            <div class="row mb-3">
-                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                <div class="col-sm-10">
-                    <input class="form-control" type="file" name="Image" id="formFile">
-                </div>
-            </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                   <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-            </div>
+    <form action="/admin/AddedBanner" method="post" enctype="multipart/form-data">
+      <div class="row mb-3">
+        <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+        <div class="col-sm-10">
+          <input class="form-control" type="file" name="Image" id="formFile">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </div>
 
-        </form>
-    </div>
+    </form>
+  </div>
 </section>
 
 <section id="footer" class="mt-5">
-    <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">BANNER</th>
-            <th scope="col">OPTION</th>
-          </tr>
-        </thead>
-        <tbody>
-           
-            <% Banners.forEach(function(product, i){ %>
-          <tr >
-          
-            <td class="Banner-images"><img src="/Banner-images/<%= product._id %>.jpg" alt="no" style="height: 300px;width: 300px;"></td>
-           <td><a href="/admin/edit-banner/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button" onclick="myFunction(this.id)">Edit</button></a><br>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
-    </section>
-    
-    
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">BANNER</th>
+        <th scope="col">OPTION</th>
+      </tr>
+    </thead>
+    <tbody>
 
+      <% Banners.forEach(function(product, i){ %>
+        <tr>
 
-  
+          <td class="Banner-images"><img src="/Banner-images/<%= product._id %>.jpg" alt="no"
+              style="height: 300px;width: 300px;"></td>
+          <td><a href="/admin/edit-banner/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button"
+                onclick="myFunction(this.id)">Edit</button></a><br>
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+</section>
