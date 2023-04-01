@@ -406,34 +406,24 @@ module.exports = {
 
     const currentDate = new Date();
     return new Promise(async (resolve, reject) => {
-
-      const currentDate = new Date();
-      const monthStart = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-      const monthEnd = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
-
-      const monthRevenue = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+      const monthSales = await db.get().collection(collection.ORDER_COLLECTION).aggregate([
         {
-          $match: {
-            shippingStatus: 'Delivered',
-            date: {
-              $gte: monthStart,
-              $lt: monthEnd
-            }
-          }
+          $match: { shippingStatus: 'Delivered', date: { $gte: new Date(new Date().getDate() - 30) } },
         },
         {
           $group: {
             _id: null,
             total: { $sum: '$TotalAmount' },
-          }
-        }
+          },
+        },
       ]).toArray();
-
-      console.log(monthRevenue[0].total);
-
-      resolve(monthRevenue[0].total)
+      if (monthSales.length !== 0) {
+        console.log(monthSales);
+        resolve(monthSales[0].total);
+      } else {
+        reject();
+      }
     });
-
   },
 
 

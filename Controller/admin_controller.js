@@ -11,12 +11,15 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 module.exports = {
+// adminLogin Session start
 
   adminLogin(req, res, next) {
 
     res.render('adminviews/adminlogin');
 
+// adminLogin Session End
   },
+  // adminReginstered Session start
   adminRegisterd(req, res, next) {
     try {
       doAdminSignup(req.body).then((adminData) => {
@@ -92,6 +95,9 @@ module.exports = {
       res.status(500).send('Internal Server Error');
     }
   },
+  // adminRegistered Session End
+
+  // getAll users function
   allUsers(req, res, next) {
     try {
       getAllUsers().then((users) => {
@@ -102,7 +108,9 @@ module.exports = {
       res.render('adminviews/errorPage', { errorMessage: 'Error fetching all users' });
     }
   },
+// getAll users function End
 
+// delte product function
   deleteProduct(req, res) {
     try {
       let deleteid = req.params.id;
@@ -114,7 +122,9 @@ module.exports = {
       res.status(500).send('Error deleting product');
     }
   },
+// delte product function End
 
+// userBlock function start
   blockManagement(req, res) {
     try {
       userBlock(req.params.id, req.body.status).then(() => {
@@ -125,8 +135,9 @@ module.exports = {
       res.status(500).send('Error blocking/unblocking user');
     }
   },
+// userBlock function End///
 
-
+// adminDashboard all functions  start///
   dashboard(req, res) {
 
     try {
@@ -202,7 +213,9 @@ module.exports = {
     }
 
   },
+// adminDashboard all functions End
 
+// adminAdd banner session
   addBanner(req, res) {
     let users = req.session.users;
     try {
@@ -236,6 +249,9 @@ module.exports = {
       res.status(500).send('Internal Server Error');
     }
   },
+  // admin add banner all functions End
+  
+  // adminEdit Banner sessions
   editBanner(req, res) {
 
     let productid = req.params.id
@@ -276,6 +292,9 @@ module.exports = {
       res.status(500).send('Internal server error')
     }
   },
+  // adminEdit all functions End //
+
+  // today all order list session
   todayOrderList(req, res) {
     try {
       todayOrders().then((response) => {
@@ -287,6 +306,9 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+  // today all order list session End
+
+  // week all order list session
   weekSales(req, res) {
     try {
       thisWeekOrders().then(() => {
@@ -297,6 +319,9 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+  // week all order list session End
+
+  // month all order list session
   monthSales(req, res) {
     try {
       thisMonthOrders().then(() => {
@@ -307,6 +332,9 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+    // month all order list session End
+
+      // year all order list session
   yearSales(req, res) {
     try {
       thisYearOrders().then(() => {
@@ -317,6 +345,9 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+   // year all order list session End ///
+
+  //  total revenue session
   totalRevenue(req, res) {
     try {
       totalRevenues().then((TotalRevenue) => {
@@ -327,6 +358,9 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+  //  total revenue session End
+
+  // admin sales report sessions
   salesReport(req, res) {
     try {
       allSalesReport().then((salesReport) => {
@@ -337,6 +371,9 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+  // admin sales report sessions End
+  
+  
   addCoupon(req, res) {
     try {
       res.render('adminviews/AddCoupon', { user: false });
