@@ -4,14 +4,14 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="breadcrumb-area text-center">
                     <h2 class="page-title">Address</h2>
-                        <div class="breadcrumb-menu">
+                    <div class="breadcrumb-menu">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                                 <li class="breadcrumb-item"><a href="cart.html">cart</a></li>
                             </ol>
                         </nav>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -20,9 +20,9 @@
 
 <div class="col-xl-7 col-lg-7 col-md-12">
     <div class="checkout_form mb-100">
-        
-            <form action="/EditedAddress/<%= users._id %>" method="post">
-           
+
+        <form action="/EditedAddress/<%= users._id %>" method="post">
+
             <div class="row mb-30">
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="checkout__wrap">
@@ -41,11 +41,12 @@
                 <label>Company name (optional) <span></span></label>
                 <input type="text" name="cname" value="<%= EditAccount.cname %>">
             </div>
-          
+
             <div class="checkout__wrap">
                 <label>Street address <span>*</span></label>
-                <input class="mb-20" type="text" name="add1" placeholder="house number and street number" value="<%= EditAccount.add1 %>">
-               
+                <input class="mb-20" type="text" name="add1" placeholder="house number and street number"
+                    value="<%= EditAccount.add1 %>">
+
             </div>
             <div class="checkout__wrap">
                 <label>Town / City *<span></span></label>
@@ -65,17 +66,17 @@
             </div>
             <div class="checkout__wrap">
                 <label>Email address <span>*</span></label>
-                <input type="email" name="email"  value="<%= EditAccount.email %>">
-               
-               
+                <input type="email" name="email" value="<%= EditAccount.email %>">
+
+
             </div>
             <div class="terms pt-50 pb-20">
-                      
+
                 <div class="order-button">
                     <button type="submit">AddAddress</button>
                 </div>
-              
+
             </div>
-        
+
     </div>
 </div>

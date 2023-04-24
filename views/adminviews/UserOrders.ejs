@@ -1,88 +1,120 @@
-<section id="footer" class="mt-5">
-    <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Username</th>
-            <th scope="col">Address</th>
-            <th scope="col">Date</th>
-            <!-- <th scope="col">Mobile</th> -->
-            <th scope="col">Status</th>
-            <th scope="col">ShippingStatus</th>
-            <th scope="col">payment</th>
-            <th scope="col">TotalPrice</th>
-            <!-- <th scope="col">Pincode</th> -->
-            <th scope="col">Product</th>
-          </tr>
-        </thead>
-        <tbody>
-            <% UserOrder.forEach(function(order, i){ %>
-          <tr >
-        
-          
-            <td><%= order.deliveryDetails.fname %></td>
-            <td><%= order.deliveryDetails.add1 %></td>
-            <td><%= order.date.toISOString().split('T')[0]; %></td>
-            <!-- <td><%= order.deliveryDetails.phone %></td> -->
-            <td><%= order.status %>
-              <% if (order.status=='Returnprocessing') { %>
-              
+<section id="footer" class="" style="margin-top: 5%;">
+  <table class="table table-bordered datatable top" id="example">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Address</th>
+        <th scope="col">Date</th>
+        <!-- <th scope="col">Mobile</th> -->
+        <th scope="col">Status</th>
+        <th scope="col">ShippingStatus</th>
+        <th scope="col">payment</th>
+        <th scope="col">TotalPrice</th>
+        <!-- <th scope="col">Pincode</th> -->
+        <th scope="col">Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% UserOrder.forEach(function(order, i){ %>
+        <tr>
+
+
+          <td>
+            <%= order.deliveryDetails.fname %>
+          </td>
+          <td>
+            <%= order.deliveryDetails.add1 %>
+          </td>
+          <td>
+            <%= order.date.toISOString().split('T')[0]; %>
+          </td>
+          <!-- <td><%= order.deliveryDetails.phone %></td> -->
+          <td>
+            <%= order.status %>
+              <% if (order.status=='Returnprocessing' ) { %>
+
                 <form action="/order/adminReturnedOrder/<%= order._id %>" method="post">
 
                   <input name="status" value="<%= order.status %>" hidden>
-                  
-                 
+
+
                   <button type="submit" class="badge bg-danger" style="border: none;">ConfirmReturn</button>
-                 
 
-                    
-                <% } else if(order.shippingStatus=='ordered' || order.shippingStatus=='Shipped' || order.shippingStatus=='Arraving'||order.shippingStatus=='Ordered'){ %>
-                  <% if (order.status!='order cancelled') { %>
-                  <form action="/order/adminCancelOrder/<%= order._id %>" method="post">
 
-                    <input name="status" value="<%= order.status %>"hidden>
-                    
-                   
-                    <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
-                    <% } %>
-                  <% } %>
-            </td>
+
+                  <% } else if(order.shippingStatus=='ordered' || order.shippingStatus=='Shipped' ||
+                    order.shippingStatus=='Arraving' ||order.shippingStatus=='Ordered' ){ %>
+                    <% if (order.status!='order cancelled' ) { %>
+                      <form action="/order/adminCancelOrder/<%= order._id %>" method="post">
+
+                        <input name="status" value="<%= order.status %>" hidden>
+
+
+                        <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
+                        <% } %>
+                          <% } %>
+          </td>
           </form>
-          <td><%= order.shippingStatus %>
-            
-            <% if (order.shippingStatus == 'Ordered'||order.shippingStatus == 'Shipped'||order.shippingStatus == 'Arraving'||order.shippingStatus=='ordered') { %>
-              <% if (order.status!='order cancelled') { %>
-            <div class="btn-group">
-              <p type="button" class="badge bg-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                OrderStatus
-              </p>
-              <form action="/order/shippingStatus/<%= order._id %>" method="post">
-              <div class="dropdown-menu">
-                
-                <button class="dropdown-item" type="submit" value="Ordered" name="shippingStatus" >Order</button>
-                <button class="dropdown-item" type="submit" value="Shipped" name="shippingStatus" >Shipped</button>
-                <button class="dropdown-item" type="submit" value="Arraving" name="shippingStatus" >Arraving</button>
-                <button class="dropdown-item" type="submit" value="Delivered" name="shippingStatus" >Delivered</button>
-              
-              </div>
-            </div>
-              
+          <td>
+            <%= order.shippingStatus %>
+
+              <% if (order.shippingStatus=='Ordered' ||order.shippingStatus=='Shipped'
+                ||order.shippingStatus=='Arraving' ||order.shippingStatus=='ordered' ) { %>
+                <% if (order.status!='order cancelled' ) { %>
+                  <div class="btn-group">
+                    <p type="button" class="badge bg-success dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      OrderStatus
+                    </p>
+                    <form action="/order/shippingStatus/<%= order._id %>" method="post">
+                      <div class="dropdown-menu">
+
+                        <button class="dropdown-item" type="submit" value="Ordered" name="shippingStatus">Order</button>
+                        <button class="dropdown-item" type="submit" value="Shipped"
+                          name="shippingStatus">Shipped</button>
+                        <button class="dropdown-item" type="submit" value="Arraving"
+                          name="shippingStatus">Arraving</button>
+                        <button class="dropdown-item" type="submit" value="Delivered"
+                          name="shippingStatus">Delivered</button>
+
+                      </div>
+                  </div>
+
           </td>
           <% } %>
-          <% } %>
-        </form>
-            <td><%= order.PaymentMethod %></td>
-            <td><%= order.TotalAmount %></td>
-            <!-- <td><%= order.deliveryDetails.postcode %></td> -->
-
-            <td>
-               
-                <a href="/order/adminProductView/<%= order._id %>"><p type="submit" class="badge bg-success">View Product</p></a>
-              
+            <% } %>
+              </form>
+              <td>
+                <%= order.PaymentMethod %>
               </td>
-             
-            
-          </tr>
-          <% }); %> 
-        </tbody>
-      </table>
-    </section>
+              <td>
+                <%= order.TotalAmount %>
+              </td>
+              <!-- <td><%= order.deliveryDetails.postcode %></td> -->
+
+              <td>
+
+                <a href="/order/adminProductView/<%= order._id %>">
+                  <p type="submit" class="badge bg-success">View Product</p>
+                </a>
+
+              </td>
+
+
+        </tr>
+        <% }); %>
+    </tbody>
+  </table>
+</section>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#example').DataTable();
+  });
+</script>
+<style>
+  .top {
+    margin-top: 2%;
+  }
+</style>

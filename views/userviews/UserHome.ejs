@@ -12,7 +12,7 @@
 <body>
 
     <!-- header area start -->
-    <!-- <header class="header-area">
+<!-- <header class="header-area">
         <div class="gota_top bg-soft d-none d-sm-block">
             <div class="container-fluid">
                 <div class="row">
@@ -194,7 +194,7 @@
             </div>
         </div>
     </header> -->
-    <!-- header area end -->
+<!-- header area end -->
 <!-- 
     <div class="search_area">
         <div class="search_close">
@@ -288,7 +288,7 @@
     <div class="offcanvas-overlay"></div>
 
   <!-- cart area start  -->
-  <div class="cart__sidebar">
+<div class="cart__sidebar">
     <div class="container">
         <div class="cart__content">
             <div class="cart-text">
@@ -377,44 +377,53 @@
 
 <div class="categories_area pt-85 mb-150">
     <div class="container-fluid">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <div class="section-wrapper text-center mb-35">
-                    <h2 class="section-title">Explore Our Bestsellers</h2>
-                    <p>Commodo sociosqu venenatis cras dolor sagittis integer luctus sem primis<br> eget maecenas sed urna malesuada.</p>
-                </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="section-wrapper text-center mb-35">
+                <h2 class="section-title">Explore Our Bestsellers</h2>
+                <p>Commodo sociosqu venenatis cras dolor sagittis integer luctus sem primis<br> eget maecenas sed urna
+                    malesuada.</p>
             </div>
-             
-    
-                
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="categories__tab">
-                        <ul class="nav nav-tabs justify-content-center mb-55" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab"  aria-selected="true">All SHoes</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"  aria-selected="false">Men’s</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab"  aria-selected="false">WoMen’s</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kidss" type="button" role="tab"  aria-selected="false">Kids</button>
-                            </li>
-                        </ul>
-                        <div class="row">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home">
-                                <div class="container">
-                                    <div class="product-active h-2-product-active swiper-container">
-                                        <div class="swiper-wrapper">
-                                    <% ShowProducts.forEach(function(product, i){ %>
+        </div>
 
-                                            <div class="product-item swiper-slide wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+
+
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="categories__tab">
+                <ul class="nav nav-tabs justify-content-center mb-55" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                            type="button" role="tab" aria-selected="true">All SHoes</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                            type="button" role="tab" aria-selected="false">Men’s</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                            type="button" role="tab" aria-selected="false">WoMen’s</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#kidss" type="button" role="tab"
+                            aria-selected="false">Kids</button>
+                    </li>
+                </ul>
+                <div class="row">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home">
+                            <div class="container">
+                                <div class="product-active h-2-product-active swiper-container">
+                                    <div class="swiper-wrapper">
+                                        <% ShowProducts.forEach(function(product, i){ %>
+
+                                            <div class="product-item swiper-slide wow fadeInUp" data-wow-duration="1s"
+                                                data-wow-delay="0.2s">
                                                 <div class="product">
                                                     <div class="product__thumb">
                                                         <a href="single.html">
-                                                            <a href="/productDetails/<%= product._id %>"><img class="product-primary" src="product-images/<%= product._id %>.jpg" alt="product_image"></a>
+                                                            <a href="/productDetails/<%= product._id %>"><img
+                                                                    class="product-primary"
+                                                                    src="product-images/<%= product._id %>.jpg"
+                                                                    alt="product_image"></a>
                                                             <!-- <img class="product-secondary" src="product-images/<%= product._id %>.jpg" alt="product_image"> -->
                                                         </a>
                                                         <div class="product__update">
@@ -432,44 +441,48 @@
                                                                 <a href="#"><i class="fal fa-star"></i></a>
                                                             </div>
                                                         </div>
-                                                           <div class="product__name">
-                                                            <h4><a href="shop.html">name:<%= product.shoename %></a></h4>
+                                                        <div class="product__name">
+                                                            <h4><a href="shop.html">name:<%= product.shoename %></a>
+                                                            </h4>
                                                             <div class="pro-price">
-                                                                <p class="p-absoulute pr-1"><span></span>price:<%= product.price %><span></span></p>
-                                                                
+                                                                <p class="p-absoulute pr-1"><span></span>price:<%=
+                                                                        product.price %><span></span></p>
+
                                                                 <a class="p-absoulute pr-2" href="#">add to cart</a>
-                                                               
+
                                                             </div>
-                                                            <h4><a href="shop.html">category:<%= product.category %></a></h4>
+                                                            <h4><a href="shop.html">category:<%= product.category %></a>
+                                                            </h4>
                                                         </div>
-                                                <div class="product__action">
-                                                    <div class="inner__action">
-                                                        <div class="wishlist">
-                                                            <a href="#"><i class="fal fa-heart"></i></a>
+                                                        <div class="product__action">
+                                                            <div class="inner__action">
+                                                                <div class="wishlist">
+                                                                    <a href="#"><i class="fal fa-heart"></i></a>
+                                                                </div>
+                                                                <div class="view">
+                                                                    <a href="javascript:void(0)"><i
+                                                                            class="fal fa-eye"></i></a>
+                                                                </div>
+                                                                <div class="layer">
+                                                                    <a href="#"><i class="fal fa-layer-group"></i></a>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div class="view">
-                                                            <a href="javascript:void(0)"><i class="fal fa-eye"></i></a>
-                                                        </div>
-                                                        <div class="layer">
-                                                            <a href="#"><i class="fal fa-layer-group"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                      <% }); %>
-                                           
+                                            <% }); %>
 
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
-                
-            
+            </div>
         </div>
-    </div>  
+
+
+    </div>
+</div>

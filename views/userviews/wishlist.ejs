@@ -9,333 +9,431 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head> -->
+<% if (products.length> 0) { %>
 
-<body>
-    
+    <body>
 
-    <div class="search_area">
-        <div class="search_close">
-            <span><i class="fal fa-times"></i></span>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12">
-                    <div class="search-wrapper text-center">
-                        <h2>search</h2>
-                        <div class="search-filtering pt-30">
-                            <div class="search_tab">
-                                <ul class="nav nav-tabs justify-content-center mb-55" id="myTab2" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="home-tab2" data-bs-toggle="tab"
-                                            data-bs-target="#home2" type="button" role="tab"
-                                            aria-selected="true">All categories</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="profile-tab2" data-bs-toggle="tab"
-                                            data-bs-target="#profile2" type="button" role="tab" 
-                                            aria-selected="false">Basketball</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab"
-                                            data-bs-target="#contact2" type="button" role="tab" 
-                                            aria-selected="false">Handbag</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="sportswear-tab" data-bs-toggle="tab"
-                                            data-bs-target="#sportswear" type="button" role="tab"
-                                            aria-selected="false">Sportswear</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent2">
-                                    <div class="tab-pane fade show active" id="home2" role="tabpanel"
-                                        >
-    
-                                    </div>
-                                    <div class="tab-pane fade" id="profile2" role="tabpanel"
-                                        >
-    
-                                    </div>
-                                    <div class="tab-pane fade" id="contact2" role="tabpanel">
-    
-                                    </div>
-                                    <div class="tab-pane fade" id="sportswear" role="tabpanel"
-                                        >
-    
+
+        <div class="search_area">
+            <div class="search_close">
+                <span><i class="fal fa-times"></i></span>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12">
+                        <div class="search-wrapper text-center">
+                            <h2>search</h2>
+                            <div class="search-filtering pt-30">
+                                <div class="search_tab">
+                                    <ul class="nav nav-tabs justify-content-center mb-55" id="myTab2" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="home-tab2" data-bs-toggle="tab"
+                                                data-bs-target="#home2" type="button" role="tab"
+                                                aria-selected="true">All categories</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="profile-tab2" data-bs-toggle="tab"
+                                                data-bs-target="#profile2" type="button" role="tab"
+                                                aria-selected="false">Basketball</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#contact2"
+                                                type="button" role="tab" aria-selected="false">Handbag</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="sportswear-tab" data-bs-toggle="tab"
+                                                data-bs-target="#sportswear" type="button" role="tab"
+                                                aria-selected="false">Sportswear</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent2">
+                                        <div class="tab-pane fade show active" id="home2" role="tabpanel">
+
+                                        </div>
+                                        <div class="tab-pane fade" id="profile2" role="tabpanel">
+
+                                        </div>
+                                        <div class="tab-pane fade" id="contact2" role="tabpanel">
+
+                                        </div>
+                                        <div class="tab-pane fade" id="sportswear" role="tabpanel">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="main_search">
-                            <form action="#">
-                                <input type="text" name="search" placeholder="search products">
-                                <button class="m-search"><i class="fal fa-search d-sm-none d-md-block"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fix">
-        <div class="side-info">
-            <button class="side-info-close"><i class="fal fa-times"></i></button>
-            <div class="side-info-content">
-                <div class="mobile-menu"></div>
-                <div class="contact-infos mb-30">
-                    <div class="contact-list mb-30">
-                        <h4>Office Address</h4>
-                        <p>123/A, Miranda City Likaoli
-                            Prikano, Dope</p>
-                    </div>
-                    <div class="contact-list mb-30">
-                        <h4>Phone Number</h4>
-                        <p>+0989 7876 9865 9</p>
-                        <p>+(090) 8765 86543 85</p>
-                    </div>
-                    <div class="contact-list mb-30">
-                        <h4>Email Address</h4>
-                        <p><a href="https://themepure.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="442d2a222b04213c25293428216a272b29">[email&#160;protected]</a></p>
-                        <p><a href="https://themepure.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="513429303c213d347f3c30383d1139243c7f323e3c">[email&#160;protected]</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="offcanvas-overlay"></div>
-
-  <!-- cart area start  -->
-  <div class="cart__sidebar">
-    <div class="container">
-        <div class="cart__content">
-            <div class="cart-text">
-                <h3 class="mb-40">Shopping cart</h3>
-                <div class="add_cart_product">
-                    <div class="add_cart_product__thumb">
-                        <img src="/img/quick_view/page/product/29-3.jpg" alt="">
-                    </div>
-                    <div class="add_cart_product__content">
-                        <h5><a href="shop.html">Running 3-Stripes</a></h5>
-                        <p>1 × $66.00</p>
-                        <button class="cart_close"><i class="fal fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="add_cart_product">
-                    <div class="add_cart_product__thumb">
-                        <img src="/img/quick_view/page/product/17.jpg" alt="">
-                    </div>
-                    <div class="add_cart_product__content">
-                        <h5><a href="shop.html">Buddy non Stripes</a></h5>
-                        <p>1 × $40.00</p>
-                        <button class="cart_close"><i class="fal fa-times"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="cart-icon">
-                <i class="fal fa-times"></i>
-            </div>
-            <div class="cart-bottom">
-                <div class="cart-bottom__text">
-                    <span>Subtotal:</span>
-                    <span class="end">$121.00</span>
-                    <a href="cart.html">view cart</a>
-                    <a href="checkout.html">checkout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="cart-offcanvas-overlay"></div>
-<!-- cart area end  -->
-
-    <!-- breadcrumb area start -->
-    <div class="page-layout" data-background="/img/slider/shop.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                    <div class="breadcrumb-area text-center">
-                        <h2 class="page-title">Wishlist</h2>
-                            <div class="breadcrumb-menu">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb justify-content-center">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="cart.html">wishlist</a></li>
-                                </ol>
-                            </nav>
+                            <div class="main_search">
+                                <form action="#">
+                                    <input type="text" name="search" placeholder="search products">
+                                    <button class="m-search"><i class="fal fa-search d-sm-none d-md-block"></i></button>
+                                </form>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- breadcrumb area end -->
 
-    <div class="f_cart_area pt-110 mb-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-12">
-                    <div class="cart_table">
-                        <table>
-                            <tr> 
-                                <td>Product</td>
-                                <td>product Name</td>
-                                <td>price</td>
-                                <td>Option</td>
-                                <td>addTOCart</td>
-                                
-                               </tr>
-                            <tbody>
-                                <% products.forEach(function(product, i){ %>
-                                <tr class="max-width-set">
-                                    
-                                    <td>
-                                        <img src="product-images/<%= product.products.productImage[0] %>" alt="">
-                                    </td>
-                                    <td><%= product.products.shoename %> </td>
-                                    <td><%= product.products.price %>  
-                                    </td>
-                                  
-                                    
-                                     
-                                    <td class="width-set">
-                                        <button class="quantity badge bg-danger" onclick="removeWishlistItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
-                                    </td>
-                                    <td class="width-set">
+        <div class="fix">
+            <div class="side-info">
+                <button class="side-info-close"><i class="fal fa-times"></i></button>
+                <div class="side-info-content">
+                    <div class="mobile-menu"></div>
+                    <div class="contact-infos mb-30">
+                        <div class="contact-list mb-30">
+                            <h4>Office Address</h4>
+                            <p>123/A, Miranda City Likaoli
+                                Prikano, Dope</p>
+                        </div>
+                        <div class="contact-list mb-30">
+                            <h4>Phone Number</h4>
+                            <p>+0989 7876 9865 9</p>
+                            <p>+(090) 8765 86543 85</p>
+                        </div>
+                        <div class="contact-list mb-30">
+                            <h4>Email Address</h4>
+                            <p><a href="https://themepure.net/cdn-cgi/l/email-protection" class="__cf_email__"
+                                    data-cfemail="442d2a222b04213c25293428216a272b29">[email&#160;protected]</a></p>
+                            <p><a href="https://themepure.net/cdn-cgi/l/email-protection" class="__cf_email__"
+                                    data-cfemail="513429303c213d347f3c30383d1139243c7f323e3c">[email&#160;protected]</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-overlay"></div>
 
-                                        <button class="quantity badge bg-dark" onclick="addTOCart('<%= product.products._id %>')">AddTOCart<i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                                    </td>
-                                    
+        <!-- cart area start  -->
+        <div class="cart__sidebar">
+            <div class="container">
+                <div class="cart__content">
+                    <div class="cart-text">
+                        <h3 class="mb-40">Shopping cart</h3>
+                        <div class="add_cart_product">
+                            <div class="add_cart_product__thumb">
+                                <img src="/img/quick_view/page/product/29-3.jpg" alt="">
+                            </div>
+                            <div class="add_cart_product__content">
+                                <h5><a href="shop.html">Running 3-Stripes</a></h5>
+                                <p>1 × $66.00</p>
+                                <button class="cart_close"><i class="fal fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="add_cart_product">
+                            <div class="add_cart_product__thumb">
+                                <img src="/img/quick_view/page/product/17.jpg" alt="">
+                            </div>
+                            <div class="add_cart_product__content">
+                                <h5><a href="shop.html">Buddy non Stripes</a></h5>
+                                <p>1 × $40.00</p>
+                                <button class="cart_close"><i class="fal fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-icon">
+                        <i class="fal fa-times"></i>
+                    </div>
+                    <div class="cart-bottom">
+                        <div class="cart-bottom__text">
+                            <span>Subtotal:</span>
+                            <span class="end">$121.00</span>
+                            <a href="cart.html">view cart</a>
+                            <a href="checkout.html">checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cart-offcanvas-overlay"></div>
+        <!-- cart area end  -->
+
+        <!-- breadcrumb area start -->
+        <div class="page-layout" data-background="/img/slider/shop.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="breadcrumb-area text-center">
+                            <h2 class="page-title">Wishlist</h2>
+                            <div class="breadcrumb-menu">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb justify-content-center">
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="cart.html">wishlist</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- breadcrumb area end -->
+
+        <div class="f_cart_area pt-110 mb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12">
+                        <div class="cart_table">
+                            <table>
+                                <tr>
+                                    <td>Product</td>
+                                    <td>product Name</td>
+                                    <td>price</td>
+                                    <td>Option</td>
+                                    <td>addTOCart</td>
+
                                 </tr>
-                                <% }); %> 
-                            </tbody>
-                          
-                        </table>
+                                <tbody>
+                                    <% products.forEach(function(product, i){ %>
+                                        <tr class="max-width-set">
+
+                                            <td>
+                                                <img src="product-images/<%= product.products.productImage[0] %>"
+                                                    alt="">
+                                            </td>
+                                            <td>
+                                                <%= product.products.shoename %>
+                                            </td>
+                                            <td>
+                                                <%= product.products.price %>
+                                            </td>
+
+
+
+                                            <td class="width-set">
+                                                <button class="quantity badge bg-danger"
+                                                    onclick="removeWishlistItem('<%= product._id %>','<%= product.products._id %>')">Remove</button>
+                                            </td>
+                                            <td class="width-set">
+
+                                                <button class="quantity badge bg-dark"
+                                                    onclick="addTOCart('<%= product.products._id %>')">AddTOCart<i
+                                                        class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                                            </td>
+
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+
+                            </table>
+                        </div>
                     </div>
-                </div>
-             
+
                 </div>
             </div>
         </div>
-    </div>
-    
-     <!-- popup area start -->
-    <div class="overlay"></div>
-    <div class="product-popup">
-        <div class="view-background">
+        </div>
+
+        <!-- popup area start -->
+        <div class="overlay"></div>
+        <div class="product-popup">
+            <div class="view-background">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-5">
+                        <div class="quickview">
+                            <div class="quickview__thumb">
+                                <img src="/img/quick_view/25.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-7">
+                        <div class="viewcontent">
+                            <div class="viewcontent__header">
+                                <h2>Brown Leather Bags</h2>
+                                <a class="view_close product-p-close" href="javascript:void(0)"><i
+                                        class="fal fa-times-circle"></i></a>
+                            </div>
+                            <div class="viewcontent__rating">
+                                <i class="fal fa-star ratingcolor"></i>
+                                <i class="fal fa-star ratingcolor"></i>
+                                <i class="fal fa-star ratingcolor"></i>
+                                <i class="fal fa-star"></i>
+                            </div>
+                            <div class="viewcontent__price">
+                                <h4><span>$</span>99.00</h4>
+                            </div>
+                            <div class="viewcontent__stock">
+                                <h4>Available :<span> In stock</span></h4>
+                            </div>
+                            <div class="viewcontent__details">
+                                <p>Anlor sit amet, consectetur adipiscing elit. Fusce condimentum est lacus, non pretium
+                                    risus lacinia vel. Fusce eget turpis orci.</p>
+                            </div>
+                            <div class="viewcontent__action">
+                                <span>Qty</span>
+                                <span><input type="number" placeholder="1"></span>
+                                <span><a href="#">add to cart</a></span>
+                                <span><i class="fal fa-heart"></i></span>
+                                <span><i class="fal fa-info-circle"></i></span>
+                            </div>
+                            <div class="viewcontent__footer">
+                                <ul>
+                                    <li>Category:</li>
+                                    <li>SKU:</li>
+                                    <li>Brand:</li>
+                                </ul>
+                                <ul>
+                                    <li>Watches</li>
+                                    <li>2584-MK63</li>
+                                    <li>Brenda</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- popup area end -->
+
+    </body>
+    <% } else { %>
+        <div class="container-fluid  mt-100">
             <div class="row">
-                <div class="col-xl-5 col-lg-5 col-md-5">
-                    <div class="quickview">
-                        <div class="quickview__thumb">
-                            <img src="/img/quick_view/25.jpg" alt="">
+
+                <div class="col-md-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h5></h5>
+                        </div>
+                        <div class="card-body cart">
+                            <div class="col-sm-12 empty-cart-cls text-center">
+                                <img src="data:image/jpeg;base64,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"
+                                    width="130" height="130" class="img-fluid mb-4 mr-3">
+
+                                <h3><strong>Your wishlist is Empty</strong></h3>
+                                <h4>Add something to make me happy :)</h4>
+                                <a href="/" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue add
+                                    wishlist</a>
+
+
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
-                <div class="col-xl-7 col-lg-7 col-md-7">
-                    <div class="viewcontent">
-                        <div class="viewcontent__header">
-                            <h2>Brown Leather Bags</h2>
-                            <a class="view_close product-p-close" href="javascript:void(0)"><i
-                                    class="fal fa-times-circle"></i></a>
-                        </div>
-                        <div class="viewcontent__rating">
-                            <i class="fal fa-star ratingcolor"></i>
-                            <i class="fal fa-star ratingcolor"></i>
-                            <i class="fal fa-star ratingcolor"></i>
-                            <i class="fal fa-star"></i>
-                        </div>
-                        <div class="viewcontent__price">
-                            <h4><span>$</span>99.00</h4>
-                        </div>
-                        <div class="viewcontent__stock">
-                            <h4>Available :<span> In stock</span></h4>
-                        </div>
-                        <div class="viewcontent__details">
-                            <p>Anlor sit amet, consectetur adipiscing elit. Fusce condimentum est lacus, non pretium
-                                risus lacinia vel. Fusce eget turpis orci.</p>
-                        </div>
-                        <div class="viewcontent__action">
-                            <span>Qty</span>
-                            <span><input type="number" placeholder="1"></span>
-                            <span><a href="#">add to cart</a></span>
-                            <span><i class="fal fa-heart"></i></span>
-                            <span><i class="fal fa-info-circle"></i></span>
-                        </div>
-                        <div class="viewcontent__footer">
-                            <ul>
-                                <li>Category:</li>
-                                <li>SKU:</li>
-                                <li>Brand:</li>
-                            </ul>
-                            <ul>
-                                <li>Watches</li>
-                                <li>2584-MK63</li>
-                                <li>Brenda</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
         </div>
-    </div>
-    <!-- popup area end -->
+        <style>
+            ;
 
-</body>
+            body {
+                background-color: #eee;
+                font-family: 'Calibri', sans-serif !important;
+            }
 
+            .mt-100 {
+                margin-top: 100px;
+
+            }
+
+
+            .card {
+                margin-bottom: 30px;
+                border: 0;
+                -webkit-transition: all .3s ease;
+                transition: all .3s ease;
+                letter-spacing: .5px;
+                border-radius: 8px;
+                -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+                box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+            }
+
+            .card .card-header {
+                background-color: #fff;
+                border-bottom: none;
+                padding: 24px;
+                border-bottom: 1px solid #f6f7fb;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+            }
+
+            .card-header:first-child {
+                border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+            }
+
+
+
+            .card .card-body {
+                padding: 30px;
+                background-color: transparent;
+            }
+
+            .btn-primary,
+            .btn-primary.disabled,
+            .btn-primary:disabled {
+                background-color: #4466f2 !important;
+                border-color: #4466f2 !important;
+            }
+        </style>
+        <% } %>
 
 </html>
 <script>
-   
-   function removeWishlistItem(wishID,proID){
 
-    $.ajax({
+    function removeWishlistItem(wishID, proID) {
 
-url:'/remove_wishlistItem',
- data:{
+        $.ajax({
 
-    wishlist:wishID,
-    products:proID
- },
- method:'post',
- success:(response)=>{
+            url: '/remove_wishlistItem',
+            data: {
 
-        alert("product remove from wishlist")
-        location.reload()
-    
- }
-})
+                wishlist: wishID,
+                products: proID
+            },
+            method: 'post',
+            success: (response) => {
 
-   }
-   function addTOCart(proID){
-     console.log("}}}}}}}}}}}}}}}}}}}");
-      $.ajax({
+                swal({
+                    title: "Are you sure you want to remove this item from your wishlist?",
+                    icon: "warning",
+                    dangerMode: true,
+                    timer: 3000 // in milliseconds
+                }).then((confirm) => {
+                    if (confirm) {
+                        location.reload();
+                    }
+                });
 
-        url:'/Add-to-cart/'+proID,
-        method:'get',
-        success:(response)=>{
-            swal("Added to cart!", "", "success");
-    
-        },
-        error: function(xhr, status, error) {
+            }
+        })
+
+    }
+    function addTOCart(proID) {
+        console.log("}}}}}}}}}}}}}}}}}}}");
+        $.ajax({
+
+            url: '/Add-to-cart/' + proID,
+            method: 'get',
+            success: (response) => {
+                swal("Added to cart!", "", "success");
+
+            },
+            error: function (xhr, status, error) {
                 console.log(error);
 
-if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock limit Exceeded") {
-    
-    // alert("Stock limit Exceeded");
-    swal({
-  title: "Stock Limit Exceeded",
-  
-  icon: "warning",
+                if (xhr.status === 400 && xhr.responseJSON && xhr.responseJSON.error === "Stock limit Exceeded") {
 
-  dangerMode: true,
-})
+                    // alert("Stock limit Exceeded");
+                    swal({
+                        title: "Stock Limit Exceeded",
 
-   
-} else {
-    $('#error').text(error);
-}
+                        icon: "warning",
 
-}
-      })
+                        dangerMode: true,
+                    })
+
+
+                } else {
+                    $('#error').text(error);
+                }
+
+            }
+        })
     }
 
 </script>

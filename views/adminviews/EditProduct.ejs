@@ -6,115 +6,129 @@
             <div class="row mb-3">
                 <label for="inputText" class="col-sm-2 col-form-label">Name of the Shoe</label>
                 <div class="col-sm-10">
-                    <input type="text" name="shoename" class="form-control" value="<%= product.shoename %>">
+                    <input type="text" name="shoename" class="form-control" value="<%= product.shoename %>"
+                        id="shoename" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Company Name</label>
                 <div class="col-sm-10">
-                    <input type="text" name="companyname" class="form-control" value="<%= product.companyname %>">
+                    <input type="text" name="companyname" class="form-control" value="<%= product.companyname %>"
+                        id="companyname" required>
                 </div>
             </div>
-             <div class="row mb-3">
+            <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Size</label>
                 <div class="col-sm-10">
-                    <input type="text" name="size" class="form-control" value="<%= product.size %>">
+                    <input type="text" name="size" class="form-control" value="<%= product.size %>" min="1" id="size"
+                        required>
                 </div>
-            </div> 
+            </div>
             <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Color</label>
                 <div class="col-sm-10">
-                    <input type="text" name="color" class="form-control" value="<%= product.color %>">
+                    <input type="text" name="color" class="form-control" value="<%= product.color %>" id="color"
+                        required>
                 </div>
-            </div> 
+            </div>
             <div class="row mb-3">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Description</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" name="description" type="text" style="height: 100px" value="<%= product.
-                    description %>"></textarea>
+                    description %>" id="description" required></textarea>
                 </div>
             </div>
-            
+
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
-                    <select class="form-select" name="category" type="text" aria-label="Default select example" value="<%= product.category %>">
+                    <select class="form-select" name="category" type="text" aria-label="Default select example"
+                        value="<%= product.category %>" required>
                         <option selected>Select category</option>
-                        <% geteditcategory.forEach(function(getcategorys, i){ %>  
-                        <option><%= getcategorys.name %></option>
-                        <!-- <option>casual</option>
+                        <% geteditcategory.forEach(function(getcategorys, i){ %>
+                            <option>
+                                <%= getcategorys.name %>
+                            </option>
+                            <!-- <option>casual</option>
                         <option>sneakers</option> -->
-                        <% }); %>
+                            <% }); %>
                     </select>
                 </div>
             </div>
-            <td class="product-images"><img src="/product-images/<%= product.productImage[0] %>" alt="no" id="imgView" style="width:100px;height:auto"></td>
+            <td class="product-images"><img src="/product-images/<%= product.productImage[0] %>" alt="no" id="imgView"
+                    style="width:100px;height:auto"></td>
             <div class="row mb-3">
-                
+
                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" name="Image1" id="formFile" value="<%= product.
-                    Image1 %>" onchange="viewImage(event)"  accept="image/*">
-                    
+                    Image1 %>" onchange="viewImage(event)" accept="image/*">
+
                 </div>
-                
+
             </div>
-            <td class="product-images"><img src="/product-images/<%= product.productImage[1] %>" alt="no" id="imgView" style="width:100px;height:auto"></td>
+            <td class="product-images"><img src="/product-images/<%= product.productImage[1] %>" alt="no" id="imgView"
+                    style="width:100px;height:auto"></td>
             <div class="row mb-3">
-                
+
                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" name="Image2" id="formFile" value="<%= product.
                     Image2 %>" onchange="viewImage1(event)">
-                    
+
                 </div>
-                
+
             </div>
-            <td class="product-images"><img src="/product-images/<%= product.productImage[2] %>" alt="no" id="imgView" style="width:100px;height:auto"></td>
+            <td class="product-images"><img src="/product-images/<%= product.productImage[2] %>" alt="no" id="imgView"
+                    style="width:100px;height:auto"></td>
             <div class="row mb-3">
-                
+
                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" name="Image3" id="formFile" value="<%= product.
                     Image3 %>" onchange="viewImage2(event)">
-                    
+
                 </div>
-                
+
             </div>
-            <td class="product-images"><img src="/product-images/<%= product.productImage[3] %>" alt="no" id="imgView" style="width:100px;height:auto"></td>
+            <td class="product-images"><img src="/product-images/<%= product.productImage[3] %>" alt="no" id="imgView"
+                    style="width:100px;height:auto"></td>
             <div class="row mb-3">
-                
+
                 <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
                 <div class="col-sm-10">
                     <input class="form-control" type="file" name="Image4" id="formFile" value="<%= product.
                     Image4 %>" onchange="viewImage3(event)">
-                    
+
                 </div>
-                
+
             </div>
 
             <div class="row mb-3">
                 <label for="inputDate" class="col-sm-2 col-form-label">Date of Manufacture</label>
                 <div class="col-sm-10">
-                    <input type="date" name="dateofmanufacture" class="form-control" value="<%= product.dateofmanufacture %>">
+                    <input type="date" name="dateofmanufacture" class="form-control"
+                        value="<%= product.dateofmanufacture %>" id="dateofmanufacture" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="inputDate" class="col-sm-2 col-form-label">Stock Count</label>
                 <div class="col-sm-10">
-                    <input type="number" name="StockCount" class="form-control" value="<%= product.StockCount %>">
+                    <input type="number" name="StockCount" class="form-control" value="<%= product.StockCount %>"
+                        min="1" id="StockCount" required>
                 </div>
             </div>
-                        <div class="row mb-3">
+            <div class="row mb-3">
                 <label for="inputDate" class="col-sm-2 col-form-label">Price</label>
                 <div class="col-sm-10">
-                    <input type="number" name="price" class="form-control" value="<%= product.price %>">
+                    <input type="number" name="price" class="form-control" value="<%= product.price %>" min="1"
+                        id="price" required>
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                   <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </div>
 
@@ -123,20 +137,80 @@
 </section>
 
 <script>
-    function viewImage(event){
+    function viewImage(event) {
 
-        document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
     }
-    function viewImage1(event){
+    function viewImage1(event) {
 
-document.getElementById('imgView1').src=URL.createObjectURL(event.target.files[0])
-}
-function viewImage2(event){
+        document.getElementById('imgView1').src = URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage2(event) {
 
-document.getElementById('imgView2').src=URL.createObjectURL(event.target.files[0])
-}
-function viewImage3(event){
+        document.getElementById('imgView2').src = URL.createObjectURL(event.target.files[0])
+    }
+    function viewImage3(event) {
 
-document.getElementById('imgView3').src=URL.createObjectURL(event.target.files[0])
-}
+        document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>
+<script>
+
+
+    let categoryIput = document.getElementById("shoename");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("companyname");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("size");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("color");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("description");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("dateofmanufacture");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("StockCount");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
+    categoryIput = document.getElementById("price");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+
+    })
 </script>

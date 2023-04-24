@@ -1,24 +1,46 @@
-<table class="table table-bordered" id="footer" style="margin-top: 8%;">
+<div class="" id="footer" style="margin-top: 5%;">
+  <table class="table table-bordered datatable">
+
     <thead>
-        <tr>
-            <th scope="col">productID</th>
-            <th scope="col">productName</th>
-            <th scope="col">Discount</th>
-            <th scope="col">EndDate</th>
-        </tr>
+      <tr>
+        <th scope="col">categoryID</th>
+        <th scope="col">categoryName</th>
+        <th scope="col">Discount</th>
+        <th scope="col">EndDate</th>
+      </tr>
     </thead>
     <tbody>
-        <% CategoryOffer.forEach(function(CatOffer, i){ %>
+      <% CategoryOffer.forEach(function(CatOffer, i){ %>
         <tr>
-            <td><%= CatOffer._id %></td>
-            <td><%= CatOffer.categoryname %></td>
-            <td><%= CatOffer.Discount %>%</td>
-            <td><%= CatOffer.EndDate.toISOString().split('T')[0]; %></td> 
-          
-           
+          <td>
+            <%= CatOffer._id %>
+          </td>
+          <td>
+            <%= CatOffer.categoryname %>
+          </td>
+          <td>
+            <%= CatOffer.Discount %>%
+          </td>
+          <td>
+            <%= CatOffer.EndDate.toISOString().split('T')[0]; %>
+          </td>
+
+
         </tr>
         <% }); %>
-  
+
     </tbody>
   </table>
-  
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#example').DataTable();
+    });
+  </script>
+  <style>
+    .top {
+      margin-top: 2%;
+    }
+  </style>
+</div>

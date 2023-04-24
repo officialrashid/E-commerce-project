@@ -4,18 +4,29 @@
             <div class="row mb-3">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-5">
-                    <input type="text" name="name" class="form-control" value="<%= categoryEdit.companyname %>">
-    
+                    <input type="text" name="name" class="form-control" value="<%= categoryEdit.companyname %>"
+                        id="username1" required>
+
                 </div>
                 <div class="col-sm-5">
                     <button class="btn btn-secondary" type="submit">Add</button><br>
-                    
+
                     <a class="return-add-category" href=""></a>
-                
-    
+
+
                 </div>
             </div>
             <p class="error"></p>
         </form>
     </div>
 </section>
+<script>
+
+
+    let categoryIput = document.getElementById("username1");
+    categoryIput.addEventListener('keypress', (event) => {
+        if (event.code === "Space") {
+            event.preventDefault();
+        }
+    })
+</script>

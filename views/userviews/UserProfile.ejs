@@ -1,108 +1,126 @@
-<% if (usersAddress.Address && usersAddress.Address.length > 0) { %>
-<div class="page-layout" data-background="/img/slider/shop.jpg">
+<% if (usersAddress.Address && usersAddress.Address.length> 0) { %>
+  <div class="page-layout" data-background="/img/slider/shop.jpg">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                <div class="breadcrumb-area text-center">
-                    <h2 class="page-title">Address</h2>
-                        <div class="breadcrumb-menu">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="cart.html">cart</a></li>
-                            </ol>
-                        </nav>
-                        </div>
-                </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="breadcrumb-area text-center">
+            <h2 class="page-title">Address</h2>
+            <div class="breadcrumb-menu">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                  <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                  <li class="breadcrumb-item"><a href="cart.html">cart</a></li>
+                </ol>
+              </nav>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 
-<div class="main">
-  
+  <div class="main">
+
     <h2>ABOUT</h2>
-    
-    
+
+
     <% usersAddress.Address.forEach(function(address) { %>
-        <div class="card">
-          <div class="card-body">
-            <a href="/edit-account"> <i class="fa fa-pen fa-xs edit"></i></a>
-            <table>
-              <tbody>
-                <tr>
-                  <td>Full Name</td>
-                  <td>:</td>
-                  <td><%= address.name %></td>
-                </tr>
-                <tr>
-                  <td>Company Name</td>
-                  <td>:</td>
-                  <td><%= address.cname %></td>
-                </tr>
-                <tr>
-                  <td>Address</td>
-                  <td>:</td>
-                  <td><%= address.add1 %> <%= address.town %> <%= address.country %> <%= address.postcode %></td>
-                </tr>
-                <tr>
-                  <td>Phone</td>
-                  <td>:</td>
-                  <td><%= address.phonenumber %></td>
-                </tr>
-                <tr>
-                  <td>Email</td>
-                  <td>:</td>
-                  <td><%= address.email %></td>
-                </tr>
-              </tbody>
-            </table>
-            
-          </div>
+      <div class="card">
+        <div class="card-body">
+          <a href="/edit-account"> <i class="fa fa-pen fa-xs edit"></i></a>
+          <table>
+            <tbody>
+              <tr>
+                <td>Full Name</td>
+                <td>:</td>
+                <td>
+                  <%= address.name %>
+                </td>
+              </tr>
+              <tr>
+                <td>Company Name</td>
+                <td>:</td>
+                <td>
+                  <%= address.cname %>
+                </td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td>:</td>
+                <td>
+                  <%= address.add1 %>
+                    <%= address.town %>
+                      <%= address.country %>
+                        <%= address.postcode %>
+                </td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>:</td>
+                <td>
+                  <%= address.phonenumber %>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td>
+                  <%= address.email %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
         </div>
-       
+      </div>
+
       <% }); %>
-      <a href="/add-account"><p class="badge bg-dark">Add Address</p></a>
-      <% } else { %>
-        <div class="main">
-        <div class="card">
-            <div class="card-body">
-             
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Full Name</td>
-                    <td>:</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Company Name</td>
-                    <td>:</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Address</td>
-                    <td>:</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Phone</td>
-                    <td>:</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Email</td>
-                    <td>:</td>
-                    <td></td>
-                  </tr>
-                 
-                </tbody>
-              </table>
-              
+        <a href="/add-account">
+          <p class="badge bg-dark">Add Address</p>
+        </a>
+        <% } else { %>
+          <p style="color: red; text-align: center;">Your Address Field is empty ! please Add your Address</p>
+          <div class="main">
+            <div class="card">
+              <div class="card-body">
+
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Full Name</td>
+                      <td>:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Company Name</td>
+                      <td>:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Address</td>
+                      <td>:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Phone</td>
+                      <td>:</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td>:</td>
+                      <td></td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+              </div>
             </div>
+            <a href="/add-account">
+              <p class="badge bg-dark">Add Address</p>
+            </a>
           </div>
-          <a href="/add-account"><p class="badge bg-dark">Add Address</p></a>
-         </div>
-    
- <% } %>
-</div>
+
+          <% } %>
+  </div>

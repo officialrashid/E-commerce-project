@@ -12,4 +12,4 @@ module.exports={
     PRODUCTOFFER_COLLECTION:'productoffer',
     CATEGORYOFFER_COLLECTION:'categoryoffer',
     WALLET_COLLECTION:'wallet'
-}
+} 

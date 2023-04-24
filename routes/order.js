@@ -1,15 +1,17 @@
 var express = require('express');
 var router = express.Router();
-const{Orders,adminProductView,adminCancelOrder,shippingStatus,UserOrderView,sessioncheck,OrderCancel,userProductView,OrderDetails,OrderReturn,adminReturnedOrder}=require('../Controller/order_controller')
+const { orders, adminProductView, adminCancelOrder, shippingStatus, userOrderView, sessionCheck, orderCancel, userProductView, orderDetails, orderReturn, adminReturnedOrder } = require('../Controller/order_controller')
+const { verifyUser } = require("../Controller/auth");
+const {adminSessionCheck} = require('../Controller/admin_controller')
 
-router.get('/Orders',Orders)
-router.get('/adminProductView/:id',adminProductView)
-router.post('/adminCancelOrder/:id',adminCancelOrder)
-router.post('/shippingStatus/:id',shippingStatus)
-router.get('/UserOrderView',sessioncheck,UserOrderView)
-router.post('/OrderCancel/:id',OrderCancel)
-router.get('/userProductView/:id',userProductView)
-router.get('/OrderDetails',sessioncheck,OrderDetails)
-router.post('/OrderReturn/:id',OrderReturn)
-router.post('/adminReturnedOrder/:id',adminReturnedOrder)
+router.get('/Orders',adminSessionCheck, orders)
+router.get('/adminProductView/:id', adminSessionCheck,adminProductView)
+router.post('/adminCancelOrder/:id',adminSessionCheck, adminCancelOrder)
+router.post('/shippingStatus/:id',adminSessionCheck, shippingStatus)
+router.get('/UserOrderView', verifyUser, sessionCheck, userOrderView)
+router.post('/OrderCancel/:id', verifyUser,sessionCheck, orderCancel)
+router.get('/userProductView/:id', verifyUser,sessionCheck, userProductView)
+router.get('/OrderDetails', verifyUser, sessionCheck, orderDetails)
+router.post('/OrderReturn/:id', verifyUser, sessionCheck, orderReturn)
+router.post('/adminReturnedOrder/:id',adminSessionCheck, adminReturnedOrder)
 module.exports = router;

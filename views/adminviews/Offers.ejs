@@ -1,37 +1,46 @@
-<div class="dropdown" id="footer" style="margin-top: 8%;">
-    <button class="badge bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Select type Offers
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="/admin/ShowProductOffer">Show Product offer</a>
-      <a class="dropdown-item" href="/admin/ShowCategoryOffer">Show Category offer</a>
-    </div>
+<div class="dropdown" id="footer" style="margin-top: 5%;">
+  <button class="badge bg-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">
+    Select type Offers
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/admin/ShowProductOffer">Show Product offer</a>
+    <a class="dropdown-item" href="/admin/ShowCategoryOffer">Show Category offer</a>
   </div>
-  
 
-  
 
-  <table class="table table-bordered" id="footer" style="margin-top: 5%;">
+
+
+
+  <table class=" datatable table table-bordered " style="margin-top: 2%;">
     <thead>
-        <tr>
-            <th scope="col">productID</th>
-            <th scope="col">productName</th>
-            <th scope="col">Discount</th>
-            <th scope="col">EndDate</th>
-        </tr>
+      <tr>
+        <th scope="col">productID</th>
+        <th scope="col">productName</th>
+        <th scope="col">Discount</th>
+        <th scope="col">EndDate</th>
+      </tr>
     </thead>
     <tbody>
-        <% ProductOffer.forEach(function(productOffer, i){ %>
+      <% ProductOffer.forEach(function(productOffer, i){ %>
         <tr>
-            <td><%= productOffer.proID %></td>
-            <td><%= productOffer.shoename %></td>
-            <td><%= productOffer.Discount %>%</td>
-            <td><%= productOffer.EndDate.toISOString().split('T')[0]; %></td> 
-          
-           
+          <td>
+            <%= productOffer.proID %>
+          </td>
+          <td>
+            <%= productOffer.shoename %>
+          </td>
+          <td>
+            <%= productOffer.Discount %>%
+          </td>
+          <td>
+            <%= productOffer.EndDate.toISOString().split('T')[0]; %>
+          </td>
+
+
         </tr>
         <% }); %>
-  
+
     </tbody>
   </table>
-  
+</div>

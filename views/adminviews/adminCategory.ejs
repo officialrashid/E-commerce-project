@@ -1,95 +1,239 @@
 <section id="footer" class="category">
-<div class="page-align">
-  <% if(locals.error) { %>
-    <div class="alert alert-danger" role="alert"><%= error %></div>
-         <% } %>
-    <form action="/category/AddedCategory" method="post">
-        <div class="row mb-3">
-            <label for="inputEmail" class="col-sm-2 col-form-label">Category</label>
-            <div class="col-sm-5">
-                <input type="text" name="name" class="form-control" id="check-category" oninput="return validateCategoryName()" required >
-               
-                <span id="category-Error" style="color: red;"></span>
+    <div class="page-align">
+        <% if(locals.error) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
             </div>
-            <div class="col-sm-5">
-                <button class="btn btn-secondary" type="submit" class="form-control" id="check-submitCategory" onclick="return validateCategoryForm()" required>Add</button><br>
-                <span id="add-error" style="color: red;"></span>
-                
-                <a class="return-add-category" href=""></a>
-            
+                     <% } %>
+                <form action="/category/AddedCategory" method="post">
+                    <div class="row mb-3">
+                        <label for="inputEmail" class="col-sm-2 col-form-label">Category</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="name" class="form-control" id="username1" required>
 
-            </div>
-        </div>
-        <p class="error"></p>
-    </form>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">Categories</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% getcategory.forEach(function(category, i){ %>
-            <tr>
-                <td><%= category.name %></td> 
-                <td>
-                    <a href="/category/EditCategory/<%= category._id%>"><button class="btn btn-secondary" id="my-button" onclick="myFunction(this.id)">Edit</button></a>
-                    <a href="/category/DeleteCategory/<%= category._id%>"><button class="btn btn-secondary" onclick="return confirm('Are you sure you want to delete this file? This action cannot be undone.')",myFunction(this.id)>Remove</button></a>
-                </td>
-                <td>
-                    <button type="button" class="badge bg-dark" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 30px;" onclick="isIdPass('<%= category.name %>')">CreateOffer</button>
-                </td> 
-            </tr>
-            <% }); %>
+                            <span id="category-Error" style="color: red;"></span>
+                        </div>
+                        <div class="col-sm-5">
+                            <button class="btn btn-secondary" type="submit" class="form-control"
+                                id="check-submitCategory" required>Add</button><br>
 
-        </tbody>
-    </table>
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel"> <P>RODUCT OFFER</P></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form action="/category/AddCategoryOffer" method="post">
-          
-                <div class="row mb-3">
-                  <label for="inputPassword" class="col-sm-2 col-form-label">Discount</label>
-                  <div class="col-sm-10">
-                      <input type="number" name="Discount"  class="form-control">
-                      <input type="text" name="categoryname" id="catname" value="" hidden>
-                      
-                  </div>
-              </div> 
-              <div class="row mb-3">
-                  <label for="inputDate" class="col-sm-2 col-form-label">End Date</label>
-                  <div class="col-sm-10">
-                      <input type="date" name="EndDate" class="form-control">
-                  </div>
-              </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-secondary">AddOffer</button>
-                 
-                </div>
-              </form>
-            </div>
-           
-          </div>
-        </div>
-      </div>
-</div>
+                            <span id="add-error" style="color: red;"></span>
+
+                            <a class="return-add-category" href=""></a>
+
+
+                        </div>
+                    </div>
+                    <p class="error"></p>
+                </form>
+
+                <% if (getcategory.length> 0) { %>
+                    <table class="table table-bordered datatable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Categories</th>
+                                <th scope="col">Action</th>
+                                <th scope="col">addOffer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% getcategory.forEach(function(category, i){ %>
+                                <tr>
+                                    <td>
+                                        <%= category.name %>
+                                    </td>
+                                    <td>
+                                        <a href="/category/EditCategory/<%= category._id%>"><button
+                                                class="btn btn-secondary" id="my-button"
+                                                onclick="myFunction(this.id)">Edit</button></a>
+                                        <a href="/category/DeleteCategory/<%= category._id%>">
+                                            <button class="btn btn-secondary" onclick="event.preventDefault(); 
+                          swal({
+                            title: 'Are you sure?',
+                            text: 'This action cannot be undone.',
+                            icon: 'warning',
+                            buttons: ['Cancel', 'Yes, delete it'],
+                            dangerMode: true,
+                          })
+                          .then((willDelete) => {
+                            if (willDelete) {
+                              window.location.href = '/category/DeleteCategory/<%= category._id%>';
+                            } else {
+                              swal('Your category is safe!');
+                            }
+                          });">Remove</button>
+                                        </a>
+
+                                    <td>
+                                        <button type="button" class="badge bg-dark" data-toggle="modal"
+                                            data-target="#exampleModal" data-whatever="@mdo" style="margin-top: 30px;"
+                                            onclick="isIdPass('<%= category.name %>')">CreateOffer</button>
+                                    </td>
+                                </tr>
+                                <% }); %>
+
+                        </tbody>
+                    </table>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        <P>RODUCT OFFER</P>
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/category/AddCategoryOffer" method="post">
+
+                                        <div class="row mb-3">
+                                            <label for="inputPassword" class="col-sm-2 col-form-label">Discount</label>
+                                            <div class="col-sm-10">
+                                                <input type="number" name="Discount" class="form-control"
+                                                    id="categoryname" min="1" required>
+                                                <input type="text" name="categoryname" id="catname" value="" hidden>
+
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="inputDate" class="col-sm-2 col-form-label">End Date</label>
+                                            <div class="col-sm-10">
+                                                <input type="date" name="EndDate" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-secondary">AddOffer</button>
+
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+    </div>
 </section>
-<script>
-    function isIdPass(catname){
-        
-      console.log(catname);
-      document.getElementById('catname').value = catname
-     
-  
-      }
-  </script>          
-  <script src="/js/validation.js"></script>
+<% } else { %>
+    <div class="container-fluid  mt-100">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5></h5>
+                    </div>
+                    <div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                            <img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAQO4PHamj_vIOpPSjMJxCxHLgDwSgV_ty4Q&usqp=CAU">
+
+                            <h3><strong>Nothing to Show</strong></h3>
+                            <h4></h4>
+                            <a href="/admin/dashboard" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Go
+                                Back</a>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <style>
+        ;
+
+        body {
+            background-color: #eee;
+            font-family: 'Calibri', sans-serif !important;
+        }
+
+        .mt-100 {
+            margin-top: 100px;
+
+        }
+
+
+        .card {
+            margin-bottom: 30px;
+            border: 0;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+            letter-spacing: .5px;
+            border-radius: 8px;
+            -webkit-box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+            box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+        }
+
+        .card .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            padding: 24px;
+            border-bottom: 1px solid #f6f7fb;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-header:first-child {
+            border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+        }
+
+
+
+        .card .card-body {
+            padding: 30px;
+            background-color: transparent;
+        }
+
+        .btn-primary,
+        .btn-primary.disabled,
+        .btn-primary:disabled {
+            background-color: #4466f2 !important;
+            border-color: #4466f2 !important;
+        }
+    </style>
+
+
+    </html>
+    <% } %>
+
+        <script>
+
+
+            let categoryIput = document.getElementById("username1");
+            categoryIput.addEventListener('keypress', (event) => {
+                if (event.code === "Space") {
+                    event.preventDefault();
+                }
+            })
+        </script>
+        <script>
+            function isIdPass(catname) {
+
+                console.log(catname);
+                document.getElementById('catname').value = catname
+
+
+            }
+        </script>
+        <script src="/js/validation.js"></script>
+
+        <script>
+
+
+            categoryIput = document.getElementById("categoryname");
+            categoryIput.addEventListener('keypress', (event) => {
+                if (event.code === "Space") {
+                    event.preventDefault();
+                }
+
+            })
+
+        </script>

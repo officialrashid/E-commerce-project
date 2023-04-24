@@ -2,44 +2,44 @@ var express = require('express');
 var router = express.Router();
 var user_helpers=require('../Controller/user_controller');
 
-const {userlandingpage,userLoged,LoginandSignupButton,userRegistered,productDetails,sessioncheck,Logout,nocache,loginredirect,verifyLogin,ShopButton,categoryfilter,AddtoCart,CartPage,changequantity,removeCartItem,proceedToCheckout,PlaceOrder,OTPlogin,OTPVerify,SuccessOtpverify,AddToWishlist,WishlistPage,removeWishlistItem,verifypayment,Address,addaccount,AddedAddress,getAddAddress,search,priceFilter,checkcoupon,editaccount,EditedAddress,AllCoupons,Wallet} = require('../Controller/user_controller');
+const {userLandingPage,userLoged,loginAndSignupButton,userRegistered,productDetails,sessionCheck,logout,nocache,loginRedirect,verifyLogin,shopButton,categoryFilter,addToCart,cartPage,changeQuantity,removeCartItem,proceedToCheckout,placeOrder,otpLogin,otpVerify,successOtpVerify,addToWishlist,wishlistPage,removeWishlistItem,verifyPayment,address,addAccount,addedAddress,getAddAddress,search,priceFilter,checkCoupon,editAccount,editedAddress,allCoupons,wallet} = require('../Controller/user_controller');
 /* GET home page. */
 
-router.get('/',userlandingpage);
+router.get('/',userLandingPage);
 router.post('/Userlogin',userLoged);
 router.post('/UserRegister',userRegistered)
-router.get('/LoginandSignupButton',nocache,loginredirect,LoginandSignupButton)
-router.get('/productDetails/:id',sessioncheck,productDetails)
-router.get('/Logout',Logout)
+router.get('/LoginandSignupButton',nocache,loginRedirect,loginAndSignupButton)
+router.get('/productDetails/:id',sessionCheck,productDetails)
+router.get('/Logout', logout)
 // router.get('/AddtoCart/:id',verifyLogin,AddtoCart)
-router.get('/ShopButton',sessioncheck,ShopButton)
-router.post('/categoryfilter',categoryfilter)
-router.get('/Add-to-cart/:id',sessioncheck,AddtoCart)
-router.get('/CartPage',sessioncheck,CartPage)
-router.post('/change-product-quantity',changequantity)
+router.get('/ShopButton',sessionCheck,shopButton)
+router.post('/categoryfilter',categoryFilter)
+router.get('/Add-to-cart/:id',sessionCheck,addToCart)
+router.get('/CartPage',sessionCheck,cartPage)
+router.post('/change-product-quantity',changeQuantity)
 router.post('/remove_cartItem',removeCartItem)
-router.get('/proceedToCheckout',sessioncheck,proceedToCheckout)
-router.post('/place-order',sessioncheck,PlaceOrder)
-router.get('/OTPlogin',OTPlogin)
-router.post('/OTPVerify',OTPVerify)
-router.post('/SuccessOtpverify',SuccessOtpverify)
+router.get('/proceedToCheckout',sessionCheck,proceedToCheckout)
+router.post('/place-order',sessionCheck,placeOrder)
+router.get('/OTPlogin',otpLogin)
+router.post('/OTPVerify',otpVerify)
+router.post('/SuccessOtpverify',successOtpVerify)
 
 
-router.get('/Add-to-wishlist/:id',AddToWishlist)
-router.get('/WishlistPage',sessioncheck,WishlistPage)
+router.get('/Add-to-wishlist/:id',addToWishlist)
+router.get('/WishlistPage',sessionCheck,wishlistPage)
 router.post('/remove_wishlistItem',removeWishlistItem)
 
-router.post('/verifypayment',verifypayment)
-router.get('/Address',sessioncheck,Address)
-router.get('/add-account',sessioncheck,addaccount)
-router.post('/AddedAddress',sessioncheck,AddedAddress)
+router.post('/verifypayment',verifyPayment)
+router.get('/Address',sessionCheck,address)
+router.get('/add-account',sessionCheck,addAccount)
+router.post('/AddedAddress',sessionCheck,addedAddress)
 router.post('/getAddAddress',getAddAddress)
 router.post('/search',search)
 router.post('/priceFilter',priceFilter)
-router.post('/checkcoupon',checkcoupon)
-router.get('/edit-account',editaccount)
-router.post('/EditedAddress/:id',sessioncheck,EditedAddress)
-router.get('/AllCoupons',sessioncheck,AllCoupons)
-router.get('/Wallet',sessioncheck,Wallet)
+router.post('/checkcoupon',checkCoupon)
+router.get('/edit-account',editAccount)
+router.post('/EditedAddress/:id',sessionCheck,editedAddress)
+router.get('/AllCoupons',sessionCheck,allCoupons)
+router.get('/Wallet',sessionCheck,wallet)
 
 module.exports = router;

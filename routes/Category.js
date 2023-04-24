@@ -1,13 +1,15 @@
 var express = require('express');
+const { verifyUser } = require('../Controller/auth');
 var router = express.Router();
-const{Categorypage,addcategory,AddedCategory,EditCategory,EditCategorySubmit,DeleteCategory,categoryfilter,AddCategoryOffer}=require('../Controller/category_controller')
-
-router.get('/Category',Categorypage)
-router.get('/AddCategory',addcategory)
-router.post('/AddedCategory',AddedCategory)
-router.get('/EditCategory/:id',EditCategory)
-router.post('/EditCategory-Submit/:id',EditCategorySubmit)
-router.get('/DeleteCategory/:id',DeleteCategory)
-router.post('/categoryfilter',categoryfilter)
-router.post('/AddCategoryOffer',AddCategoryOffer)
+const { categoryPage, addCategory, addedCategory, editCategory, editCategorySubmit, deleteCategory, categoryFilter, addCategoryOffer } = require('../Controller/category_controller')
+const {adminSessionCheck} = require('../Controller/admin_controller')
+const{sessionCheck} = require('../Controller/user_controller')
+router.get('/Category',adminSessionCheck ,categoryPage)
+router.get('/AddCategory',adminSessionCheck ,addCategory)
+router.post('/AddedCategory', adminSessionCheck, addedCategory)
+router.get('/EditCategory/:id',adminSessionCheck, editCategory)
+router.post('/EditCategory-Submit/:id',adminSessionCheck, editCategorySubmit)
+router.get('/DeleteCategory/:id', adminSessionCheck, deleteCategory)
+router.post('/categoryfilter', verifyUser, sessionCheck, categoryFilter)
+router.post('/AddCategoryOffer',adminSessionCheck, addCategoryOffer)
 module.exports = router;
