@@ -11,6 +11,42 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 module.exports = {
+
+  adminSessionCheck: (req, res, next) => {
+    try {
+      if (req.session.admins) {
+        next();
+      } else {
+        res.redirect('/admin/');
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  loginRedirect: (req, res, next) => {
+    try {
+      if (!req.session.admins) {
+        req.session.loggedIn = false;
+      }
+      if (req.session.admins) {
+        res.redirect('/dashboard');
+      } else {
+        next();
+      }
+    } catch (error) {
+      next(error);
+    }
+  },
+  nocache: (req, res, next) => {
+    try {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      next();
+    } catch (error) {
+      next(error);
+    }
+  },
 // adminLogin Session start
 
   adminLogin(req, res, next) {
@@ -23,6 +59,8 @@ module.exports = {
   adminRegisterd(req, res, next) {
     try {
       doAdminSignup(req.body).then((adminData) => {
+        req.session.loggedIn = true;
+        req.session.admins = adminData;
         totalSales().then((TotalSales) => {
           todayOrders().then((TodaySales) => {
             thisWeekOrders().then((WeekSales) => {
