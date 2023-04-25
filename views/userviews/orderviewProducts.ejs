@@ -17,7 +17,7 @@
             <% singleOrder.forEach(function(order, i){ %>
                 <tr>
                     <!-- <th scope="row"> <%= i+1 %></th> -->
-                    <td class="product-images"><img src="/product-images/<%= order.orders.productImage[0] %>" alt="no">
+                    <td class="product-images"><img src="/Product-images/<%= order.orders.productImage[0] %>" alt="no">
                     </td>
                     <td>
                         <%= order.orders.shoename %>
@@ -88,7 +88,7 @@
                                         <tr>
                                             <td width="20%">
 
-                                                <img src="/product-images/<%= Orders.orders.productImage[0] %>"
+                                                <img src="/Product-images/<%= Orders.orders.productImage[0] %>"
                                                     width="90">
 
                                             </td>
