@@ -209,7 +209,7 @@ module.exports = {
       res.json({ status: true });
     } catch (error) {
       console.log(error);
-      const errorMessage = error.message || "Stock limit Exceeded";
+      const errorMessage = "Stock limit Exceeded";
       res.status(400).json({ error: errorMessage });
     }
   },
@@ -240,7 +240,7 @@ module.exports = {
       res.json(response);
     } catch (error) {
       console.log(error);
-      const errorMessage = error.message || "Stock limit Exceeded";
+      const errorMessage = "Stock limit Exceeded";
       res.status(400).json({ error: errorMessage });
     }
   },
@@ -407,15 +407,7 @@ module.exports = {
                 // console.log(payment);
               }
             });
-            changePaymentStatus(orderID).then(() => {
-
-              let ids = destruct(products)
-
-              removeCartAfterOrder(ids, req.body.userID).then(() => {
-
-              })
-
-            })
+        
 
           } else if (req.body.payment_method == 'Wallet') {
 
@@ -440,7 +432,15 @@ module.exports = {
 
           }
 
+          changePaymentStatus(orderID).then(() => {
 
+            let ids = destruct(products)
+
+            removeCartAfterOrder(ids, req.body.userID).then(() => {
+
+            })
+
+          })
 
         })
 

@@ -11,6 +11,8 @@ const { get } = require('http');
 const { resolve } = require('path');
 var paypal = require('paypal-rest-sdk');
 const { Number } = require('twilio/lib/twiml/VoiceResponse');
+const { NumberContextImpl } = require('twilio/lib/rest/pricing/v2/number');
+const { isNumber } = require('razorpay/dist/utils/razorpay-utils');
 const Razorpaykeyid = process.env.RAZORPAY_KEYID
 const Razorpaykeysecret = process.env.RAZORPAY_KEYSECRET
 const PaypalclientID = process.env.PAYPAL_CLIENTID
@@ -469,28 +471,35 @@ module.exports = {
     },
     removeCartAfterOrder: (item, userID) => {
 
-        console.log("this is cart", item);
+        console.log("this is order", item);
 
         return new Promise(async (resolve, reject) => {
 
             for (let i = 0; i < item.length; i++) {
+                let stock=0
+                stock=parseInt(item[i].quantity)
+                
+                console.log(stock,'stockkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk');
+                // item[i].quantity= Number(item[i].quantity)
+                
+             let products= await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id: item[i].prod})
+                  console.log(products,"productssssssssssssssssss");
+                 let count=parseInt(products.StockCount-stock)   
+                 console.log(count,'countttttttttttttttttttttttttttttt');
+             // $inc: { StockCount: -stock }
+                
+              db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id: item[i].prod},{
 
-                // item[i].quantity=Number(item[i].quantity)
+               $set:{
 
-                await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: item[i].prod }, {
-
-                    $inc: { StockCount: -item[i].quantity }
-                })
-
+                 StockCount : count
+               }
+              })
                 await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: item[i].prod }, [{
 
-                    $set: { productstock: { $cond: { if: { $lt: ["$StockCount", 1] }, then: false, else: true } } },
+                    $set: { productstock: { $cond: { if: { $gt: ["$StockCount", 1] }, then: false, else: true } } },
 
                 }]).then(() => {
-
-                    db.get().collection(collection.CART_COLLECTION).deleteOne({ users: ObjectId(userID) })
-
-                    console.log("delte cart");
 
                     resolve()
 
@@ -499,6 +508,7 @@ module.exports = {
                     reject()
                 })
             }
+
 
         })
     },

@@ -17,7 +17,7 @@ module.exports = {
       if (req.session.admins) {
         next();
       } else {
-        res.redirect('/admin/');
+        res.redirect('/admin');
       }
     } catch (error) {
       next(error);

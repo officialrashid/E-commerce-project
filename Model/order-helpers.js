@@ -6,6 +6,8 @@ const { body } = require('express-validator');
 const { shippingStatus } = require('../Controller/admin_controller');
 const { promiseImpl } = require('ejs');
 const { PRODUCTOFFER_COLLECTION, PRODUCT_COLLECTION } = require('./collections');
+const { payment } = require('paypal-rest-sdk');
+const { isNumber } = require('razorpay/dist/utils/razorpay-utils');
 
 module.exports = {
 
@@ -127,6 +129,10 @@ module.exports = {
         if (status == 'placed' || status == 'pending') {
 
             status = 'order cancelled'
+        }
+        if(payment == 'ONLINE' || payment == 'Paypal'){
+
+
         }
         return new Promise((resolve, reject) => {
 
@@ -261,7 +267,8 @@ module.exports = {
 
             for (let i = 0; i < item.length; i++) {
 
-                // item[i].quantity=Number(item[i].quantity)
+                // item[i].quantity= Number(item[i].quantity)
+                
 
                 await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: item[i].prod }, {
 
@@ -270,7 +277,7 @@ module.exports = {
 
                 await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: item[i].prod }, [{
 
-                    $set: { productstock: { $cond: { if: { $gt: ["$StockCount", 1] }, then: false, else: true } } },
+                    $set: { productstock: { $cond: { if: { $gt: ["$StockCount", 1] }, then: true, else: false } } },
 
                 }]).then(() => {
 
@@ -360,6 +367,47 @@ module.exports = {
 
             }
         })
+    },
+    cancelAfterCreateWallet:(TotalAmount, userID , payment)=>{
+
+        if(payment == 'ONLINE' || payment == 'Paypal' || payment == 'Wallet'){
+      
+        return new Promise(async (resolve, reject) => {
+
+            let wallet = await db.get().collection(collection.WALLET_COLLECTION).findOne({ userID: ObjectId(userID) })
+
+            if (wallet) {
+
+                db.get().collection(collection.WALLET_COLLECTION).updateOne({ userID: ObjectId(userID) },
+
+                    [{ $set: { total: { $add: ["$total", TotalAmount] } } }]
+                ).then(() => {
+
+                    resolve()
+                }).catch(() => {
+
+                    reject()
+                })
+          
+            } else {
+
+
+                let walletObj = {
+
+                    userID: ObjectId(userID),
+                    total: TotalAmount
+                }
+                db.get().collection(collection.WALLET_COLLECTION).insertOne(walletObj)
+                    .then((response) => {
+                        resolve()
+                    }).catch((err) => {
+                        reject()
+                    })
+
+            }
+        })
+
     }
+}
 
 }

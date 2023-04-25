@@ -82,7 +82,7 @@
                     <form action="/order/OrderCancel/<%= order._id %>" method="post">
 
                       <input name="status" value="<%= order.status %>" hidden>
-
+                      <input name="payment" value="<%= order.PaymentMethod %>" hidden>
 
                       <button type="submit" class="badge bg-danger" style="border: none;">Cancel</button>
 

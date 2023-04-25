@@ -1,6 +1,6 @@
 const { respons, response } = require('express');
 
-const { userOrderDetails, productView, adminOrderCancellled, shippingDetail, orderDetails, orderCancelled, orderProductView, billingAddress, productOffer, orderReturned, orderProductList, stockIncreamentAfterReturn, orderReturnConfirm, getWalletAmount, returnAfterCreateWallet } = require('../Model/order-helpers')
+const { userOrderDetails, productView, adminOrderCancellled, shippingDetail, orderDetails, orderCancelled, orderProductView, billingAddress, productOffer, orderReturned, orderProductList, stockIncreamentAfterReturn, orderReturnConfirm, getWalletAmount, returnAfterCreateWallet ,cancelAfterCreateWallet} = require('../Model/order-helpers')
 
 module.exports = {
   sessionCheck: (req, res, next) => {
@@ -114,9 +114,49 @@ module.exports = {
   
   orderCancel(req, res) {
     try {
-      orderCancelled(req.params.id, req.body.status).then(() => {
+     
+      orderCancelled(req.params.id, req.body.status ,req.body.payment).then(() => {
+         
+        orderProductList(req.params.id).then((products) => {
+  
+          console.log(products, "products coming");
+  
+          function destruct(products) {
+            let data = []
+            for (let i = 0; i < products.length; i++) {
+              let obj = {}
+              obj.prod = products[i].item
+              obj.quantity = products[i].quantity
+              data.push(obj)
+            }
+            return data
+          }
+          let ids = destruct(products)
+          console.log(ids, "ids");
+  
+          stockIncreamentAfterReturn(ids).then(() => {
+            
+        getWalletAmount(req.params.id).then((wallet) => {
+            
+
+         if(req.body.payment == 'ONLINE' || req.body.payment == 'Paypal' || req.body.payment == 'Wallet'){
+
+      
+          cancelAfterCreateWallet(wallet.TotalAmount, wallet.userID ,req.body.payment).then(() => {
+
+          
         res.redirect('/order/UserOrderView');
+        
       });
+    }else{
+
+      res.redirect('/order/UserOrderView');
+    }
+        
+    });
+  });
+});
+  });
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal Server Error');
