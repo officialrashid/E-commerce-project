@@ -473,18 +473,14 @@ module.exports = {
       let users = req.session.users;
       console.log(req.body);
   
-      // res.render('userviews/OTPverification',{user:true,users})
-  
       const number = req.body.PhoneNumber;
   
-      // account finding
-      console.log(number);
       findByNumber(number)
         .then((user) => {
           console.log(user);
           otpusers = user;
   
-          client.verify
+          client.verify.v2
             .services(serviceID)
             .verifications.create({
               to: `+91${number}`,
@@ -495,25 +491,30 @@ module.exports = {
             })
             .catch((err) => {
               console.log(err);
-              res.status(500).send('Internal server error');
+              res.status(500).send(`Error: ${err.message}`);
             });
         })
         .catch((err) => {
           console.log(err);
-          res.render('userviews/OTPLOGIN');
+          res.render('userviews/OTPLOGIN',{user:true,users});
         });
     } catch (error) {
       console.error(error);
-      res.status(500).send('Internal server error');
+      res.status(500).send(`Error: ${error.message}`);
     }
   },
   
+  
   successOtpVerify(req, res) {
-    try {
-      client.verify
+  try {
+    console.log(req.body,"++++++++++++++)");
+    const number = otpusers.phone;; // Define and initialize the "number" variable
+      console.log('number:', number); // Log the value of the "number" variable
+      
+      client.verify.v2
         .services(serviceID)
         .verificationChecks.create({
-          to: `+91${number}`,
+          to: `${number}`,
           code: req.body.otplogin,
         })
         .then(async (data) => {
@@ -535,6 +536,7 @@ module.exports = {
       res.status(500).send('Internal server error');
     }
   },
+  
   
   addToWishlist(req, res) {
     try {
