@@ -244,7 +244,7 @@
                                 <div class="payment-method">
                                     <div class="pay-top sin-payment">
                                         <input id="payment-method-3" class="input-radio" type="radio" value="COD"
-                                            name="payment_method">
+                                            name="payment_method" id="payment_method">
                                         <label for="payment-method-3" style="color: black;">Cash on delivery </label>
                                         <div class="payment-box payment_method_bacs">
                                             <p>Make your payment directly into our bank account. Please use your Order
@@ -253,7 +253,7 @@
                                     </div>
                                     <div class="pay-top sin-payment sin-payment-3">
                                         <input id="payment-method-4" class="input-radio" type="radio" value="ONLINE"
-                                            name="payment_method">
+                                            name="payment_method" id="payment_method">
                                         <label for="payment-method-4" style="color: black;">Razorpay <img alt=""
                                                 src="/images/icon-img/payment.png"><a href="#">What is
                                                 Razorpay?</a></label>
@@ -264,7 +264,7 @@
                                     </div>
                                     <div class="pay-top sin-payment sin-payment-3">
                                         <input id="payment-method-4" class="input-radio" type="radio" value="Paypal"
-                                            name="payment_method">
+                                            name="payment_method" id="payment_method">
                                         <label for="payment-method-4" style="color: black;">PayPal <img alt=""
                                                 src="/images/icon-img/payment.png"><a href="#">What is
                                                 PayPal?</a></label>
@@ -278,7 +278,7 @@
 
                                         <div class="pay-top sin-payment sin-payment-3">
                                             <input id="payment-method-4" class="input-radio" type="radio" value="Wallet"
-                                                name="payment_method">
+                                                name="payment_method" id="payment_method">
                                             <label for="payment-method-4" style="color: black;">Use Your walletAmount
                                                 <img alt="" src="/images/icon-img/payment.png"><a href="#"></a></label>
                                             <div class="payment-box payment_method_bacs">
@@ -298,7 +298,7 @@
                     <div class="terms pt-50 pb-20">
 
                         <div class="order-button">
-                            <button type="submit">place order</button>
+                            <button type="submit" onclick="return validatePayment()">place order</button>
                         </div>
 
                     </div>

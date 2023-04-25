@@ -282,3 +282,31 @@ function productOfferSubmit(){
   }
   return true
 }
+function validatePayment() {
+  const paymentMethods = document.getElementsByName('payment_method');
+  let isSelected = false;
+
+  for (let i = 0; i < paymentMethods.length; i++) {
+    if (paymentMethods[i].checked) {
+      isSelected = true;
+      break;
+    }
+  }
+
+  if (!isSelected) {
+    swal({
+      title: "Please select a payment method.",
+      icon: "warning",
+      dangerMode: true,
+      timer: 3000 // in milliseconds
+  }).then((confirm) => {
+      if (confirm) {
+          location.reload();
+      }
+  });
+  
+    return false;
+  }
+
+  return true;
+}
