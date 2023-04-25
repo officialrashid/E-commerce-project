@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var user_helpers=require('../Controller/user_controller');
 
-const {userLandingPage,userLoged,loginAndSignupButton,userRegistered,productDetails,sessionCheck,logout,nocache,loginRedirect,verifyLogin,shopButton,categoryFilter,addToCart,cartPage,changeQuantity,removeCartItem,proceedToCheckout,placeOrder,otpLogin,otpVerify,successOtpVerify,addToWishlist,wishlistPage,removeWishlistItem,verifyPayment,address,addAccount,addedAddress,getAddAddress,search,priceFilter,checkCoupon,editAccount,editedAddress,allCoupons,wallet} = require('../Controller/user_controller');
+const {userLandingPage,userLoged,loginAndSignupButton,userRegistered,productDetails,sessionCheck,logout,nocache,loginRedirect,verifyLogin,shopButton,categoryFilter,addToCart,cartPage,changeQuantity,removeCartItem,proceedToCheckout,placeOrder,otpLogin,otpVerify,successOtpVerify,addToWishlist,wishlistPage,removeWishlistItem,verifyPayment,address,addAccount,addedAddress,getAddAddress,search,priceFilter,checkCoupon,editAccount,editedAddress,allCoupons,wallet,signupOtpVerification} = require('../Controller/user_controller');
 
 const {verifyUser} = require('../Controller/auth')
 /* GET home page. */
@@ -43,5 +43,5 @@ router.get('/edit-account',verifyUser,sessionCheck,editAccount)
 router.post('/EditedAddress/:id',verifyUser,sessionCheck,editedAddress)
 router.get('/AllCoupons',verifyUser,sessionCheck,allCoupons)
 router.get('/Wallet',verifyUser,sessionCheck,wallet)
-
+router.post('/signupOtpVerification',signupOtpVerification)
 module.exports = router;

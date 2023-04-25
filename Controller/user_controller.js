@@ -19,6 +19,7 @@ paypal.configure({
   'client_secret': PaypalclientSecret
 });
 let otpusers
+let signupUsersData
 module.exports = {
 
   
@@ -105,22 +106,30 @@ module.exports = {
     }
   },
   userRegistered(req, res, next) {
-    try {
-      doSignup(req.body)
-        .then((userdata) => {
-          console.log(userdata);
-          req.session.loggedIn = true;
-          req.session.users = userdata;
-          res.redirect('/');
-        })
+    // try {
+      // doSignup(req.body)
+      //   .then((userdata) => {
+          // console.log(userdata);
+          // req.session.loggedIn = true;
+          // req.session.users = userdata;
+          // res.redirect('/');
+          signupUsersData = req.body
+          client.verify.v2.services(serviceID).verifications.create({
+            to: `+91${signupUsersData.phone}`,
+            channel: 'sms',
+          }).then(()=>{
+
+            res.render('userviews/signupOtp')
+          })
+        // })
         .catch((error) => {
           res.render('userviews/userlogin and signup', {
             error: `${error.error}`,
           });
         });
-    } catch (error) {
-      next(error);
-    }
+    // } catch (error) {
+    //   next(error);
+    // }
   },
   loginAndSignupButton(req, res, next) {
     try {
@@ -733,9 +742,32 @@ module.exports = {
     } catch (error) {
       res.status(500).json({ error: error });
     }
+  },
+
+  signupOtpVerification(req,res,next){
+    client.verify.v2.services(serviceID).verificationChecks.create({
+      to: `+91${signupUsersData.phone}`,
+      code: req.body.otp,
+    }).then(async (data) => {
+      if (data.status === 'approved') {
+        // Mark the user account as verified and log them in
+       
+          doSignup(signupUsersData)
+        .then((userdata) => {
+          console.log(userdata,")))))))))))))");
+          req.session.loggedIn = true;
+          req.session.users = userdata;
+          res.redirect('/');
+        })
+        // req.session.loggedIn = true
+        // req.session.users = await db.get().collection(collection.USER_COLLECTION).findOne({ phone: req.body.phone })
+        // res.redirect('/')
+      } else {
+        res.render('userviews/signupOtp', { phone: req.body.phone, error: 'Invalid OTP' })
+      }
+    })
+
   }
-
-
 }
 
 
