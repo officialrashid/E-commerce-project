@@ -68,15 +68,17 @@
                     </p>
                     <form action="/order/shippingStatus/<%= order._id %>" method="post">
                       <div class="dropdown-menu">
-
-                        <button class="dropdown-item" type="submit" value="Ordered" name="shippingStatus">Order</button>
-                        <button class="dropdown-item" type="submit" value="Shipped"
-                          name="shippingStatus">Shipped</button>
-                        <button class="dropdown-item" type="submit" value="Arraving"
-                          name="shippingStatus">Arraving</button>
-                        <button class="dropdown-item" type="submit" value="Delivered"
-                          name="shippingStatus">Delivered</button>
-
+                        <% if (order.shippingStatus =='ordered' ) { %>
+                          <!-- <button class="dropdown-item" type="submit" value="Ordered" name="shippingStatus">Order</button> -->
+                          <button class="dropdown-item" type="submit" value="Shipped" name="shippingStatus">Shipped</button>
+                          <button class="dropdown-item" type="submit" value="Arriving" name="shippingStatus">Arriving</button>
+                          <button class="dropdown-item" type="submit" value="Delivered" name="shippingStatus">Delivered</button>
+                        <% } else if (order.shippingStatus =='Shipped' ) { %>
+                          <button class="dropdown-item" type="submit" value="Arriving" name="shippingStatus">Arriving</button>
+                          <button class="dropdown-item" type="submit" value="Delivered" name="shippingStatus">Delivered</button>
+                        <% } else if (order.shippingStatus =='Arraving' ) { %>
+                          <button class="dropdown-item" type="submit" value="Delivered" name="shippingStatus">Delivered</button>
+                        <% } %>
                       </div>
                   </div>
 
