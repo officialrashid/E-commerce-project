@@ -579,7 +579,7 @@
                                                                         <button class="p-absoulute pr-2 "
                                                                             style="border: none;"
                                                                             onclick="addTOCart('<%= product._id %>')">add
-                                                                            to car<i class="fa fa-cart-arrow-down"
+                                                                            to cart<i class="fa fa-cart-arrow-down"
                                                                                 aria-hidden="true"></i></button>
 
 
@@ -643,7 +643,7 @@
             console.log("}}}}}}}}}}}}}}}}}}}}");
             $.ajax({
 
-                url: '/Add-to-cart/' + proID,
+                url: '/addToCart/' + proID,
                 method: 'get',
                 success: (response) => {
 
@@ -682,7 +682,7 @@
 
             $.ajax({
 
-                url: '/Add-to-wishlist/' + proID,
+                url: '/addToWishlist/' + proID,
                 method: 'get',
                 success: (response) => {
 

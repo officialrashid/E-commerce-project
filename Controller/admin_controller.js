@@ -153,7 +153,7 @@ module.exports = {
     try {
       let deleteid = req.params.id;
       removeProduct(deleteid).then((response) => {
-        res.redirect('/admin/Stocks');
+        res.redirect('/product/stocks');
       });
     } catch (error) {
       console.log(error);
@@ -166,7 +166,7 @@ module.exports = {
   blockManagement(req, res) {
     try {
       userBlock(req.params.id, req.body.status).then(() => {
-        res.redirect('/admin/AllUsers');
+        res.redirect('/admin/allUsers');
       });
     } catch (error) {
       console.log(error);
@@ -278,7 +278,7 @@ module.exports = {
             console.log(err);
             throw err;
           } else {
-            res.redirect('/admin/Banner');
+            res.redirect('/admin/banner');
           }
         });
       });
@@ -299,11 +299,11 @@ module.exports = {
         res.render('adminviews/EditBanner', { user: false, product })
       }).catch((error) => {
         console.log(error)
-        res.redirect('/admin/Banner')
+        res.redirect('/admin/banner')
       })
     } catch (error) {
       console.log(error)
-      res.redirect('/admin/Banner')
+      res.redirect('/admin/banner')
     }
 
   },
@@ -314,7 +314,7 @@ module.exports = {
       console.log(id + "||||||||||||||||||||||||||||||||||||||");
       adminBannerEdit(req.params.id, req.body).then(() => {
 
-        res.redirect('/admin/Banner')
+        res.redirect('/admin/banner')
 
         console.log(req.file);
         if (req.files?.Image) {
@@ -498,7 +498,7 @@ module.exports = {
   editedCoupon(req, res) {
     try {
       adminEditedCoupon(req.params.id, req.body).then(() => {
-        res.redirect('/admin/AllCoupons');
+        res.redirect('/admin/allCoupons');
       });
     } catch (error) {
       console.log(error);
@@ -509,7 +509,7 @@ module.exports = {
   deleteCoupon(req, res) {
     try {
       adminDeleteCoupon(req.params.id).then((response) => {
-        res.redirect('/admin/AllCoupons');
+        res.redirect('/admin/allCoupons');
       });
     } catch (error) {
       console.log(error);

@@ -217,12 +217,12 @@
                     <div class="product-widget">
                         <h3 class="widget-title mb-30">Product categories</h3>
                         <ul class="product-categories">
-                            <a href="/ShopButton"><button type="submit" class="btn btn-color">All Product</button></a <%
+                            <a href="/shopButton"><button type="submit" class="btn btn-color">All Product</button></a <%
                                 getCategoryData.forEach(function(product, i){ %>
 
                             <a href="">
 
-                                <form action="/categoryfilter" method="post">
+                                <form action="/categoryFilter" method="post">
 
                                     <input type="text" name="name" value="<%= product.name %>" hidden>
 
@@ -432,7 +432,7 @@
 
         $.ajax({
 
-            url: '/Add-to-cart/' + proID,
+            url: '/addToCart/' + proID,
             method: 'get',
             success: (response) => {
 
@@ -479,7 +479,7 @@
 
         $.ajax({
 
-            url: '/Add-to-wishlist/' + proID,
+            url: '/addToWishlist/' + proID,
             method: 'get',
             success: (response) => {
 

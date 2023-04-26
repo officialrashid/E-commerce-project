@@ -20,20 +20,20 @@ const upload = multer({ storage: storage })
 
 
 
-router.get('/Stocks', adminSessionCheck,stocks)
-router.get('/AddProduct', adminSessionCheck, addProduct)
-router.post('/AddedProduct', upload.array('Image1', 4), adminSessionCheck, addedProduct)
-router.get('/edit-pro/:id', adminSessionCheck, editProduct)
-router.post('/edit-product-submit/:id', upload.fields([
+router.get('/stocks', adminSessionCheck,stocks)
+router.get('/addProduct', adminSessionCheck, addProduct)
+router.post('/addedProduct', upload.array('Image1', 4), adminSessionCheck, addedProduct)
+router.get('/editProduct/:id', adminSessionCheck, editProduct)
+router.post('/editProductSubmit/:id', upload.fields([
   { name: 'Image1', maxCount: 1 },
   { name: 'Image2', maxCount: 1 },
   { name: 'Image3', maxCount: 1 },
   { name: 'Image4', maxCount: 1 },
 
 ]),adminSessionCheck, editSubmit)
-router.post('/delete-pro/:id',adminSessionCheck, productManage)
+router.post('/deleteProduct/:id',adminSessionCheck, productManage)
 router.get('/ProductOffer',adminSessionCheck, productOffer)
-router.post('/AddProductOffer', adminSessionCheck, addProductOffer)
+router.post('/addProductOffer', adminSessionCheck, addProductOffer)
 router.get('/productDetails/:id', verifyUser, sessionCheck, productDetails)
 
 module.exports = router;

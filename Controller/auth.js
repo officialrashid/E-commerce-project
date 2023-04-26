@@ -22,12 +22,12 @@ module.exports={
                    
                     req.session.loggedIn=false
 
-                    res.redirect('/LoginandSignupButton')
+                    res.redirect('/loginAndSignupButton')
                 }
               
             }
             else{
-                res.redirect('/LoginandSignupButton')
+                res.redirect('/loginAndSignupButton')
             }
         }
         catch(error)

@@ -16,7 +16,7 @@ module.exports = {
 
 addCategory(req, res, next) {
   try {
-    res.redirect('/category/Category');
+    res.redirect('/category/category');
   } catch (error) {
     next(error);
   }
@@ -25,7 +25,7 @@ addCategory(req, res, next) {
 addedCategory(req, res) {
   try {
     addCategorys(req.body).then((addcategory) => {
-      res.redirect('/category/Category');
+      res.redirect('/category/category');
     }).catch((error) => {
       getAllCategory().then((getcategory) => {
         res.render('adminviews/adminCategory', { error: `${error.error}`, getcategory, user: false });
@@ -50,7 +50,7 @@ editCategory(req, res, next) {
 editCategorySubmit(req, res, next) {
   try {
     categoryEdit(req.params.id, req.body).then(() => {
-      res.redirect('/category/Category');
+      res.redirect('/category/category');
     });
   } catch (error) {
     next(error);
@@ -61,7 +61,7 @@ deleteCategory(req, res) {
   try {
     let deleteCategoryid = req.params.id;
     removeCategory(deleteCategoryid).then((response) => {
-      res.redirect('/category/Category');
+      res.redirect('/category/category');
     });
   } catch (error) {
     next(error);
@@ -91,7 +91,7 @@ addCategoryOffer(req, res) {
     console.log(req.body, "}}}}}}}}}}}}}}}}}}]]");
     insertCategoryOffer(req.body).then((catoffer) => {
       makeCategoryOffer(req.body).then(() => {
-        res.redirect('/admin/AllOffers');
+        res.redirect('/admin/allOffers');
       });
     });
   } catch (error) {

@@ -8,7 +8,7 @@ module.exports = {
       if (req.session.users) {
         next();
       } else {
-        res.redirect('/LoginandSignupButton');
+        res.redirect('/loginAndSignupButton');
       }
     } catch (err) {
       console.error(err);
@@ -48,7 +48,7 @@ module.exports = {
       if (req.session.users) {
         next();
       } else {
-        res.redirect('/LoginandSignupButton');
+        res.redirect('/loginAndSignupButton');
       }
     } catch (err) {
       console.error(err);
@@ -81,7 +81,7 @@ module.exports = {
   adminCancelOrder(req, res) {
     try {
       adminOrderCancellled(req.params.id, req.body.status).then((response) => {
-        res.redirect('/order/Orders');
+        res.redirect('/order/orders');
       });
     } catch (err) {
       console.error(err);
@@ -92,7 +92,7 @@ module.exports = {
   shippingStatus(req, res, next) {
     try {
       shippingDetail(req.params.id, req.body.shippingStatus).then((response) => {
-        res.redirect('/order/Orders');
+        res.redirect('/order/orders');
       });
     } catch (err) {
       console.error(err);
@@ -145,12 +145,12 @@ module.exports = {
           cancelAfterCreateWallet(wallet.TotalAmount, wallet.userID ,req.body.payment).then(() => {
 
           
-        res.redirect('/order/UserOrderView');
+        res.redirect('/order/userOrderView');
         
       });
     }else{
 
-      res.redirect('/order/UserOrderView');
+      res.redirect('/order/userOrderView');
     }
         
     });
@@ -198,7 +198,7 @@ module.exports = {
   orderReturn(req, res) {
     try {
       orderReturned(req.params.id, req.body.status).then((response) => {
-        res.redirect('/order/UserOrderView')
+        res.redirect('/order/userOrderView')
       })
     } catch (error) {
       console.error(error);
@@ -230,7 +230,7 @@ module.exports = {
             getWalletAmount(req.params.id).then((wallet) => {
   
               returnAfterCreateWallet(wallet.TotalAmount, wallet.userID).then(() => {
-                res.redirect('/order/Orders')
+                res.redirect('/order/orders')
               })
   
             })

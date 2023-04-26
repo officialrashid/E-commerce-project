@@ -15,8 +15,8 @@
       </tr>
     </thead>
     <tbody>
-      <a href="/product/AddProduct"> <button type="button" class="btn btn-success mt-4">Add Product</button></a>
-      <a href="/category/AddCategory"> <button type="button" class="btn btn-success mt-4">Add Category</button></a>
+      <a href="/product/addProduct"> <button type="button" class="btn btn-success mt-4">Add Product</button></a>
+      <a href="/category/addCategory"> <button type="button" class="btn btn-success mt-4">Add Category</button></a>
       <% products.forEach(function(product, i){ %>
         <tr>
           <!-- <th scope="row"> <%= i+1 %></th> -->
@@ -44,7 +44,7 @@
             <%= product.StockCount %>
           </td>
           <td>
-            <a href="/product/edit-pro/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button"
+            <a href="/product/editProduct/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button"
                 onclick="myFunction(this.id)">Edit</button></a><br>
 
 
@@ -54,7 +54,7 @@
               onclick="isIdPass('<%= product._id %>','<%= product.price %>','<%= product.shoename %>')">CreateOffer</button>
 
 
-            <form action="/product/delete-pro/<%= product._id %>" method="post">
+            <form action="/product/deleteProduct/<%= product._id %>" method="post">
               <input name="stock" value="<%= product.productstock %>" hidden>
               <% if (product.productstock) { %>
                 <button type="submit" class="btn btn-danger mt-3">Unlist</button>
@@ -82,7 +82,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/product/AddProductOffer" method="post">
+        <form action="/product/addProductOffer" method="post">
 
           <div class="row mb-3">
             <label for="inputPassword" class="col-sm-2 col-form-label" on>Discount</label>

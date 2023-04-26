@@ -41,7 +41,7 @@
                         <%= user.phone %>
                       </td>
                       <td>
-                        <form action="/admin/Block/<%= user._id %>" method="post">
+                        <form action="/admin/block/<%= user._id %>" method="post">
 
                           <input name="status" value="<%= user.isBlocked %>" hidden>
                           <% if (user.isBlocked) { %>

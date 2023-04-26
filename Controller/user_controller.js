@@ -28,7 +28,7 @@ module.exports = {
       if (req.session.users) {
         next();
       } else {
-        res.redirect('/LoginandSignupButton');
+        res.redirect('/loginAndSignupButton');
       }
     } catch (error) {
       next(error);
@@ -63,7 +63,7 @@ module.exports = {
       if (req.session.users) {
         next();
       } else {
-        res.redirect('/LoginandSignupButton');
+        res.redirect('/loginAndSignupButton');
       }
     } catch (error) {
       next(error);
@@ -638,7 +638,7 @@ module.exports = {
       let users = req.session.users
       console.log(req.body);
       addAddress(req.body).then((addressID) => {
-        res.redirect('/Address')
+        res.redirect('/address')
       })
     } catch (error) {
       console.error(error);
@@ -715,7 +715,7 @@ module.exports = {
   editedAddress(req, res) {
     try {
       userEditedProfile(req.params.id, req.body).then((updateAddress) => {
-        res.redirect('/Address');
+        res.redirect('/address');
       })
     } catch (error) {
       res.status(500).json({ error: error });

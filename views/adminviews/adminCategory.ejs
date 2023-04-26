@@ -5,7 +5,7 @@
                 <%= error %>
             </div>
                      <% } %>
-                <form action="/category/AddedCategory" method="post">
+                <form action="/category/addedCategory" method="post">
                     <div class="row mb-3">
                         <label for="inputEmail" class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-5">
@@ -43,10 +43,10 @@
                                         <%= category.name %>
                                     </td>
                                     <td>
-                                        <a href="/category/EditCategory/<%= category._id%>"><button
+                                        <a href="/category/editCategory/<%= category._id%>"><button
                                                 class="btn btn-secondary" id="my-button"
                                                 onclick="myFunction(this.id)">Edit</button></a>
-                                        <a href="/category/DeleteCategory/<%= category._id%>">
+                                        <a href="/category/deleteCategory/<%= category._id%>">
                                             <button class="btn btn-secondary" onclick="event.preventDefault(); 
                           swal({
                             title: 'Are you sure?',
@@ -57,7 +57,7 @@
                           })
                           .then((willDelete) => {
                             if (willDelete) {
-                              window.location.href = '/category/DeleteCategory/<%= category._id%>';
+                              window.location.href = '/category/deleteCategory/<%= category._id%>';
                             } else {
                               swal('Your category is safe!');
                             }
@@ -87,7 +87,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/category/AddCategoryOffer" method="post">
+                                    <form action="/category/addCategoryOffer" method="post">
 
                                         <div class="row mb-3">
                                             <label for="inputPassword" class="col-sm-2 col-form-label">Discount</label>

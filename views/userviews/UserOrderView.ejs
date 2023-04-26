@@ -66,7 +66,7 @@
               <td>
                 <% if (order.shippingStatus=='Delivered' && order.status !='ReturnConfirmed' ) { %>
 
-                  <form action="/order/OrderReturn/<%= order._id %>" method="post">
+                  <form action="/order/orderReturn/<%= order._id %>" method="post">
 
                     <input name="status" value="<%= order.shippingStatus %>" hidden>
 
@@ -79,7 +79,7 @@
                   <% } else if(order.status=='placed' || order.status=='ordered' || order.status=='Shipped' ||
                     order.status=='Arraving' ) { %>
 
-                    <form action="/order/OrderCancel/<%= order._id %>" method="post">
+                    <form action="/order/orderCancel/<%= order._id %>" method="post">
 
                       <input name="status" value="<%= order.status %>" hidden>
                       <input name="payment" value="<%= order.PaymentMethod %>" hidden>

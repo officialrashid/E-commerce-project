@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Add BANNER</h1>
 
-    <form action="/admin/AddedBanner" method="post" enctype="multipart/form-data">
+    <form action="/admin/addedBanner" method="post" enctype="multipart/form-data">
       <div class="row mb-3">
         <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
         <div class="col-sm-10">
@@ -35,7 +35,7 @@
 
           <td class="Banner-images"><img src="/Banner-images/<%= product._id %>.jpg" alt="no"
               style="height: 300px;width: 300px;"></td>
-          <td><a href="/admin/edit-banner/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button"
+          <td><a href="/admin/editBanner/<%= product._id%>"><button class="btn btn-secondary mb-3" id="my-button"
                 onclick="myFunction(this.id)">Edit</button></a><br>
         </tr>
         <% }); %>

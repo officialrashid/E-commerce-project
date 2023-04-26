@@ -21,7 +21,7 @@ module.exports = {
       if (req.session.users) {
         next();
       } else {
-        res.redirect('/LoginandSignupButton')
+        res.redirect('/loginAndSignupButton')
       }
     } catch (error) {
       next(error);
@@ -55,7 +55,7 @@ module.exports = {
       if (req.session.users) {
         next()
       } else {
-        res.redirect('/LoginandSignupButton')
+        res.redirect('/loginAndSignupButton')
       }
     } catch (error) {
       next(error);
@@ -89,7 +89,7 @@ module.exports = {
       let data = req.body
       data.productImage = fileName
       adminAdd(req.body).then((data) => {
-        res.redirect('/product/Stocks')
+        res.redirect('/product/stocks')
       })
     } catch (error) {
       next(error);
@@ -114,7 +114,7 @@ module.exports = {
       let img = req.files
       console.log(req.file);
       adminEditSubmit(req.params.id, req.body, img).then(() => {
-        res.redirect('/product/Stocks')
+        res.redirect('/product/stocks')
       })
     } catch (error) {
       next(error);
@@ -124,7 +124,7 @@ module.exports = {
     try {
       console.log(req.params.id, req.body.stock);
       productListAndUnlist(req.params.id, req.body.stock).then((response) => {
-        res.redirect('/product/Stocks')
+        res.redirect('/product/stocks')
       })
     } catch (error) {
       next(error);
@@ -147,7 +147,7 @@ module.exports = {
   
         getProductOffer(req.body).then(() => {
   
-          res.redirect('/admin/AllOffers')
+          res.redirect('/admin/allOffers')
         })
   
   

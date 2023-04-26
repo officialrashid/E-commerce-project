@@ -384,7 +384,7 @@
         console.log("ppppppppppppppppppppppppppppppphhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         $.ajax({
 
-            url: '/verifypayment',
+            url: '/verifyPayment',
             data: {
 
                 payment,
@@ -411,21 +411,21 @@
 
         $.ajax({
 
-            url: '/place-order',
+            url: '/placeOrder',
             method: 'post',
             data: $('#checkoutForm').serialize(),
             success: (response) => {
 
                 if (response.codSuccess) {
 
-                    location.href = '/order/OrderDetails'
+                    location.href = '/order/orderDetails'
                 } else if (response.razorPay) {
                     console.log("++++++++++++++++++++++++++++++)))))))))))))))))))");
                     razorpayPayment(response)
 
                 } else if (response.Wallet) {
 
-                    location.href = '/order/OrderDetails'
+                    location.href = '/order/orderDetails'
 
                 } else {
                     console.log(response, "uuuuuuuuuuuuuuuuuuuuuuuuuuu")
@@ -508,7 +508,7 @@
         console.log(codes)
         console.log(Total);
         $.ajax({
-            url: '/checkcoupon',
+            url: '/checkCoupon',
             data: {
                 data: codes, Total
 
