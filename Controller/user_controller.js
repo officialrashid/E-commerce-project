@@ -107,8 +107,10 @@ module.exports = {
   },
   userRegistered(req, res, next) {
     // try {
+      let users = req.session.users;
       doCheckEmail(req.body)
         .then((userdata) => {
+          
           // console.log(userdata);
           // req.session.loggedIn = true;
           // req.session.users = userdata;
@@ -119,7 +121,7 @@ module.exports = {
             channel: 'sms',
           }).then(()=>{
 
-            res.render('userviews/signupOtp')
+            res.render('userviews/signupOtp',{user:true,users})
           })
         })
         .catch((error) => {
