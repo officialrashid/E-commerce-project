@@ -173,7 +173,7 @@ module.exports = {
           productOffer(req.params.id).then(() => {
   
             console.log(BillingAddress, "billingAddress");
-  
+  console.log(singleOrder,"single order is coming and wonderful");
             res.render('userviews/orderviewProducts', { user: true, singleOrder, users, BillingAddress })
   
           })

@@ -34,11 +34,21 @@
                     <td>
                         <%= order.orders.category %>
                     </td>
+                   
+                        <td>
+                            <% if (order.orders.price && !order.orders.offerAmount && !order.orders.catoffer) { %>
+                                <%= order.orders.price %>
+                            <% } else if (order.orders.offerAmount) { %>
+                                <%= order.orders.offerAmount %>
+                            <% } else if (order.orders.catoffer && order.orders.catoffer !== order.orders.offerAmount) { %>
+                                <%= order.orders.catoffer%>
+                            <% } %>
+                        </td>
+                        
+                        
+                    <
                     <td>
-                        <%= order.orders.price %>
-                    </td>
-                    <td>
-                        <%= BillingAddress.products[0].quantity %>
+                        <%= BillingAddress.products[i].quantity %>
                     </td>
 
 
@@ -98,7 +108,7 @@
                                                         </span>
                                                 <div class="product-qty">
                                                     <span class="d-block">Quantity:<%=
-                                                            BillingAddress.products[0].quantity %></span>
+                                                            BillingAddress.products[i].quantity %></span>
                                                     <span>color:<%= Orders.orders.color %></span>
 
                                                 </div>
@@ -106,7 +116,14 @@
                                             <td width="20%">
                                                 <div class="text-right">
                                                     <span class="font-weight-bold">
-                                                        <%= Orders.orders.price* BillingAddress.products[0].quantity %>
+                                                        <% if (Orders.orders.price && !Orders.orders.offerAmount && !Orders.orders.catoffer) { %>
+                                                            <%= Orders.orders.price * BillingAddress.products[i].quantity %>
+                                                        <% } else if (Orders.orders.offerAmount) { %>
+                                                        <%= Orders.orders.offerAmount * BillingAddress.products[i].quantity %>
+                                                        <% } else if (Orders.orders.catoffer && Orders.orders.catoffer !== Orders.orders.offerAmount) { %>
+                                                         <%= Orders.orders.catoffer * BillingAddress.products[i].quantity %>
+                                                        <% } %>
+                                                        
                                                     </span>
                                                 </div>
                                             </td>
@@ -130,74 +147,85 @@
                                 <table class="table table-borderless">
 
                                     <tbody class="totals">
+                                        <% let totalDiscount = 0; %>
                                         <% singleOrder.forEach(function(Orders, i){ %>
+                                          <tr>
+                                            <td>
+                                              <div class="text-left">
+                                                <span class="text-muted"></span>
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="text-right">
+                                                <span>
+                                                  <% let totalPrice; %>
+                                                  <% let discount = 0; %>
+                                                  <% if (Orders.orders.price && !Orders.orders.offerAmount && !Orders.orders.catoffer) { %>
+
+                                                    <% totalPrice = Orders.orders.price * BillingAddress.products[i].quantity; %>
+
+                                                  <% } else if (Orders.orders.offerAmount) { %>
+
+                                                    <% totalPrice = Orders.orders.offerAmount * BillingAddress.products[i].quantity; %>
+                                                    <% discount = Orders.orders.price - Orders.orders.offerAmount; %>
+                                                    <% totalDiscount += discount * BillingAddress.products[i].quantity; %>
+
+                                                  <% } else if (Orders.orders.catoffer && Orders.orders.catoffer !== Orders.orders.offerAmount) { %>
+                                                    <% totalPrice = Orders.orders.catoffer * BillingAddress.products[i].quantity; %>
+                                                    <% discount = Orders.orders.price - Orders.orders.catoffer; %>
+                                                    <% totalDiscount += discount * BillingAddress.products[i].quantity; %>
+                                                  <% } %>
+                                                  <!-- <p>Total Price: <%= totalPrice %></p> -->
+                                                  <% if (discount > 0) { %>
+                                                    <!-- <p>Discount: <%= discount %></p> -->
+                                                  <% } %>
+                                                </span>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        <% }); %>
+                                        <% if (totalDiscount > 0) { %>
+                                          <tr>
+                                            <td>
+                                              <div class="text-left">
+                                                <span class="text-muted">Discount:</span>
+                                              </div>
+                                            </td>
+                                            <td>
+                                              <div class="text-right">
+                                                <span><%= totalDiscount %></span>
+                                              </div>
+                                            </td>
+                                          </tr>
+                                          <% } else { %>
                                             <tr>
                                                 <td>
-                                                    <div class="text-left">
-
-                                                        <span class="text-muted">Subtotal:</span>
-
-                                                    </div>
+                                                  <div class="text-left">
+                                                    <span class="text-muted">Discount:</span>
+                                                  </div>
                                                 </td>
                                                 <td>
-                                                    <div class="text-right">
-                                                        <span>
-                                                            <%= Orders.orders.price* BillingAddress.products[0].quantity
-                                                                %>
-                                                        </span>
-                                                    </div>
+                                                  <div class="text-right">
+                                                    <span>No Discounts</span>
+                                                  </div>
                                                 </td>
-
-                                            </tr>
-
-                                            <!-- <tr>
-                                                    <td>
-                                                        <div class="text-left">
-
-                                                            <span class="text-muted">Discount</span>
-                                                            
-                                                        </div>
-                                                    </td>
-                                                   
-                                                    <td>
-                                                        <div class="text-right">
-                                                            <span class="text-success"></span>
-                                                        </div>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                -->
-
-                                            <!-- <tr class="border-top border-bottom">
-                                                    <td>
-                                                        <div class="text-left">
-
-                                                            <span class="font-weight-bold">Total</span>
-                                                            
-                                                        </div>
-                                                    </td>
-                                                   
-                                                </tr> -->
-
-                                            <% }); %>
-
-
-
-                            </div>
-                        </div>
-
-                        </tbody>
+                                              </tr>
+                                        <% } %>
+                                      </tbody>
+                                      
 
                         </table>
+                        
 
                         <td>
                             <div class="text-left">
-
                                 <span class="font-weight-bold" style="margin-left: 2%;">Total:</span>
 
-                                <span class="font-weight-bold" style="margin-left:46%; color: black;">
+                                <span class="font-weight-bold" style="margin-left:66%; color: black;">
                                     <%= BillingAddress.TotalAmount %>
                                 </span>
+                               
+
 
                             </div>
 
@@ -221,7 +249,7 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 addressAlignment">
                                 <div class="details_item">
                                     <h4>Billing Address</h4>
                                     <tbody>
@@ -252,7 +280,7 @@
                                     </tbody>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <!-- <div class="col-lg-4">
                                 <div class="details_item">
                                     <h4>Shipping Address</h4>
                                     <ul class="list">
@@ -274,7 +302,7 @@
                                                     </a></li>
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="order_details_table">
 
@@ -332,3 +360,13 @@
 
     button.addEventListener('click', generatePDF);
 </script>
+<style>
+    .text-right{
+
+        margin-left: 120px;
+    }
+    .addressAlignment{
+
+        margin-right: 200px;
+    }
+</style>

@@ -203,6 +203,10 @@
                                             <td>
                                                 <%= product.products.offerAmount %>
                                             </td>
+                                            <% } else if (product.products.catoffer) { %>
+                                                <td>
+                                                    <%= product.products.catoffer %>
+                                                </td>
                                             <% } else { %>
                                                 <td>
                                                     <%= product.products.price %>

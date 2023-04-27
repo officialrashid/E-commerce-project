@@ -205,13 +205,17 @@
                         </div>
                         <div class="s-price pt-30 mb-30">
                             <% if (DetailProduct.offerAmount) { %>
-                                <span><del>Price:<%= DetailProduct.price %></del></span><br>
-                                <span>Price:<%= DetailProduct.offerAmount %></span>
-                                <% } else { %>
-                                    <span>Price:<%= DetailProduct.price %></span>
-                                    <% } %>
-
-                        </div>
+                              <span><del>Price:<%= DetailProduct.price %></del></span><br>
+                              <span>Price:<%= DetailProduct.offerAmount %></span>
+                            <% } else if (DetailProduct.price && !DetailProduct.offerAmount && !DetailProduct.catoffer){ %>
+                              <span>Price:<%= DetailProduct.price %></span>
+                            <% } else if (DetailProduct.catoffer && DetailProduct.catoffer !== DetailProduct.offerAmount) { %>
+                              <span><del>Price:<%= DetailProduct.price %></del></span><br>
+                             
+                              <span>Price:<%= DetailProduct.catoffer %></span>
+                            <% } %>
+                          </div>
+                          
                         <div class="viewcontent__action single_action pt-30">
                             <!-- <span><input type="number" placeholder="1"></span> -->
                             <% if (DetailProduct.productstock) { %>

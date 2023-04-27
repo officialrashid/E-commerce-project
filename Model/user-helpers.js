@@ -399,29 +399,29 @@ module.exports = {
                 },
                 {
                     $set: {
-                        final: {
-                            $switch: {
-                                branches:
-                                    [{
-                                        case: { $and: ['$products.offerAmount'] },
-                                        then: '$products.offerAmount',
-                                    },
-                                    {
-                                        case: { $and: ['$products.price'] },
-                                        then: '$products.price',
-                                    },
-                                    {
-                                        case: { $and: ['$products.catoffer'] },
-                                        then: '$products.catoffer',
-                                    },
-                                    ],
-                                default: '',
+                      final: {
+                        $switch: {
+                          branches: [
+                            {
+                              case: { $and: [ { $gt: ['$products.offerAmount', 0] } ] },
+                              then: '$products.offerAmount',
                             },
+                            {
+                                case: { $and: [ { $gt: ['$products.catoffer', 0] } ] },
+                                then: '$products.catoffer',
+                              },
+                            {
+                              case: { $and: [ { $gt: ['$products.price', 0] } ] },
+                              then: '$products.price',
+                            },
+                         
+                          ],
+                          default: '',
                         },
+                      },
                     },
-                },
-
-
+                  },
+                
                 {
                     $group: {
 
@@ -523,7 +523,7 @@ module.exports = {
               })
                 await db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: item[i].prod }, [{
 
-                    $set: { productstock: { $cond: { if: { $gt: ["$StockCount", 1] }, then: false, else: true } } },
+                    $set: { productstock: { $cond: { if: { $gt: ["$StockCount", 1] }, then: true, else: false } } },
 
                 }]).then(() => {
 

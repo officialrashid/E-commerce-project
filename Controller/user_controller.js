@@ -229,7 +229,7 @@ module.exports = {
       const products = await getAllCartProducts(req.session.users._id);
       console.log(products, ";;;;;;;;;;;;;;;;;;;;;;;;;;");
       const Total = await getCartTotalAmount(req.session.users._id);
-  
+  console.log(Total,"}{}{}{}{}{}{}{}{}{{{}}}");
       console.log(products, "++&&&&&&&&&&&&");
       if (products.length != 0) {
         res.render('userviews/CartPage', { user: true, products, users, Total });
