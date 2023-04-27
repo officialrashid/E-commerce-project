@@ -29,8 +29,33 @@ var instance = new Razorpay({
     key_secret: Razorpaykeysecret,
 });
 module.exports = {
-
-
+    doCheckEmail: (userdata) => {
+        console.log(userdata.email, "email is coming", userdata.phone, "phone number is coming");
+        
+        if (!userdata.phone.startsWith("+91")) {
+            userdata.phone = "+91" + userdata.phone;
+        }
+              
+        return new Promise(async (resolve, reject) => {
+            let userWithEmail = await db.get().collection(collection.USER_COLLECTION).findOne({ email: userdata.email });
+            let userWithPhone = await db.get().collection(collection.USER_COLLECTION).findOne({ phone: userdata.phone });
+        console.log(userWithEmail,"************************");
+        console.log(userWithPhone,"&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            if (userWithEmail) {
+                console.log("Email already exists");
+                return reject({ error: 'Email already exists' });
+            }
+        
+            if (userWithPhone) {
+                console.log("Phone number already exists");
+                return reject({ error: 'Phone number already exists' });
+            }
+        
+            resolve();
+        });
+    },
+    
+    
     // user signup database section//
     doSignup: (userdata) => {
 
@@ -45,7 +70,8 @@ module.exports = {
             console.log(user);
             if (user) {
 
-                reject({ error: 'Email already exists' })
+             return reject({ error: 'Email already exists' })
+              
             }
             else {
 

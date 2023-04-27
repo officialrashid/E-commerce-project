@@ -1,5 +1,5 @@
 
-const { doSignup, doLogin, showProduct, productAllDetails, getCategory, filterByCategory, addToCart, getAllCartProducts, changeProductQuantity, removeCartItems, getCartTotalAmount, placeOrdered, getProductList, OrderDetails, OrderCancelled, findByNumber, orderProductView, userWishlist, getAllWishlist, removeWishlistItems, generateRazorpay, verifyPayments, changePaymentStatus, addAddress, getAddress, getSearchProduct, getPriceFilter, addCheckCoupon, userEditAccount, userEditedProfile, getAllAddress, createPaypal, getCartOfferAmount, allCouponDetails, removeCartAfterOrder, WalletAmount, changeWalletAmount } = require('../Model/user-helpers');
+const { doSignup, doLogin, showProduct, productAllDetails, getCategory, filterByCategory, addToCart, getAllCartProducts, changeProductQuantity, removeCartItems, getCartTotalAmount, placeOrdered, getProductList, OrderDetails, OrderCancelled, findByNumber, orderProductView, userWishlist, getAllWishlist, removeWishlistItems, generateRazorpay, verifyPayments, changePaymentStatus, addAddress, getAddress, getSearchProduct, getPriceFilter, addCheckCoupon, userEditAccount, userEditedProfile, getAllAddress, createPaypal, getCartOfferAmount, allCouponDetails, removeCartAfterOrder, WalletAmount, changeWalletAmount,doCheckEmail } = require('../Model/user-helpers');
 const { respons, response } = require('express');
 const session = require('express-session');
 const expressEjsLayouts = require("express-ejs-layouts");
@@ -107,24 +107,24 @@ module.exports = {
   },
   userRegistered(req, res, next) {
     // try {
-      // doSignup(req.body)
-      //   .then((userdata) => {
+      doCheckEmail(req.body)
+        .then((userdata) => {
           // console.log(userdata);
           // req.session.loggedIn = true;
           // req.session.users = userdata;
           // res.redirect('/');
           signupUsersData = req.body
           client.verify.v2.services(serviceID).verifications.create({
-            to: `+91${signupUsersData.phone}`,
+            to: `${signupUsersData.phone}`,
             channel: 'sms',
           }).then(()=>{
 
             res.render('userviews/signupOtp')
           })
-        // })
+        })
         .catch((error) => {
           res.render('userviews/userlogin and signup', {
-            error: `${error.error}`,
+            errors: `${error.error}`,
           });
         });
     // } catch (error) {
@@ -746,7 +746,7 @@ module.exports = {
 
   signupOtpVerification(req,res,next){
     client.verify.v2.services(serviceID).verificationChecks.create({
-      to: `+91${signupUsersData.phone}`,
+      to: `${signupUsersData.phone}`,
       code: req.body.otp,
     }).then(async (data) => {
       if (data.status === 'approved') {

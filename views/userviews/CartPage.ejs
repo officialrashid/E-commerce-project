@@ -211,13 +211,13 @@
                                                     <td>
                                                         <div class="viewcontent__action single_action pt-30">
 
-                                                            <button class="quantitys btn btn-dark"
-                                                                onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',-1)">-</button>
-                                                            <span id="<%= product.products._id %>">
+                                                            <button class="btn btn-outline-danger btn-cart-dec pb-2 mb-1 mr-5 fa fa-angle-double-down"
+                                                                onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',-1)"></button>
+                                                            <span id="<%= product.products._id %>" style="margin-left: 3%;">
                                                                 <%= product.quantity %>
                                                             </span>
-                                                            <button class="quantity btn btn-dark"
-                                                                onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',1)">+</button><br>
+                                                            <button class="btn btn-outline-success btn-cart-dec pb-2 mb-1 mr-5 fa fa-angle-double-up"
+                                                                onclick="changeQuantity('<%= product._id %>','<%= product.products._id %>','<%= Total %>','<%= product.products.price %>',1)"></button><br>
 
                                                             <span id="error" style="color: red;"></span>
 
