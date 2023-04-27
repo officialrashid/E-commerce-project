@@ -114,17 +114,9 @@
                                                 </div>
                                             </td>
                                             <td width="20%">
+                                                
                                                 <div class="text-right">
-                                                    <span class="font-weight-bold">
-                                                        <% if (Orders.orders.price && !Orders.orders.offerAmount && !Orders.orders.catoffer) { %>
-                                                            <%= Orders.orders.price * BillingAddress.products[i].quantity %>
-                                                        <% } else if (Orders.orders.offerAmount) { %>
-                                                        <%= Orders.orders.offerAmount * BillingAddress.products[i].quantity %>
-                                                        <% } else if (Orders.orders.catoffer && Orders.orders.catoffer !== Orders.orders.offerAmount) { %>
-                                                         <%= Orders.orders.catoffer * BillingAddress.products[i].quantity %>
-                                                        <% } %>
-                                                        
-                                                    </span>
+                                                    <span class="font-weight-bold"><%= Orders.orders.price * BillingAddress.products[i].quantity %></span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -249,10 +241,10 @@
 
                                 </div>
                             </div>
-                            <div class="col-lg-4 addressAlignment">
-                                <div class="details_item">
+                            <div class="col-lg-4 " style="margin-right: 100%;" >
+                                <div class="details_item ">
                                     <h4>Billing Address</h4>
-                                    <tbody>
+                                    <tbody class="" style="margin-bottom: -300px;">
 
                                         <tr>
 
@@ -311,11 +303,11 @@
                 </section>
 
 
-                <button type="button" id="download-button" class="badge bg-dark bg-lg"><i class=""></i> Download
-                    PDF</button>
+              
             </div>
 
-
+            <button type="button" id="download-button" class="badge bg-dark bg-lg"><i class=""></i> Download
+                PDF</button>
 
 
 
@@ -365,8 +357,5 @@
 
         margin-left: 120px;
     }
-    .addressAlignment{
-
-        margin-right: 200px;
-    }
+   
 </style>
