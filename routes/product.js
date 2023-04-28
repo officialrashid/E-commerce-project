@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const { stocks, addProduct, addedProduct, editProduct, editSubmit, productManage, productOffer, addProductOffer, sessionCheck, productDetails, ShowProductOffer } = require('../Controller/product_controller')
+const { stocks, addProduct, addedProduct, editProduct, editSubmit, productManage, productOffer, addProductOffer, sessionCheck, productDetails, ShowProductOffer } = require('../Controller/productController')
 var multer = require('multer')
 const { verifyUser } = require("../Controller/auth");
-const {adminSessionCheck} = require('../Controller/admin_controller')
+const {adminSessionCheck} = require('../Controller/adminController')
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

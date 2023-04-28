@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const { orders, adminProductView, adminCancelOrder, shippingStatus, userOrderView, sessionCheck, orderCancel, userProductView, orderDetails, orderReturn, adminReturnedOrder } = require('../Controller/order_controller')
+const { orders, adminProductView, adminCancelOrder, shippingStatus, userOrderView, sessionCheck, orderCancel, userProductView, orderDetails, orderReturn, adminReturnedOrder } = require('../Controller/orderController')
 const { verifyUser } = require("../Controller/auth");
-const {adminSessionCheck} = require('../Controller/admin_controller')
+const {adminSessionCheck} = require('../Controller/adminController')
 
 router.get('/orders',adminSessionCheck, orders)
 router.get('/adminProductView/:id', adminSessionCheck,adminProductView)

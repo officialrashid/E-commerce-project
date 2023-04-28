@@ -300,8 +300,9 @@ module.exports = {
 },
   async placeOrder(req, res) {
     try {
+    console.log(req.body,'bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy')
     let Total = parseInt(req.body.Total)
-    console.log(Total, "+++++++++++++++++++------------");
+    console.log(Total, "+++++++++++++++++++----------------------------------------------------------");
     let finalPrice
     let TOtal = Number(req.body.Total)
     console.log(typeof TOtal)
@@ -311,8 +312,9 @@ module.exports = {
     var usdtotal = Math.round(response)
     console.log(usdtotal, "//usd");
     if (req.body.offerdata) {
-
-      finalPrice = req.body.offerdata
+console.log(req.body.offerdata,'offerrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrdataaa');
+    
+finalPrice =parseInt(req?.body?.offerdata) 
     } else {
 
       finalPrice = TOtal
@@ -357,7 +359,7 @@ module.exports = {
 
           else if (req.body.payment_method == 'ONLINE') {
 
-            generateRazorpay(orderID, Total).then((response) => {
+            generateRazorpay(orderID, finalPrice).then((response) => {
 
               let ids = destruct(products)
 

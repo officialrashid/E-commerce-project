@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const { uploadMultiple } = require('../middlewares/multer')
-const { adminLogin, adminRegisterd, allUsers, blockManagement, dashboard, addBanner, addedBanner, editBanner, editedBanner, todayOrderList, weekSales, monthSales, yearSales, totalRevenue, salesReport, addCoupon, addedCoupon, allCoupons, allOffers, categoryOffer, showProductOffer, showCategoryOffer, editCoupon, editedCoupon, deleteCoupon, nocache, loginRedirect, adminSessionCheck} = require('../Controller/admin_controller')
+const { adminLogin, adminRegisterd, allUsers, blockManagement, dashboard, addBanner, addedBanner, editBanner, editedBanner, todayOrderList, weekSales, monthSales, yearSales, totalRevenue, salesReport, addCoupon, addedCoupon, allCoupons, allOffers, categoryOffer, showProductOffer, showCategoryOffer, editCoupon, editedCoupon, deleteCoupon, nocache, loginRedirect, adminSessionCheck} = require('../Controller/adminController')
 
 
 

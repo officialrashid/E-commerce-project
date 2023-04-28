@@ -258,11 +258,11 @@ module.exports = {
     let users = req.session.users;
     try {
       getAllBanners().then((Banners) => {
-        res.render('adminviews/AddBanner', { user: false, users, Banners });
+        res.render('adminviews/addBanner', { user: false, users, Banners });
       });
     } catch (error) {
       console.log(error);
-      res.render('adminviews/AddBanner', { user: false, users, Banners: [] });
+      res.render('adminviews/addBanner', { user: false, users, Banners: [] });
     }
   },
 

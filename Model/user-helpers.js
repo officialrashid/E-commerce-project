@@ -2,7 +2,7 @@ var db = require('./connectionmongo');
 var collection = require('./collections');
 var bcrypt = require('bcrypt');
 const { ObjectId } = require('mongodb');
-const { productDetails, Address } = require('../Controller/user_controller');
+const { productDetails, Address } = require('../Controller/userController');
 const { promiseImpl } = require('ejs');
 
 const Razorpay = require('razorpay');

@@ -3,7 +3,7 @@ var collection = require('./collections');
 var bcrypt = require('bcrypt');
 const { ObjectId } = require('mongodb');
 const { body } = require('express-validator');
-const { shippingStatus } = require('../Controller/admin_controller');
+const { shippingStatus } = require('../Controller/adminController');
 const { promiseImpl } = require('ejs');
 
 module.exports = {
