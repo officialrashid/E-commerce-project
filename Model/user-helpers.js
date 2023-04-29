@@ -958,13 +958,13 @@ module.exports = {
         })
 
     },
-    userEditAccount: () => {
+    userEditAccount: (userID) => {
 
         return new Promise((resolve, reject) => {
 
             db.get().collection(collection.USER_COLLECTION).find().toArray().then((EditAccount) => {
 
-
+console.log(EditAccount,"))))))))))");
                 resolve(EditAccount[0])
             })
 

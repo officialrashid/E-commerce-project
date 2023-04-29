@@ -708,7 +708,7 @@ finalPrice =parseInt(req?.body?.offerdata)
   editAccount(req, res) {
     try {
       let users = req.session.users
-      userEditAccount().then((EditAccount) => {
+      userEditAccount(req.session.users).then((EditAccount) => {
         res.render('userviews/EditAccount', { user: true, EditAccount, users })
       })
     } catch (error) {
