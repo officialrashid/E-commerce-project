@@ -6,7 +6,7 @@ const { adminLogin, adminRegisterd, allUsers, blockManagement, dashboard, addBan
 
 
 /* GET users listing. */
-router.get('/',nocache,loginRedirect ,adminLogin);
+router.get('/',adminLogin);
 router.post('/adminLoged', adminRegisterd)
 router.get('/allUsers',adminSessionCheck, allUsers)
 // router.post('/delete-pro/:id',deleteProduct)
