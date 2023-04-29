@@ -515,6 +515,13 @@ module.exports = {
       console.log(error);
       res.status(500).send("Error occurred while deleting coupon.");
     }
+  },
+  adminLogout(req,res){
+
+    req.session.loggedIn = false;
+    req.session.admins = null;
+
+    res.redirect('/admin')
   }
 
 }
