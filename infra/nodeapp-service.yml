@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+  labels:
+    app: nodeapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeapp
+  template:
+    metadata:
+      labels:
+        app: nodeapp
+    spec:
+      containers:
+        - name: nodeserver
+          image: officialrashid/project8:2
+          ports:
+            - containerPort: 3000
+          env:
+            - name: TWILIO_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: TWILIO_TOKEN
+            - name: TWILIO_ACCOUNT_SID
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: TWILIO_ACCOUNT_SID
+            - name: SERVICE_ID
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: SERVICE_ID
+            - name: RAZORPAY_KEYID
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: RAZORPAY_KEYID
+            - name: RAZORPAY_KEYSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: RAZORPAY_KEYSECRET
+            - name: PAYPAL_CLIENTID
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: PAYPAL_CLIENTID
+            - name: PAYPAL_CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: nodeapp-secrets
+                  key: PAYPAL_CLIENTSECRET
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeapp-service
+spec:
+  selector:
+    app: nodeapp
+  ports:
+    - name: nodeapp
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
