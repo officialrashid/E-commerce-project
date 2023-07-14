@@ -1,0 +1,9 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: infra
+manifests:
+  rawYaml:
+    - ingress.yml
+    - nodeapp-secrets.yml
+    - nodeapp-service.yml
