@@ -10,8 +10,6 @@ require('dotenv').config()
 const { get } = require('http');
 const { resolve } = require('path');
 var paypal = require('paypal-rest-sdk');
-const { Number } = require('twilio/lib/twiml/VoiceResponse');
-const { NumberContextImpl } = require('twilio/lib/rest/pricing/v2/number');
 const { isNumber } = require('razorpay/dist/utils/razorpay-utils');
 const Razorpaykeyid = process.env.RAZORPAY_KEYID
 const Razorpaykeysecret = process.env.RAZORPAY_KEYSECRET
